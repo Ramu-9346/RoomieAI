@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Enforce Conventional Commits format:
+#   type(scope): subject
+#   e.g. feat(chat): add AI message streaming
+COMMIT_MSG=$(cat "$1")
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|chore|revert|build|ci)(\(.+\))?: .{1,100}"
+
+if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
+  echo "❌ Commit message does not follow Conventional Commits format."
+  echo "   Expected: type(scope): subject"
+  echo "   Types: feat | fix | docs | style | refactor | perf | test | chore | revert | build | ci"
+  echo "   Example: feat(chat): add AI message streaming"
+  exit 1
+fi

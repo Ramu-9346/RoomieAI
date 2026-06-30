@@ -1,0 +1,48 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "exactOptionalPropertyTypes": false,
+    "noUncheckedIndexedAccess": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@components": ["./src/components/index.ts"],
+      "@components/*": ["./src/components/*"],
+      "@theme": ["./src/theme/index.ts"],
+      "@theme/*": ["./src/theme/*"],
+      "@models/*": ["./models/*"],
+      "@services/*": ["./services/*"],
+      "@store/*": ["./store/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@utils/*": ["./utils/*"],
+      "@constants/*": ["./constants/*"],
+      "@config/*": ["./config/*"],
+      "@providers/*": ["./providers/*"],
+      "@mock/*": ["./mock/*"],
+      "@features/*": ["./features/*"],
+      "@navigation/*": ["./navigation/*"],
+      "@assets/*": ["./assets/*"]
+    },
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "jsx": "react-native",
+    "lib": ["ESNext"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.d.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}

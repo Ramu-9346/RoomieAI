@@ -1,0 +1,39 @@
+{
+  "activeOrder": null,
+  "pendingPolls": [
+    {
+      "id": "poll_001",
+      "question": "What should we order for dinner tonight?",
+      "status": "active",
+      "respondedCount": 2,
+      "totalCount": 4
+    }
+  ],
+  "recentOrders": [
+    {
+      "id": "order_001",
+      "category": "food",
+      "restaurantName": "Meghana Foods",
+      "restaurantEmoji": "🍛",
+      "itemCount": 4,
+      "total": 1130,
+      "status": "delivered",
+      "settlementStatus": "partial",
+      "createdAt": "2026-06-28T19:25:00Z"
+    }
+  ],
+  "suggestedRestaurants": [
+    {
+      "id": "rest_001",
+      "name": "Meghana Foods",
+      "cuisines": ["Biryani", "Andhra"],
+      "rating": 4.1,
+      "deliveryTimeMin": 28,
+      "distanceKm": 1.2,
+      "emoji": "🍛",
+      "isOpen": true,
+      "fitReason": "Voted favourite last week · Within budget"
+    }
+  ],
+  "swiggyTokenExpiresAt": "2026-07-03T00:00:00Z"
+}

@@ -1,0 +1,32 @@
+/**
+ * HistoryScreen — settled orders + spend analytics.
+ * PLACEHOLDER: Full implementation in Phase 4.
+ *
+ * Will render:
+ *   - TopAppBar with "History" title
+ *   - HistoryCard list (food/grocery/dineout)
+ *   - Monthly spend summary
+ */
+
+import { View, StyleSheet } from 'react-native';
+import { Text }             from '@components/primitives/Text';
+import { useAppTheme }      from '@hooks/useAppTheme';
+
+export default function HistoryScreen() {
+  const { colors } = useAppTheme();
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background.primary }]}>
+      <Text variant="title" color={colors.text.primary} align="center">
+        History
+      </Text>
+      <Text variant="captionItalic" color={colors.text.muted} align="center">
+        Order history & spend — Phase 4
+      </Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8 },
+});

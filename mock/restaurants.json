@@ -1,0 +1,77 @@
+{
+  "restaurants": [
+    {
+      "id": "rest_001",
+      "name": "Meghana Foods",
+      "category": "food",
+      "cuisines": ["Biryani", "Andhra"],
+      "rating": 4.1,
+      "ratingCount": 8420,
+      "deliveryTimeMin": 28,
+      "distanceKm": 1.2,
+      "minOrderAmount": 150,
+      "costForTwo": 500,
+      "emoji": "🍛",
+      "isVegOnly": false,
+      "isOpen": true,
+      "swiggyRestaurantId": "sw_rest_001",
+      "fitReason": "Matches Priya's biryani preference and within ₹1000 cap for 4 people"
+    },
+    {
+      "id": "rest_002",
+      "name": "Vidyarthi Bhavan",
+      "category": "food",
+      "cuisines": ["South Indian", "Karnataka"],
+      "rating": 4.4,
+      "ratingCount": 12300,
+      "deliveryTimeMin": 35,
+      "distanceKm": 2.1,
+      "minOrderAmount": 100,
+      "costForTwo": 300,
+      "emoji": "🥘",
+      "isVegOnly": true,
+      "isOpen": true,
+      "swiggyRestaurantId": "sw_rest_002",
+      "fitReason": "Veg-only — safe for Akash's Jain diet"
+    },
+    {
+      "id": "rest_003",
+      "name": "Punjabi Tadka",
+      "category": "food",
+      "cuisines": ["North Indian", "Punjabi"],
+      "rating": 3.9,
+      "ratingCount": 3200,
+      "deliveryTimeMin": 40,
+      "distanceKm": 1.8,
+      "minOrderAmount": 200,
+      "costForTwo": 450,
+      "emoji": "🫕",
+      "isVegOnly": false,
+      "isOpen": true,
+      "swiggyRestaurantId": "sw_rest_003"
+    },
+    {
+      "id": "rest_004",
+      "name": "Chai Point",
+      "category": "food",
+      "cuisines": ["Beverages", "Snacks"],
+      "rating": 4.2,
+      "ratingCount": 5100,
+      "deliveryTimeMin": 15,
+      "distanceKm": 0.4,
+      "minOrderAmount": 50,
+      "costForTwo": 150,
+      "emoji": "☕",
+      "isVegOnly": true,
+      "isOpen": true,
+      "swiggyRestaurantId": "sw_rest_004"
+    }
+  ],
+  "menu": [
+    { "id": "item_001", "restaurantId": "rest_001", "name": "Chicken Biryani", "price": 249, "isVeg": false, "category": "Biryani", "isAvailable": true },
+    { "id": "item_002", "restaurantId": "rest_001", "name": "Veg Biryani", "price": 199, "isVeg": true, "category": "Biryani", "isAvailable": true },
+    { "id": "item_003", "restaurantId": "rest_001", "name": "Mutton Biryani", "price": 349, "isVeg": false, "category": "Biryani", "isAvailable": true },
+    { "id": "item_004", "restaurantId": "rest_001", "name": "Raita", "price": 49, "isVeg": true, "category": "Sides", "isAvailable": true },
+    { "id": "item_005", "restaurantId": "rest_001", "name": "Gulab Jamun (2 pcs)", "price": 79, "isVeg": true, "category": "Desserts", "isAvailable": true }
+  ]
+}

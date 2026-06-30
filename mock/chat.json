@@ -1,0 +1,57 @@
+{
+  "conversation": {
+    "id": "conv_001",
+    "flatId": "flat_001",
+    "isAIThinking": false,
+    "createdAt": "2026-07-01T18:55:00Z",
+    "updatedAt": "2026-07-01T19:15:00Z"
+  },
+  "messages": [
+    {
+      "id": "msg_001",
+      "conversationId": "conv_001",
+      "role": "user",
+      "content": "Order dinner for all of us",
+      "memberName": "Ramu",
+      "memberIndex": 0,
+      "createdAt": "2026-07-01T19:00:00Z"
+    },
+    {
+      "id": "msg_002",
+      "conversationId": "conv_001",
+      "role": "assistant",
+      "content": "Let me check everyone's preferences and find the best options nearby.",
+      "createdAt": "2026-07-01T19:00:02Z"
+    },
+    {
+      "id": "msg_003",
+      "conversationId": "conv_001",
+      "role": "assistant",
+      "content": "I found 3 restaurants that work for everyone. Meghana Foods is the best match — Priya gets veg biryani, Akash's Jain requirements are met, and it's within budget.",
+      "attachments": [
+        { "type": "restaurant_card", "restaurantId": "rest_001" },
+        { "type": "restaurant_card", "restaurantId": "rest_002" }
+      ],
+      "createdAt": "2026-07-01T19:00:08Z"
+    },
+    {
+      "id": "msg_004",
+      "conversationId": "conv_001",
+      "role": "user",
+      "content": "Let's go with Meghana. Make sure Akash gets veg.",
+      "memberName": "Ramu",
+      "memberIndex": 0,
+      "createdAt": "2026-07-01T19:01:00Z"
+    },
+    {
+      "id": "msg_005",
+      "conversationId": "conv_001",
+      "role": "assistant",
+      "content": "Here's the order breakdown. Total is ₹1,130 split 4 ways — ₹283 per person.",
+      "attachments": [
+        { "type": "order_card", "orderId": "order_001" }
+      ],
+      "createdAt": "2026-07-01T19:01:15Z"
+    }
+  ]
+}

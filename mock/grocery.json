@@ -1,0 +1,22 @@
+{
+  "smartCart": {
+    "items": [
+      { "product": { "id": "gp_001", "name": "Amul Full Cream Milk", "unit": "2 × 1L", "price": 116, "isAvailable": true, "instamartProductId": "im_001" }, "quantity": 2 },
+      { "product": { "id": "gp_002", "name": "Eggs",                  "unit": "12 pc", "price": 90,  "isAvailable": true, "instamartProductId": "im_002" }, "quantity": 1 },
+      { "product": { "id": "gp_003", "name": "Onions",                "unit": "1 kg",  "price": 40,  "isAvailable": true, "instamartProductId": "im_003" }, "quantity": 1 },
+      { "product": { "id": "gp_004", "name": "Tomatoes",              "unit": "500 g", "price": 30,  "isAvailable": true, "instamartProductId": "im_004" }, "quantity": 1 },
+      { "product": { "id": "gp_005", "name": "Basmati Rice",          "unit": "5 kg",  "price": 360, "isAvailable": true, "instamartProductId": "im_005" }, "quantity": 1 },
+      { "product": { "id": "gp_006", "name": "Tata Salt",             "unit": "1 kg",  "price": 22,  "isAvailable": true, "instamartProductId": "im_006" }, "quantity": 1 },
+      { "product": { "id": "gp_007", "name": "Sunflower Oil",         "unit": "1 L",   "price": 135, "isAvailable": true, "instamartProductId": "im_007" }, "quantity": 1 },
+      { "product": { "id": "gp_008", "name": "Atta",                  "unit": "5 kg",  "price": 265, "isAvailable": true, "instamartProductId": "im_008" }, "quantity": 1 },
+      { "product": { "id": "gp_009", "name": "Turmeric Powder",       "unit": "100 g", "price": 28,  "isAvailable": true, "instamartProductId": "im_009" }, "quantity": 1 },
+      { "product": { "id": "gp_010", "name": "Chilli Powder",         "unit": "100 g", "price": 32,  "isAvailable": true, "instamartProductId": "im_010" }, "quantity": 1 },
+      { "product": { "id": "gp_011", "name": "Coriander Powder",      "unit": "100 g", "price": 28,  "isAvailable": true, "instamartProductId": "im_011" }, "quantity": 1 },
+      { "product": { "id": "gp_012", "name": "Dishwash Bar",          "unit": "2 pcs", "price": 48,  "isAvailable": true, "instamartProductId": "im_012" }, "quantity": 1 },
+      { "product": { "id": "gp_013", "name": "Toilet Roll",           "unit": "6 rolls","price": 180,"isAvailable": true, "instamartProductId": "im_013" }, "quantity": 1 },
+      { "product": { "id": "gp_014", "name": "Liquid Hand Wash",      "unit": "250 mL","price": 89,  "isAvailable": true, "instamartProductId": "im_014" }, "quantity": 1 }
+    ],
+    "total": 1463,
+    "estimatedDeliveryMinutes": 10
+  }
+}

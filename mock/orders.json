@@ -1,0 +1,52 @@
+{
+  "orders": [
+    {
+      "id": "order_001",
+      "flatId": "flat_001",
+      "category": "food",
+      "restaurantId": "rest_001",
+      "restaurantName": "Meghana Foods",
+      "restaurantEmoji": "🍛",
+      "items": [
+        { "menuItemId": "item_001", "name": "Chicken Biryani", "price": 249, "quantity": 2, "isVeg": false, "forMemberIds": ["user_001", "user_004"] },
+        { "menuItemId": "item_002", "name": "Veg Biryani", "price": 199, "quantity": 2, "isVeg": true, "forMemberIds": ["user_002", "user_003"] },
+        { "menuItemId": "item_004", "name": "Raita", "price": 49, "quantity": 4, "isVeg": true, "forMemberIds": ["user_001", "user_002", "user_003", "user_004"] }
+      ],
+      "subtotal": 1090,
+      "deliveryFee": 40,
+      "total": 1130,
+      "status": "delivered",
+      "placedByUserId": "user_001",
+      "memberIds": ["user_001", "user_002", "user_003", "user_004"],
+      "swiggyOrderId": "sw_ord_789",
+      "placedAt": "2026-06-28T19:30:00Z",
+      "deliveredAt": "2026-06-28T20:05:00Z",
+      "createdAt": "2026-06-28T19:25:00Z",
+      "updatedAt": "2026-06-28T20:05:00Z"
+    }
+  ],
+  "history": [
+    {
+      "id": "order_001",
+      "category": "food",
+      "restaurantName": "Meghana Foods",
+      "restaurantEmoji": "🍛",
+      "itemCount": 4,
+      "total": 1130,
+      "status": "delivered",
+      "settlementStatus": "partial",
+      "createdAt": "2026-06-28T19:25:00Z"
+    },
+    {
+      "id": "order_002",
+      "category": "grocery",
+      "restaurantName": "Instamart",
+      "restaurantEmoji": "🛒",
+      "itemCount": 14,
+      "total": 1698,
+      "status": "delivered",
+      "settlementStatus": "all-settled",
+      "createdAt": "2026-06-26T10:00:00Z"
+    }
+  ]
+}

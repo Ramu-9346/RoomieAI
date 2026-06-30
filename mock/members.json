@@ -1,0 +1,78 @@
+{
+  "flat": {
+    "id": "flat_001",
+    "name": "Flat 4B, Koramangala",
+    "inviteCode": "FLAT4B",
+    "adminUserId": "user_001",
+    "address": {
+      "id": "addr_001",
+      "label": "Home",
+      "line1": "4B, 3rd Floor, HSR Layout",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560102",
+      "lat": 12.9141,
+      "lng": 77.6411
+    },
+    "settings": {
+      "defaultBudgetPerMember": 250,
+      "pollTimeoutMinutes": 5,
+      "requirePollForOrders": false,
+      "allowCODOnly": true,
+      "currencyCode": "INR",
+      "timezone": "Asia/Kolkata"
+    },
+    "createdAt": "2026-05-01T10:00:00Z",
+    "updatedAt": "2026-06-29T18:00:00Z"
+  },
+  "members": [
+    {
+      "userId": "user_001",
+      "flatId": "flat_001",
+      "name": "Ramu",
+      "memberIndex": 0,
+      "isAdmin": true,
+      "isActive": true,
+      "isOnline": true,
+      "dietaryType": "non-veg",
+      "allergens": [],
+      "joinedAt": "2026-05-01T10:00:00Z"
+    },
+    {
+      "userId": "user_002",
+      "flatId": "flat_001",
+      "name": "Priya",
+      "memberIndex": 1,
+      "isAdmin": false,
+      "isActive": true,
+      "isOnline": true,
+      "dietaryType": "veg",
+      "allergens": ["nuts"],
+      "joinedAt": "2026-05-01T12:00:00Z"
+    },
+    {
+      "userId": "user_003",
+      "flatId": "flat_001",
+      "name": "Akash",
+      "memberIndex": 2,
+      "isAdmin": false,
+      "isActive": true,
+      "isOnline": false,
+      "dietaryType": "jain",
+      "allergens": [],
+      "joinedAt": "2026-05-02T09:00:00Z"
+    },
+    {
+      "userId": "user_004",
+      "flatId": "flat_001",
+      "name": "Sana",
+      "memberIndex": 3,
+      "isAdmin": false,
+      "isActive": true,
+      "isOnline": true,
+      "dietaryType": "non-veg",
+      "allergens": ["shellfish"],
+      "joinedAt": "2026-05-03T14:00:00Z"
+    }
+  ]
+}

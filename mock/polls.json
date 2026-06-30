@@ -1,0 +1,22 @@
+{
+  "polls": [
+    {
+      "id": "poll_001",
+      "flatId": "flat_001",
+      "question": "What should we order for dinner tonight?",
+      "options": [
+        { "id": "opt_001", "label": "Biryani", "emoji": "🍛" },
+        { "id": "opt_002", "label": "Pizza", "emoji": "🍕" },
+        { "id": "opt_003", "label": "Chinese", "emoji": "🥢" }
+      ],
+      "responses": [
+        { "memberId": "user_001", "memberName": "Ramu",  "memberIndex": 0, "optionId": "opt_001", "respondedAt": "2026-07-01T19:01:00Z" },
+        { "memberId": "user_002", "memberName": "Priya", "memberIndex": 1, "optionId": "opt_001", "respondedAt": "2026-07-01T19:02:00Z" }
+      ],
+      "status": "active",
+      "createdByUserId": "user_001",
+      "expiresAt": "2026-07-01T19:10:00Z",
+      "createdAt": "2026-07-01T19:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "notifications": [
+    {
+      "id": "notif_001",
+      "userId": "user_001",
+      "type": "poll_created",
+      "title": "Dinner poll is live 🗳",
+      "body": "Priya started a poll: What should we order tonight?",
+      "payload": { "pollId": "poll_001" },
+      "isRead": false,
+      "createdAt": "2026-07-01T19:00:00Z"
+    },
+    {
+      "id": "notif_002",
+      "userId": "user_001",
+      "type": "payment_reminder",
+      "title": "Akash owes ₹283",
+      "body": "Remind Akash to pay their share for last night's Meghana Foods order.",
+      "payload": { "orderId": "order_001", "memberId": "user_003", "amount": 283 },
+      "isRead": false,
+      "createdAt": "2026-06-29T09:00:00Z"
+    },
+    {
+      "id": "notif_003",
+      "userId": "user_001",
+      "type": "order_delivered",
+      "title": "Order delivered! 🎉",
+      "body": "Your Meghana Foods order has been delivered. Bon appétit!",
+      "payload": { "orderId": "order_001" },
+      "isRead": true,
+      "readAt": "2026-06-28T20:10:00Z",
+      "createdAt": "2026-06-28T20:05:00Z"
+    },
+    {
+      "id": "notif_004",
+      "userId": "user_001",
+      "type": "token_expiry",
+      "title": "Re-verify Swiggy soon",
+      "body": "Your Swiggy connection expires in 2 days. Tap to re-verify.",
+      "payload": { "deepLink": "/settings" },
+      "isRead": false,
+      "createdAt": "2026-06-30T08:00:00Z"
+    }
+  ]
+}
