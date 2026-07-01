@@ -13,3 +13,11 @@ export { NotificationCard }                          from './NotificationCard';
 export type { NotificationType }                     from './NotificationCard';
 export { HistoryCard }                               from './HistoryCard';
 export type { HistoryItemType, SettlementStatus }    from './HistoryCard';
+
+// Phase 4 cards
+export { RestaurantCompactCard } from './RestaurantCompactCard';
+export { AnalyticsCard }         from './AnalyticsCard';
+export { RecommendationCard }    from './RecommendationCard';
+export { CartSummaryCard }       from './CartSummaryCard';
+export { BudgetCard }            from './BudgetCard';
+export { WalletCard }            from './WalletCard';

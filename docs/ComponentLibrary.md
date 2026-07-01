@@ -305,3 +305,58 @@ Primary text composition bar with quick reply chips.
   onQuickReply={handleQuickReply}
 />
 ```
+
+---
+
+## Phase 4 Additions
+
+### Layout (`src/components/layout/`)
+`ScreenContainer`, `SafeAreaLayout`, `Section`, `CardContainer`, `Grid`, `GridItem`, `Spacer`, `StickyHeader`, `KeyboardAvoidView`, `useStickyHeaderScroll`.
+
+### Typography (`src/components/typography/`)
+`Heading`, `Title`, `Subtitle`, `Body`, `Caption`, `Label`, `Price`, `Currency`, `GradientText`.
+
+### Buttons (`src/components/buttons/`)
+`PrimaryButton`, `SecondaryButton`, `GhostButton`, `OutlineButton`, `DangerButton`, `SuccessButton`, `FloatingButton`, `LoadingButton`, `HoldToConfirmButton`.
+
+### Avatars (`src/components/avatars/`)
+`AvatarStack`, `MemberAvatar`, `GroupAvatar`, `StatusAvatar`, `PresenceIndicator`.
+
+### Badges (`src/components/badges/`)
+`StatusBadge`, `CountBadge`, `NotificationBadge`, `RoleBadge`, `DiscountBadge`, `LiveBadge`.
+
+### Forms (`src/components/forms/`)
+`PasswordField`, `Dropdown`, `SliderInput`, `ChipSelector`, `DatePicker`, `TimePicker`.
+Also re-exports all Phase 2 input components.
+
+### New Cards (`src/components/cards/`)
+`RestaurantCompactCard`, `AnalyticsCard`, `RecommendationCard`, `CartSummaryCard`, `BudgetCard`, `WalletCard`.
+
+### Empty States (`src/components/emptyStates/`)
+`EmptyState` (base), `NoOrders`, `NoRestaurants`, `NoMembers`, `NoChat`, `NoInternet`, `NoNotifications`, `NoSearchResults`, `NoGroceryItems`.
+
+### Loaders (`src/components/loaders/`)
+`CardSkeleton`, `RestaurantSkeleton`, `OrderSkeleton`, `ChatSkeleton`, `ProfileSkeleton`, `ListSkeleton`, `PageSkeleton`.
+
+### Lists (`src/components/lists/`)
+`RestaurantList`, `HorizontalScroller`, `AnimatedCarousel`, `MemberList`, `OrderTimeline`, `ChatList`.
+
+### New Navigation (`src/components/navigation/`)
+`AppHeader`, `PageHeader`, `BackButton`, `SectionHeader`, `Breadcrumb`.
+
+### New Feedback (`src/components/feedback/`)
+`Snackbar`, `WarningBanner`, `LoadingOverlay`, `ActionSheet`, `ErrorState`, `OfflineState`, `Shimmer`, `PageLoader`.
+
+### New AI (`src/components/ai/`)
+`ActionSuggestionCard`, `QuickReplyChips`, `VoiceInputButton`.
+
+### Icons (`src/components/icons/`)
+`Icon`, `CheckIcon`, `XIcon`, `ChevronRightIcon`, `ChevronDownIcon`, `SearchIcon`, `BellIcon`, `SettingsIcon`, `UserIcon`, `HomeIcon`, `StarIcon`, `ArrowLeftIcon`, `MicIcon`.
+
+### Animations (`src/components/animations/`)
+`useFadeIn`, `useSlideIn`, `useScaleIn`, `usePageStagger`, `usePressScale`.
+
+### Shared (`src/components/shared/`)
+`VegIndicator`, `PriceDisplay`, `OrderStatusDot`, `RatingStars`.
+
+See `docs/ComponentUsage.md` for usage examples and `docs/UIArchitecture.md` for the design decisions.
