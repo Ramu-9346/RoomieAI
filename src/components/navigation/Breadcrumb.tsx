@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -36,9 +37,7 @@ export function Breadcrumb({ items, style }: BreadcrumbProps) {
                 {item.label}
               </Text>
             </Pressable>
-            {!isLast && (
-              <Feather name="chevron-right" size={14} color={colors.text.muted} />
-            )}
+            {!isLast && <Feather name="chevron-right" size={14} color={colors.text.muted} />}
           </View>
         );
       })}

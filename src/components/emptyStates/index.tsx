@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ViewStyle } from 'react-native';
+
 import { EmptyState } from './EmptyState';
 
 export { EmptyState } from './EmptyState';
@@ -42,7 +43,9 @@ export function NoMembers({ onPrimaryPress, style }: DomainEmptyProps) {
       emoji="👥"
       title="Just you so far"
       description="Invite your flatmates to start ordering together and splitting bills automatically."
-      primaryAction={onPrimaryPress ? { label: 'Invite Members', onPress: onPrimaryPress } : undefined}
+      primaryAction={
+        onPrimaryPress ? { label: 'Invite Members', onPress: onPrimaryPress } : undefined
+      }
       style={style}
     />
   );
@@ -88,7 +91,9 @@ export function NoSearchResults({ query, onClear, style }: DomainEmptyProps & { 
     <EmptyState
       emoji="🤷"
       title="No results"
-      description={query ? `Nothing matched "${query}". Try different keywords.` : 'No results found.'}
+      description={
+        query ? `Nothing matched "${query}". Try different keywords.` : 'No results found.'
+      }
       primaryAction={onClear ? { label: 'Clear Search', onPress: onClear } : undefined}
       style={style}
     />
@@ -101,7 +106,9 @@ export function NoGroceryItems({ onPrimaryPress, style }: DomainEmptyProps) {
       emoji="🛒"
       title="Cart is empty"
       description="Ask Roomie to build a smart cart based on what's running low in your flat."
-      primaryAction={onPrimaryPress ? { label: 'Build Smart Cart', onPress: onPrimaryPress } : undefined}
+      primaryAction={
+        onPrimaryPress ? { label: 'Build Smart Cart', onPress: onPrimaryPress } : undefined
+      }
       style={style}
     />
   );

@@ -13,19 +13,14 @@
  * Uses zIndex.header (50) to sit above content, below modals/toasts.
  */
 
-import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-  type ReactNode,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { View, Pressable, StyleSheet, type ViewStyle, type ReactNode } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { AvatarGroup } from '../primitives/Avatar';
+import { Text } from '../primitives/Text';
 
 type TopAppBarVariant = 'default' | 'chat' | 'orders';
 
@@ -36,8 +31,8 @@ interface TopAppBarProps {
   canGoBack?: boolean;
   onBack?: () => void;
   rightElement?: ReactNode;
-  liveCount?: number;           // orders variant — shows badge
-  memberAvatars?: Array<{ name: string; memberIndex: number }>; // chat variant
+  liveCount?: number; // orders variant — shows badge
+  memberAvatars?: { name: string; memberIndex: number }[]; // chat variant
   aiStatus?: 'idle' | 'thinking' | 'active';
   style?: ViewStyle;
 }
@@ -58,9 +53,9 @@ export function TopAppBar({
   const insets = useSafeAreaInsets();
 
   const statusColor = {
-    idle:     colors.text.muted,
-    thinking: '#F59E0B',  // amber pulse when AI is thinking
-    active:   colors.success.default,
+    idle: colors.text.muted,
+    thinking: '#F59E0B', // amber pulse when AI is thinking
+    active: colors.success.default,
   }[aiStatus];
 
   return (
@@ -71,10 +66,10 @@ export function TopAppBar({
           backgroundColor: colors.background.primary,
           borderBottomWidth: StyleSheet.hairlineWidth,
           borderBottomColor: colors.border.default,
-          paddingTop:        insets.top + spacing.sp8,
-          paddingBottom:     spacing.sp10,
+          paddingTop: insets.top + spacing.sp8,
+          paddingBottom: spacing.sp10,
           paddingHorizontal: spacing.sp16,
-          zIndex:            zIndex.header,
+          zIndex: zIndex.header,
         },
         style,
       ]}
@@ -98,31 +93,16 @@ export function TopAppBar({
       <View style={styles.centre}>
         {variant === 'chat' && (
           <View style={styles.aiStatusRow}>
-            <View
-              style={[
-                styles.statusDot,
-                { backgroundColor: statusColor },
-              ]}
-            />
+            <View style={[styles.statusDot, { backgroundColor: statusColor }]} />
           </View>
         )}
 
-        <Text
-          variant="bodyMedium"
-          color={colors.text.primary}
-          align="center"
-          numberOfLines={1}
-        >
+        <Text variant="bodyMedium" color={colors.text.primary} align="center" numberOfLines={1}>
           {title}
         </Text>
 
         {subtitle && (
-          <Text
-            variant="monoSmall"
-            color={colors.text.muted}
-            align="center"
-            numberOfLines={1}
-          >
+          <Text variant="monoSmall" color={colors.text.muted} align="center" numberOfLines={1}>
             {subtitle}
           </Text>
         )}
@@ -133,7 +113,7 @@ export function TopAppBar({
               styles.liveChip,
               {
                 backgroundColor: colors.success.surface,
-                borderRadius:    radius.xs,
+                borderRadius: radius.xs,
               },
             ]}
           >
@@ -149,7 +129,7 @@ export function TopAppBar({
         {variant === 'chat' && memberAvatars && memberAvatars.length > 0 ? (
           <AvatarGroup members={memberAvatars} size="sm" />
         ) : (
-          rightElement ?? null
+          (rightElement ?? null)
         )}
       </View>
     </View>
@@ -159,21 +139,21 @@ export function TopAppBar({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
   },
   leftSlot: {
-    width:          40,
-    alignItems:     'flex-start',
+    width: 40,
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
   centre: {
-    flex:           1,
-    alignItems:     'center',
-    gap:            2,
+    flex: 1,
+    alignItems: 'center',
+    gap: 2,
   },
   rightSlot: {
-    width:          40,
-    alignItems:     'flex-end',
+    width: 40,
+    alignItems: 'flex-end',
     justifyContent: 'center',
   },
   iconBtn: {
@@ -181,19 +161,19 @@ const styles = StyleSheet.create({
   },
   aiStatusRow: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   statusDot: {
-    width:        6,
-    height:       6,
+    width: 6,
+    height: 6,
     borderRadius: 3,
     marginBottom: 2,
   },
   liveChip: {
     paddingHorizontal: 6,
-    paddingVertical:   2,
-    alignSelf:         'center',
-    marginTop:         2,
+    paddingVertical: 2,
+    alignSelf: 'center',
+    marginTop: 2,
   },
 });

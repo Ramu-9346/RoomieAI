@@ -15,17 +15,18 @@
  * to maintain the warm editorial feel of the cream palette.
  */
 
-import { Platform, ViewStyle } from 'react-native';
+import type { ViewStyle } from 'react-native';
+import { Platform } from 'react-native';
 
 interface ShadowStyle {
-  shadowColor:   string;
-  shadowOffset:  { width: number; height: number };
+  shadowColor: string;
+  shadowOffset: { width: number; height: number };
   shadowOpacity: number;
-  shadowRadius:  number;
-  elevation:     number;
+  shadowRadius: number;
+  elevation: number;
 }
 
-const SHADOW_COLOR = '#1A1713';  // warm ink — matches --ink
+const SHADOW_COLOR = '#1A1713'; // warm ink — matches --ink
 
 function makeShadow(
   yOffset: number,
@@ -34,10 +35,10 @@ function makeShadow(
   elevation: number,
 ): ShadowStyle {
   return {
-    shadowColor:   SHADOW_COLOR,
-    shadowOffset:  { width: 0, height: yOffset },
+    shadowColor: SHADOW_COLOR,
+    shadowOffset: { width: 0, height: yOffset },
     shadowOpacity: opacity,
-    shadowRadius:  radius,
+    shadowRadius: radius,
     elevation,
   };
 }
@@ -92,11 +93,11 @@ const shadowTokens = {
    * Top-edge shadow only; offset is negative to cast upward
    */
   bottomSheet: {
-    shadowColor:   SHADOW_COLOR,
-    shadowOffset:  { width: 0, height: -4 },
+    shadowColor: SHADOW_COLOR,
+    shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.1,
-    shadowRadius:  20,
-    elevation:     12,
+    shadowRadius: 20,
+    elevation: 12,
   },
 
   /**
@@ -105,24 +106,21 @@ const shadowTokens = {
    * Prominent but not alarming
    */
   fab: makeShadow(6, 20, 0.18, 10),
-
 } as const;
 
 // ─── Platform-resolved shadow helper ─────────────────────────────────────────
 // Call shadow('card') in StyleSheet to get platform-correct styles.
 
-export function shadow(
-  token: keyof typeof shadowTokens
-): Partial<ViewStyle> {
+export function shadow(token: keyof typeof shadowTokens): Partial<ViewStyle> {
   const s = shadowTokens[token];
   if (Platform.OS === 'android') {
     return { elevation: s.elevation };
   }
   return {
-    shadowColor:   s.shadowColor,
-    shadowOffset:  s.shadowOffset,
+    shadowColor: s.shadowColor,
+    shadowOffset: s.shadowOffset,
     shadowOpacity: s.shadowOpacity,
-    shadowRadius:  s.shadowRadius,
+    shadowRadius: s.shadowRadius,
   };
 }
 

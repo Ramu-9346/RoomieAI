@@ -1,5 +1,5 @@
-import type { Member } from './Member';
 import type { Address } from './Address';
+import type { Member } from './Member';
 
 export interface Flat {
   id: string;
@@ -21,10 +21,10 @@ export interface FlatSummary {
 }
 
 export interface FlatSettings {
-  defaultBudgetPerMember: number;   // ₹ — applies to food orders
-  pollTimeoutMinutes: number;        // how long polls stay open
+  defaultBudgetPerMember: number; // ₹ — applies to food orders
+  pollTimeoutMinutes: number; // how long polls stay open
   requirePollForOrders: boolean;
-  allowCODOnly: boolean;             // true always per BRD C-001
-  currencyCode: string;              // "INR"
-  timezone: string;                  // "Asia/Kolkata"
+  allowCODOnly: boolean; // true always per BRD C-001
+  currencyCode: string; // "INR"
+  timezone: string; // "Asia/Kolkata"
 }

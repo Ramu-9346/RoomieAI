@@ -2,18 +2,18 @@
  * Display string formatters — transform data models to user-facing strings.
  */
 
-import type { DietaryType } from '@models/Preference';
 import type { OrderStatus, OrderCategory } from '@models/Order';
+import type { DietaryType } from '@models/Preference';
 
 // ─── Dietary ──────────────────────────────────────────────────────────────────
 
 export function formatDietaryType(type: DietaryType): string {
   const map: Record<DietaryType, string> = {
-    'veg':        'Vegetarian',
-    'non-veg':    'Non-Veg',
-    'eggetarian': 'Eggetarian',
-    'jain':       'Jain',
-    'vegan':      'Vegan',
+    veg: 'Vegetarian',
+    'non-veg': 'Non-Veg',
+    eggetarian: 'Eggetarian',
+    jain: 'Jain',
+    vegan: 'Vegan',
   };
   return map[type];
 }
@@ -22,20 +22,20 @@ export function formatDietaryType(type: DietaryType): string {
 
 export function formatOrderStatus(status: OrderStatus): string {
   const map: Record<OrderStatus, string> = {
-    pending:          'Preparing order',
-    confirmed:        'Confirmed',
-    placed:           'Order placed',
-    preparing:        'Restaurant is cooking',
+    pending: 'Preparing order',
+    confirmed: 'Confirmed',
+    placed: 'Order placed',
+    preparing: 'Restaurant is cooking',
     out_for_delivery: 'Out for delivery',
-    delivered:        'Delivered',
-    cancelled:        'Cancelled',
+    delivered: 'Delivered',
+    cancelled: 'Cancelled',
   };
   return map[status];
 }
 
 export function formatOrderCategory(category: OrderCategory): string {
   const map: Record<OrderCategory, string> = {
-    food:    'Food',
+    food: 'Food',
     grocery: 'Grocery',
     dineout: 'Dineout',
   };
@@ -44,7 +44,7 @@ export function formatOrderCategory(category: OrderCategory): string {
 
 export function orderCategoryEmoji(category: OrderCategory): string {
   const map: Record<OrderCategory, string> = {
-    food:    '🍛',
+    food: '🍛',
     grocery: '🛒',
     dineout: '🍽',
   };
@@ -58,8 +58,8 @@ export function formatMemberList(names: string[], maxShown = 2): string {
   if (names.length === 0) return '';
   if (names.length === 1) return names[0]!;
   if (names.length <= maxShown + 1) return names.join(' & ');
-  const shown   = names.slice(0, maxShown).join(', ');
-  const others  = names.length - maxShown;
+  const shown = names.slice(0, maxShown).join(', ');
+  const others = names.length - maxShown;
   return `${shown} and ${others} other${others > 1 ? 's' : ''}`;
 }
 

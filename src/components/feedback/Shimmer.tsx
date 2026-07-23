@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { View, Animated, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 
 interface ShimmerProps {
@@ -26,7 +27,10 @@ export function Shimmer({ width, height, borderRadius = 8, style }: ShimmerProps
 
   const translateX = shimmerAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [-(typeof width === 'number' ? width : 200), (typeof width === 'number' ? width : 200)],
+    outputRange: [
+      -(typeof width === 'number' ? width : 200),
+      typeof width === 'number' ? width : 200,
+    ],
   });
 
   return (
@@ -62,13 +66,16 @@ export function PageLoader({ message }: { message?: string }) {
     <View
       style={[
         StyleSheet.absoluteFill,
-        { backgroundColor: colors.background.primary, alignItems: 'center', justifyContent: 'center', gap: spacing.sp16 },
+        {
+          backgroundColor: colors.background.primary,
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: spacing.sp16,
+        },
       ]}
     >
       <Shimmer width={48} height={48} borderRadius={24} />
-      {message && (
-        <Shimmer width={160} height={16} />
-      )}
+      {message && <Shimmer width={160} height={16} />}
     </View>
   );
 }

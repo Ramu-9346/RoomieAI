@@ -1,11 +1,8 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -28,8 +25,12 @@ export function BackButton({ onPress, label, style }: BackButtonProps) {
   return (
     <AnimatedPressable
       onPress={onPress}
-      onPressIn={() => { scale.value = withSpring(0.92, { damping: 22, stiffness: 350 }); }}
-      onPressOut={() => { scale.value = withSpring(1,    { damping: 22, stiffness: 350 }); }}
+      onPressIn={() => {
+        scale.value = withSpring(0.92, { damping: 22, stiffness: 350 });
+      }}
+      onPressOut={() => {
+        scale.value = withSpring(1, { damping: 22, stiffness: 350 });
+      }}
       style={[
         styles.button,
         {

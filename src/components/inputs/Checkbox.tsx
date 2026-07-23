@@ -11,14 +11,11 @@
  * Variants: default (ink) | success (green) | error (red)
  */
 
+import { Feather } from '@expo/vector-icons';
 import React, { useCallback } from 'react';
 import { Pressable, View, StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -51,20 +48,20 @@ export function Checkbox({
   const scale = useSharedValue(1);
 
   const variantColors = {
-    default: { checked: colors.text.primary,    border: colors.border.strong  },
+    default: { checked: colors.text.primary, border: colors.border.strong },
     success: { checked: colors.success.default, border: colors.success.default },
-    error:   { checked: colors.error.default,   border: colors.error.default  },
+    error: { checked: colors.error.default, border: colors.error.default },
   }[variant];
 
   const boxStyle: ViewStyle = {
-    width:           20,
-    height:          20,
-    borderRadius:    radius.xs,
-    borderWidth:     1.5,
-    borderColor:     (checked || indeterminate) ? variantColors.checked : colors.border.default,
-    backgroundColor: (checked || indeterminate) ? variantColors.checked : colors.background.elevated,
-    alignItems:      'center',
-    justifyContent:  'center',
+    width: 20,
+    height: 20,
+    borderRadius: radius.xs,
+    borderWidth: 1.5,
+    borderColor: checked || indeterminate ? variantColors.checked : colors.border.default,
+    backgroundColor: checked || indeterminate ? variantColors.checked : colors.background.elevated,
+    alignItems: 'center',
+    justifyContent: 'center',
   };
 
   const animStyle = useAnimatedStyle(() => ({
@@ -83,11 +80,7 @@ export function Checkbox({
     <Pressable
       onPress={handlePress}
       disabled={disabled}
-      style={[
-        styles.row,
-        disabled && { opacity: opacity.disabled },
-        style,
-      ]}
+      style={[styles.row, disabled && { opacity: opacity.disabled }, style]}
       accessibilityRole="checkbox"
       accessibilityLabel={accessibilityLabel ?? label}
       accessibilityState={{ checked: indeterminate ? 'mixed' : checked, disabled }}
@@ -122,16 +115,16 @@ export function Checkbox({
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    gap:           10,
+    alignItems: 'flex-start',
+    gap: 10,
   },
   labelContainer: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   indeterminateLine: {
-    width:        10,
-    height:       2,
+    width: 10,
+    height: 2,
     borderRadius: 1,
   },
 });

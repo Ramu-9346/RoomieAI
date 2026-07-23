@@ -1,6 +1,7 @@
-import { View, StyleSheet }  from 'react-native';
-import { Link }              from 'expo-router';
-import { Text }              from '@components/primitives/Text';
+import { Link } from 'expo-router';
+import { View, StyleSheet } from 'react-native';
+
+import { Text } from '@components/primitives/Text';
 
 export default function NotFoundScreen() {
   return (
@@ -8,9 +9,9 @@ export default function NotFoundScreen() {
       <Text variant="title" align="center">
         Screen not found
       </Text>
-      <Link href="/(main)/(tabs)/chat">
+      <Link href="/(main)/(tabs)/home">
         <Text variant="body" align="center">
-          Go to Chat
+          Go to Home
         </Text>
       </Link>
     </View>

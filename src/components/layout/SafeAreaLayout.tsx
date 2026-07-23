@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
 
 interface SafeAreaLayoutProps {

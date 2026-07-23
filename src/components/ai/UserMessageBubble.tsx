@@ -12,14 +12,11 @@
  */
 
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Avatar } from '../primitives/Avatar';
+import { Text } from '../primitives/Text';
 
 interface UserMessageBubbleProps {
   message: string;
@@ -46,7 +43,7 @@ export function UserMessageBubble({
         styles.wrapper,
         {
           paddingHorizontal: spacing.sp16,
-          paddingVertical:   spacing.sp6,
+          paddingVertical: spacing.sp6,
         },
         style,
       ]}
@@ -59,8 +56,8 @@ export function UserMessageBubble({
               styles.bubble,
               {
                 backgroundColor: colors.text.primary,
-                borderRadius:    radius.xxxl,
-                paddingVertical:   spacing.sp10,
+                borderRadius: radius.xxxl,
+                paddingVertical: spacing.sp10,
                 paddingHorizontal: spacing.sp14,
               },
             ]}
@@ -71,11 +68,7 @@ export function UserMessageBubble({
           </View>
 
           {timestamp && (
-            <Text
-              variant="monoSmall"
-              color={colors.text.muted}
-              style={styles.timestamp}
-            >
+            <Text variant="monoSmall" color={colors.text.muted} style={styles.timestamp}>
               {timestamp}
             </Text>
           )}
@@ -83,13 +76,7 @@ export function UserMessageBubble({
 
         {/* Avatar — always reserves width for alignment */}
         <View style={styles.avatarCol}>
-          {showAvatar && (
-            <Avatar
-              name={memberName}
-              memberIndex={memberIndex}
-              size="md"
-            />
-          )}
+          {showAvatar && <Avatar name={memberName} memberIndex={memberIndex} size="md" />}
         </View>
       </View>
     </View>
@@ -98,26 +85,26 @@ export function UserMessageBubble({
 
 const styles = StyleSheet.create({
   wrapper: {
-    width:         '100%',
-    alignItems:    'flex-end',
+    width: '100%',
+    alignItems: 'flex-end',
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-end',
-    gap:           8,
-    maxWidth:      '85%',
+    alignItems: 'flex-end',
+    gap: 8,
+    maxWidth: '85%',
   },
   bubbleWrap: {
-    flex:      1,
+    flex: 1,
     alignItems: 'flex-end',
-    gap:        4,
+    gap: 4,
   },
   bubble: {
     alignSelf: 'flex-end',
-    maxWidth:  '100%',
+    maxWidth: '100%',
   },
   avatarCol: {
-    width:      30,
+    width: 30,
     flexShrink: 0,
   },
   timestamp: {

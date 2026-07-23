@@ -23,7 +23,9 @@
 
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
+
 import { Text } from './Text';
 
 // ── CategoryBadge ─────────────────────────────────────────────────────────────
@@ -32,12 +34,12 @@ export type CategoryBadgeType = 'food' | 'grocery' | 'dineout';
 
 interface CategoryBadgeProps {
   type: CategoryBadgeType;
-  label?: string;   // custom label; defaults to type name
+  label?: string; // custom label; defaults to type name
   style?: ViewStyle;
 }
 
 const CATEGORY_LABELS: Record<CategoryBadgeType, string> = {
-  food:    'Swiggy Food MCP',
+  food: 'Swiggy Food MCP',
   grocery: 'Swiggy Instamart MCP',
   dineout: 'Swiggy Dineout MCP',
 };
@@ -46,9 +48,9 @@ export function CategoryBadge({ type, label, style }: CategoryBadgeProps) {
   const { colors, radius, spacing } = useTheme();
 
   const palette = {
-    food:    { bg: colors.primary.surface, text: colors.primary.text },
+    food: { bg: colors.primary.surface, text: colors.primary.text },
     grocery: { bg: colors.success.surface, text: colors.success.text },
-    dineout: { bg: colors.accent.surface,  text: colors.accent.text },
+    dineout: { bg: colors.accent.surface, text: colors.accent.text },
   }[type];
 
   return (
@@ -57,9 +59,9 @@ export function CategoryBadge({ type, label, style }: CategoryBadgeProps) {
         styles.categoryBadge,
         {
           backgroundColor: palette.bg,
-          borderRadius:    radius.xs,
+          borderRadius: radius.xs,
           paddingHorizontal: spacing.sp8,
-          paddingVertical:   spacing.sp4,
+          paddingVertical: spacing.sp4,
         },
         style,
       ]}
@@ -87,12 +89,12 @@ export function StatusBadge({ type, label, style }: StatusBadgeProps) {
   const { colors, radius, spacing } = useTheme();
 
   const statusColors = {
-    live:      { bg: colors.success.surface, text: colors.success.text,   dot: colors.success.default },
-    online:    { bg: colors.success.surface, text: colors.success.text,   dot: colors.success.default },
-    demo:      { bg: colors.primary.surface, text: colors.primary.text,   dot: colors.primary.default },
-    pending:   { bg: colors.warning.surface, text: colors.warning.text,   dot: colors.warning.default },
-    settled:   { bg: colors.success.surface, text: colors.success.text,   dot: colors.success.default },
-    cancelled: { bg: colors.error.surface,   text: colors.error.text,     dot: colors.error.default },
+    live: { bg: colors.success.surface, text: colors.success.text, dot: colors.success.default },
+    online: { bg: colors.success.surface, text: colors.success.text, dot: colors.success.default },
+    demo: { bg: colors.primary.surface, text: colors.primary.text, dot: colors.primary.default },
+    pending: { bg: colors.warning.surface, text: colors.warning.text, dot: colors.warning.default },
+    settled: { bg: colors.success.surface, text: colors.success.text, dot: colors.success.default },
+    cancelled: { bg: colors.error.surface, text: colors.error.text, dot: colors.error.default },
   }[type];
 
   const displayLabel = label ?? type.toUpperCase();
@@ -102,22 +104,17 @@ export function StatusBadge({ type, label, style }: StatusBadgeProps) {
       style={[
         styles.statusBadge,
         {
-          backgroundColor:  statusColors.bg,
-          borderRadius:     radius.pill,
+          backgroundColor: statusColors.bg,
+          borderRadius: radius.pill,
           paddingHorizontal: spacing.sp8,
-          paddingVertical:   spacing.sp4,
+          paddingVertical: spacing.sp4,
         },
         style,
       ]}
       accessibilityRole="text"
       accessibilityLabel={`Status: ${displayLabel}`}
     >
-      <View
-        style={[
-          styles.statusDot,
-          { backgroundColor: statusColors.dot },
-        ]}
-      />
+      <View style={[styles.statusDot, { backgroundColor: statusColors.dot }]} />
       <Text variant="eyebrow" color={statusColors.text} style={styles.statusLabel}>
         {displayLabel}
       </Text>
@@ -128,7 +125,7 @@ export function StatusBadge({ type, label, style }: StatusBadgeProps) {
 // ── RatingBadge ───────────────────────────────────────────────────────────────
 
 interface RatingBadgeProps {
-  rating: number;     // e.g., 4.4
+  rating: number; // e.g., 4.4
   style?: ViewStyle;
 }
 
@@ -141,9 +138,9 @@ export function RatingBadge({ rating, style }: RatingBadgeProps) {
         styles.ratingBadge,
         {
           backgroundColor: colors.success.default,
-          borderRadius:    radius.xs,
+          borderRadius: radius.xs,
           paddingHorizontal: spacing.sp8,
-          paddingVertical:   spacing.sp4,
+          paddingVertical: spacing.sp4,
         },
         style,
       ]}
@@ -163,7 +160,7 @@ export function RatingBadge({ rating, style }: RatingBadgeProps) {
 
 interface VegIndicatorProps {
   isVeg: boolean;
-  size?: number;   // defaults to 14px (from web demo)
+  size?: number; // defaults to 14px (from web demo)
   style?: ViewStyle;
 }
 
@@ -171,18 +168,18 @@ export function VegIndicator({ isVeg, size = 14, style }: VegIndicatorProps) {
   const { colors } = useTheme();
 
   const color = isVeg ? colors.veg : colors.nonVeg;
-  const dotSize = size * 0.43;  // ~6px dot inside 14px square
+  const dotSize = size * 0.43; // ~6px dot inside 14px square
 
   return (
     <View
       style={[
         {
-          width:       size,
-          height:      size,
+          width: size,
+          height: size,
           borderWidth: 1.5,
           borderColor: color,
           borderRadius: 2,
-          alignItems:  'center',
+          alignItems: 'center',
           justifyContent: 'center',
         },
         style,
@@ -192,8 +189,8 @@ export function VegIndicator({ isVeg, size = 14, style }: VegIndicatorProps) {
     >
       <View
         style={{
-          width:        dotSize,
-          height:       dotSize,
+          width: dotSize,
+          height: dotSize,
           borderRadius: 999,
           backgroundColor: color,
         }}
@@ -210,25 +207,25 @@ const styles = StyleSheet.create({
   },
   statusBadge: {
     flexDirection: 'row',
-    alignItems:    'center',
-    alignSelf:     'flex-start',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
   },
   statusDot: {
-    width:        5,
-    height:       5,
+    width: 5,
+    height: 5,
     borderRadius: 999,
-    marginRight:  5,
+    marginRight: 5,
   },
   statusLabel: {
     lineHeight: 14,
   },
   ratingBadge: {
     flexDirection: 'row',
-    alignItems:    'center',
-    alignSelf:     'flex-start',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
   },
   ratingText: {
-    color:      '#FFFFFF',
+    color: '#FFFFFF',
     fontFamily: 'GeistMono_500Medium',
   },
 });

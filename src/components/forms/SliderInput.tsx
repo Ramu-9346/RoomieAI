@@ -1,12 +1,16 @@
 import React, { useCallback } from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+import {
+  PanGestureHandler,
+  type PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   runOnJS,
   useAnimatedGestureHandler,
 } from 'react-native-reanimated';
-import { PanGestureHandler, type PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -40,17 +44,23 @@ export function SliderInput({
   const trackWidth = useSharedValue(0);
   const thumbX = useSharedValue(0);
 
-  const snap = useCallback((rawX: number) => {
-    const width = trackWidth.value;
-    if (width === 0) return;
-    const clamped = Math.max(0, Math.min(rawX, width));
-    const raw = min + (clamped / width) * (max - min);
-    const stepped = Math.round(raw / step) * step;
-    const final = Math.max(min, Math.min(max, stepped));
-    onChange(final);
-  }, [min, max, step, onChange]);
+  const snap = useCallback(
+    (rawX: number) => {
+      const width = trackWidth.value;
+      if (width === 0) return;
+      const clamped = Math.max(0, Math.min(rawX, width));
+      const raw = min + (clamped / width) * (max - min);
+      const stepped = Math.round(raw / step) * step;
+      const final = Math.max(min, Math.min(max, stepped));
+      onChange(final);
+    },
+    [min, max, step, onChange],
+  );
 
-  const gestureHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, { startX: number }>({
+  const gestureHandler = useAnimatedGestureHandler<
+    PanGestureHandlerGestureEvent,
+    { startX: number }
+  >({
     onStart: (_, ctx) => {
       ctx.startX = thumbX.value;
     },
@@ -73,21 +83,30 @@ export function SliderInput({
     <View style={[styles.container, style]}>
       {label && (
         <View style={styles.header}>
-          <Text variant="eyebrow" color={colors.text.muted}>{label}</Text>
+          <Text variant="eyebrow" color={colors.text.muted}>
+            {label}
+          </Text>
           <Text variant="mono" color={colors.primary.default}>
             {valueLabel ? valueLabel(value) : `${value}`}
           </Text>
         </View>
       )}
       <View
-        style={[styles.track, { backgroundColor: colors.border.default, borderRadius: radius.pill }]}
+        style={[
+          styles.track,
+          { backgroundColor: colors.border.default, borderRadius: radius.pill },
+        ]}
         onLayout={(e) => {
           trackWidth.value = e.nativeEvent.layout.width;
           thumbX.value = e.nativeEvent.layout.width * progress;
         }}
       >
         <Animated.View
-          style={[styles.fill, { backgroundColor: colors.primary.default, borderRadius: radius.pill }, fillStyle]}
+          style={[
+            styles.fill,
+            { backgroundColor: colors.primary.default, borderRadius: radius.pill },
+            fillStyle,
+          ]}
         />
         <PanGestureHandler onGestureEvent={gestureHandler}>
           <Animated.View

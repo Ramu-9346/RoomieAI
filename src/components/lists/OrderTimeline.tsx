@@ -1,10 +1,12 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
-type OrderStatus = 'pending' | 'confirmed' | 'preparing' | 'out_for_delivery' | 'delivered' | 'cancelled';
+type OrderStatus =
+  'pending' | 'confirmed' | 'preparing' | 'out_for_delivery' | 'delivered' | 'cancelled';
 
 interface TimelineStep {
   status: OrderStatus;
@@ -13,13 +15,19 @@ interface TimelineStep {
 }
 
 const ALL_STEPS: TimelineStep[] = [
-  { status: 'confirmed',        label: 'Order Confirmed' },
-  { status: 'preparing',        label: 'Preparing Your Food' },
+  { status: 'confirmed', label: 'Order Confirmed' },
+  { status: 'preparing', label: 'Preparing Your Food' },
   { status: 'out_for_delivery', label: 'Out for Delivery' },
-  { status: 'delivered',        label: 'Delivered' },
+  { status: 'delivered', label: 'Delivered' },
 ];
 
-const STATUS_ORDER: OrderStatus[] = ['pending', 'confirmed', 'preparing', 'out_for_delivery', 'delivered'];
+const STATUS_ORDER: OrderStatus[] = [
+  'pending',
+  'confirmed',
+  'preparing',
+  'out_for_delivery',
+  'delivered',
+];
 
 interface OrderTimelineProps {
   currentStatus: OrderStatus;
@@ -37,7 +45,9 @@ export function OrderTimeline({ currentStatus, timestamps, style }: OrderTimelin
           <View style={[styles.dot, { backgroundColor: colors.error.default }]}>
             <Feather name="x" size={12} color={colors.white} />
           </View>
-          <Text variant="bodyMedium" color={colors.error.default}>Order Cancelled</Text>
+          <Text variant="bodyMedium" color={colors.error.default}>
+            Order Cancelled
+          </Text>
         </View>
       </View>
     );
@@ -49,9 +59,9 @@ export function OrderTimeline({ currentStatus, timestamps, style }: OrderTimelin
     <View style={[styles.container, style]}>
       {ALL_STEPS.map((step, i) => {
         const stepIdx = STATUS_ORDER.indexOf(step.status);
-        const done    = stepIdx <= currentIdx;
-        const active  = stepIdx === currentIdx;
-        const ts      = timestamps?.[step.status];
+        const done = stepIdx <= currentIdx;
+        const active = stepIdx === currentIdx;
+        const ts = timestamps?.[step.status];
 
         return (
           <View key={step.status} style={styles.stepRow}>
@@ -66,20 +76,28 @@ export function OrderTimeline({ currentStatus, timestamps, style }: OrderTimelin
                   },
                 ]}
               >
-                {done && !active && (
-                  <Feather name="check" size={10} color={colors.white} />
-                )}
+                {done && !active && <Feather name="check" size={10} color={colors.white} />}
               </View>
               {i < ALL_STEPS.length - 1 && (
                 <View
                   style={[
                     styles.line,
-                    { backgroundColor: done && stepIdx < currentIdx ? colors.success.default : colors.border.subtle },
+                    {
+                      backgroundColor:
+                        done && stepIdx < currentIdx
+                          ? colors.success.default
+                          : colors.border.subtle,
+                    },
                   ]}
                 />
               )}
             </View>
-            <View style={[styles.stepContent, { paddingBottom: i < ALL_STEPS.length - 1 ? spacing.sp20 : 0 }]}>
+            <View
+              style={[
+                styles.stepContent,
+                { paddingBottom: i < ALL_STEPS.length - 1 ? spacing.sp20 : 0 },
+              ]}
+            >
               <Text
                 variant={active ? 'bodyMedium' : 'body'}
                 color={done ? colors.text.primary : colors.text.muted}
@@ -87,7 +105,9 @@ export function OrderTimeline({ currentStatus, timestamps, style }: OrderTimelin
                 {step.label}
               </Text>
               {ts && (
-                <Text variant="monoSmall" color={colors.text.muted}>{ts}</Text>
+                <Text variant="monoSmall" color={colors.text.muted}>
+                  {ts}
+                </Text>
               )}
             </View>
           </View>

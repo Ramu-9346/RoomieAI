@@ -17,13 +17,14 @@
 
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 
 interface DividerProps {
   style?: 'solid' | 'dashed';
   strength?: 'default' | 'subtle';
   orientation?: 'horizontal' | 'vertical';
-  spacing?: number;   // vertical margin (top + bottom)
+  spacing?: number; // vertical margin (top + bottom)
   style2?: ViewStyle; // additional styles (named style2 to avoid conflict)
 }
 
@@ -36,9 +37,7 @@ export function Divider({
 }: DividerProps) {
   const { colors } = useTheme();
 
-  const color = strength === 'subtle'
-    ? colors.border.subtle
-    : colors.border.default;
+  const color = strength === 'subtle' ? colors.border.subtle : colors.border.default;
 
   if (orientation === 'vertical') {
     return (
@@ -90,21 +89,21 @@ export function Divider({
 
 const styles = StyleSheet.create({
   horizontal: {
-    width:  '100%',
+    width: '100%',
     height: StyleSheet.hairlineWidth > 0.5 ? 1 : StyleSheet.hairlineWidth,
   },
   vertical: {
-    width:     StyleSheet.hairlineWidth > 0.5 ? 1 : StyleSheet.hairlineWidth,
-    height:    '100%',
+    width: StyleSheet.hairlineWidth > 0.5 ? 1 : StyleSheet.hairlineWidth,
+    height: '100%',
     alignSelf: 'stretch',
   },
   dashedContainer: {
-    width:    '100%',
+    width: '100%',
     overflow: 'hidden',
-    height:   1,
+    height: 1,
   },
   dashedLine: {
-    width:  '100%',
+    width: '100%',
     height: 0,
   },
 });

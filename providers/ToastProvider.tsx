@@ -13,11 +13,12 @@ import React, {
   useRef,
   type ReactNode,
 } from 'react';
+
 import { Toast, type ToastType } from '@components/feedback/Toast';
 
 interface ToastConfig {
-  type?:     ToastType;
-  message:   string;
+  type?: ToastType;
+  message: string;
   subtitle?: string;
   duration?: number;
 }
@@ -36,11 +37,13 @@ export function useToast() {
   return useContext(ToastContext);
 }
 
-interface ToastProviderProps { children: ReactNode }
+interface ToastProviderProps {
+  children: ReactNode;
+}
 
 export function ToastProvider({ children }: ToastProviderProps) {
-  const [visible, setVisible]   = useState(false);
-  const [config,  setConfig]    = useState<ToastConfig>({ message: '' });
+  const [visible, setVisible] = useState(false);
+  const [config, setConfig] = useState<ToastConfig>({ message: '' });
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const show = useCallback((toastConfig: ToastConfig) => {

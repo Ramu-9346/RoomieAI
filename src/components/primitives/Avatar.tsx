@@ -23,7 +23,9 @@
 
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
+
 import { Text } from './Text';
 
 export type AvatarSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -86,26 +88,26 @@ export function Avatar({
   const { colors, radius } = useTheme();
 
   const dimensionPx = SIZES[size];
-  const fontSize    = FONT_SIZES[size];
-  const initial     = name.charAt(0).toUpperCase();
+  const fontSize = FONT_SIZES[size];
+  const initial = name.charAt(0).toUpperCase();
 
   // memberIndex === -1 → AI agent (ink bg, serif italic)
   const isAgent = memberIndex === -1;
-  const bgColor = isAgent
-    ? colors.text.primary
-    : colors.member[memberIndex % colors.member.length];
+  const bgColor = isAgent ? colors.text.primary : colors.member[memberIndex % colors.member.length];
 
   const containerStyle: ViewStyle = {
-    width:          dimensionPx,
-    height:         dimensionPx,
-    borderRadius:   radius.pill,
+    width: dimensionPx,
+    height: dimensionPx,
+    borderRadius: radius.pill,
     backgroundColor: bgColor,
-    alignItems:     'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    ...(withBorder ? {
-      borderWidth: BORDER_WIDTHS[size],
-      borderColor: colors.background.secondary,
-    } : {}),
+    ...(withBorder
+      ? {
+          borderWidth: BORDER_WIDTHS[size],
+          borderColor: colors.background.secondary,
+        }
+      : {}),
   };
 
   const statusDotSize = STATUS_DOT_SIZES[size];
@@ -134,14 +136,14 @@ export function Avatar({
           style={[
             styles.statusDot,
             {
-              width:        statusDotSize,
-              height:       statusDotSize,
+              width: statusDotSize,
+              height: statusDotSize,
               borderRadius: radius.pill,
               backgroundColor: colors.success.default,
-              borderColor:  colors.background.primary,
-              borderWidth:  2,
-              bottom:       withBorder ? BORDER_WIDTHS[size] : 0,
-              right:        withBorder ? BORDER_WIDTHS[size] : 0,
+              borderColor: colors.background.primary,
+              borderWidth: 2,
+              bottom: withBorder ? BORDER_WIDTHS[size] : 0,
+              right: withBorder ? BORDER_WIDTHS[size] : 0,
             },
           ]}
         />
@@ -154,18 +156,13 @@ export function Avatar({
 // Renders overlapping member avatars (matches .members-row from web demo).
 
 interface AvatarGroupProps {
-  members: Array<{ name: string; memberIndex: number }>;
+  members: { name: string; memberIndex: number }[];
   size?: AvatarSize;
   maxVisible?: number;
   style?: ViewStyle;
 }
 
-export function AvatarGroup({
-  members,
-  size = 'lg',
-  maxVisible = 5,
-  style,
-}: AvatarGroupProps) {
+export function AvatarGroup({ members, size = 'lg', maxVisible = 5, style }: AvatarGroupProps) {
   const { colors } = useTheme();
   const visible = members.slice(0, maxVisible);
   const overflowCount = members.length - maxVisible;
@@ -186,15 +183,15 @@ export function AvatarGroup({
       {overflowCount > 0 && (
         <View
           style={{
-            width:          SIZES[size],
-            height:         SIZES[size],
-            borderRadius:   999,
+            width: SIZES[size],
+            height: SIZES[size],
+            borderRadius: 999,
             backgroundColor: colors.background.secondary,
-            borderWidth:    2,
-            borderColor:    colors.background.secondary,
-            alignItems:     'center',
+            borderWidth: 2,
+            borderColor: colors.background.secondary,
+            alignItems: 'center',
             justifyContent: 'center',
-            marginLeft:     -overlapOffset,
+            marginLeft: -overlapOffset,
           }}
         >
           <Text

@@ -20,13 +20,8 @@
  */
 
 import React, { useRef, useState, useCallback } from 'react';
-import {
-  View,
-  TextInput,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, TextInput, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -86,19 +81,17 @@ export function OTPInput({
       >
         {digits.map((digit, i) => {
           const isFocused = focusedIndex === i;
-          const hasError  = Boolean(error);
+          const hasError = Boolean(error);
 
           const borderColor = hasError
             ? colors.error.default
             : isFocused
-            ? colors.primary.default
-            : digit
-            ? colors.border.strong
-            : colors.border.default;
+              ? colors.primary.default
+              : digit
+                ? colors.border.strong
+                : colors.border.default;
 
-          const bgColor = hasError
-            ? colors.error.surface
-            : colors.background.elevated;
+          const bgColor = hasError ? colors.error.surface : colors.background.elevated;
 
           return (
             <View
@@ -106,12 +99,12 @@ export function OTPInput({
               style={[
                 styles.box,
                 {
-                  width:           BOX_SIZE,
-                  height:          BOX_HEIGHT,
-                  borderRadius:    radius.sm,
+                  width: BOX_SIZE,
+                  height: BOX_HEIGHT,
+                  borderRadius: radius.sm,
                   borderColor,
                   backgroundColor: bgColor,
-                  opacity:         disabled ? opacity.disabled : 1,
+                  opacity: disabled ? opacity.disabled : 1,
                 },
               ]}
             >
@@ -125,9 +118,7 @@ export function OTPInput({
                 </Text>
               ) : isFocused ? (
                 // Blinking cursor simulation
-                <View
-                  style={[styles.cursor, { backgroundColor: colors.primary.default }]}
-                />
+                <View style={[styles.cursor, { backgroundColor: colors.primary.default }]} />
               ) : null}
             </View>
           );
@@ -154,11 +145,7 @@ export function OTPInput({
 
       {/* Error message */}
       {error && (
-        <Text
-          variant="caption"
-          color={colors.error.text}
-          style={styles.error}
-        >
+        <Text variant="caption" color={colors.error.text} style={styles.error}>
           {error}
         </Text>
       )}
@@ -169,28 +156,28 @@ export function OTPInput({
 const styles = StyleSheet.create({
   wrapper: {
     alignItems: 'center',
-    gap:        8,
+    gap: 8,
   },
   boxRow: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
   },
   box: {
-    borderWidth:    1,
-    alignItems:     'center',
+    borderWidth: 1,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   cursor: {
-    width:  2,
+    width: 2,
     height: 24,
     borderRadius: 1,
   },
   hiddenInput: {
     position: 'absolute',
-    width:    1,
-    height:   1,
-    opacity:  0,
-    left:     -9999,
+    width: 1,
+    height: 1,
+    opacity: 0,
+    left: -9999,
   },
   error: {
     marginTop: 6,

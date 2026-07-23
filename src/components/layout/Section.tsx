@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -25,9 +26,11 @@ export function Section({
   const { colors, spacing } = useTheme();
 
   const gap =
-    spacingVariant === 'compact' ? spacing.sp12
-    : spacingVariant === 'loose'  ? spacing.sp24
-    : spacing.sp16;
+    spacingVariant === 'compact'
+      ? spacing.sp12
+      : spacingVariant === 'loose'
+        ? spacing.sp24
+        : spacing.sp16;
 
   return (
     <View style={[{ gap }, style]}>

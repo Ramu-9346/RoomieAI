@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -33,7 +34,12 @@ export function WarningBanner({ message, action, onDismiss, style }: WarningBann
     >
       <View style={styles.row}>
         <Feather name="alert-triangle" size={16} color={colors.warning.default} />
-        <Text variant="bodyMedium" color={colors.warning.text} style={styles.flex} numberOfLines={3}>
+        <Text
+          variant="bodyMedium"
+          color={colors.warning.text}
+          style={styles.flex}
+          numberOfLines={3}
+        >
           {message}
         </Text>
         {onDismiss && (
@@ -44,7 +50,9 @@ export function WarningBanner({ message, action, onDismiss, style }: WarningBann
       </View>
       {action && (
         <Pressable onPress={action.onPress}>
-          <Text variant="bodyMedium" color={colors.warning.default}>{action.label}</Text>
+          <Text variant="bodyMedium" color={colors.warning.default}>
+            {action.label}
+          </Text>
         </Pressable>
       )}
     </View>

@@ -15,23 +15,14 @@
  */
 
 import React, { useRef, useCallback } from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-  type LayoutRectangle,
-} from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+import { View, Pressable, StyleSheet, type ViewStyle, type LayoutRectangle } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
 interface SegmentControlProps<T extends string> {
-  options: Array<{ value: T; label: string }>;
+  options: { value: T; label: string }[];
   value: T;
   onChange: (value: T) => void;
   style?: ViewStyle;
@@ -47,19 +38,19 @@ export function SegmentControl<T extends string>({
   const segmentLayouts = useRef<LayoutRectangle[]>([]);
   const currentIndex = options.findIndex((o) => o.value === value);
 
-  const thumbX     = useSharedValue(0);
+  const thumbX = useSharedValue(0);
   const thumbWidth = useSharedValue(0);
 
   const thumbStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: thumbX.value }],
-    width:     thumbWidth.value,
+    width: thumbWidth.value,
   }));
 
   const handleLayout = useCallback(
     (index: number, layout: LayoutRectangle) => {
       segmentLayouts.current[index] = layout;
       if (index === currentIndex) {
-        thumbX.value     = layout.x;
+        thumbX.value = layout.x;
         thumbWidth.value = layout.width;
       }
     },
@@ -70,8 +61,8 @@ export function SegmentControl<T extends string>({
     (index: number) => {
       const layout = segmentLayouts.current[index];
       if (layout) {
-        thumbX.value     = withSpring(layout.x,     { damping: 22, stiffness: 300 });
-        thumbWidth.value = withSpring(layout.width,  { damping: 22, stiffness: 300 });
+        thumbX.value = withSpring(layout.x, { damping: 22, stiffness: 300 });
+        thumbWidth.value = withSpring(layout.width, { damping: 22, stiffness: 300 });
       }
       onChange(options[index].value);
     },
@@ -84,8 +75,8 @@ export function SegmentControl<T extends string>({
         styles.container,
         {
           backgroundColor: colors.background.secondary,
-          borderRadius:    radius.pill,
-          padding:         3,
+          borderRadius: radius.pill,
+          padding: 3,
         },
         style,
       ]}
@@ -96,7 +87,7 @@ export function SegmentControl<T extends string>({
           styles.thumb,
           {
             backgroundColor: colors.background.elevated,
-            borderRadius:    radius.pill,
+            borderRadius: radius.pill,
             ...shadows.xs,
           },
           thumbStyle,
@@ -135,19 +126,19 @@ export function SegmentControl<T extends string>({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    position:      'relative',
+    position: 'relative',
   },
   thumb: {
     position: 'absolute',
-    top:      3,
-    bottom:   3,
-    left:     0,
+    top: 3,
+    bottom: 3,
+    left: 0,
   },
   segment: {
-    flex:           1,
+    flex: 1,
     paddingVertical: 7,
     paddingHorizontal: 12,
-    zIndex:         1,
-    alignItems:     'center',
+    zIndex: 1,
+    alignItems: 'center',
   },
 });

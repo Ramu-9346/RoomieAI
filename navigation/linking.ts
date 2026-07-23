@@ -17,7 +17,7 @@ export const linkingConfig: LinkingOptions<Record<string, unknown>> = {
     screens: {
       '(auth)': {
         screens: {
-          login:  'login',
+          login: 'login',
           verify: 'verify',
         },
       },
@@ -25,17 +25,18 @@ export const linkingConfig: LinkingOptions<Record<string, unknown>> = {
         screens: {
           '(tabs)': {
             screens: {
-              chat:    'chat',
-              orders:  'orders',
-              flat:    'flat',
-              history: 'history',
+              home: 'home',
+              ai: 'ai',
+              orders: 'orders',
+              flat: 'flat',
+              profile: 'profile',
             },
           },
-          'order-detail':      'order/:id',
+          'order-detail': 'order/:id',
           'restaurant-detail': 'restaurant/:id',
-          'poll-detail':       'poll/:id',
-          'payment-detail':    'payment/:id',
-          'invite-member':     'join',
+          'poll-detail': 'poll/:id',
+          'payment-detail': 'payment/:id',
+          'invite-member': 'join',
         },
       },
     },

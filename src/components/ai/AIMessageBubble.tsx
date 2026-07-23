@@ -18,15 +18,11 @@
  */
 
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  type ViewStyle,
-  type ReactNode,
-} from 'react-native';
+import { View, StyleSheet, type ViewStyle, type ReactNode } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Avatar } from '../primitives/Avatar';
+import { Text } from '../primitives/Text';
 
 interface AIMessageBubbleProps {
   message?: string;
@@ -41,7 +37,7 @@ export function AIMessageBubble({
   message,
   timestamp,
   showAvatar = false,
-  isTyping   = false,
+  isTyping = false,
   children,
   style,
 }: AIMessageBubbleProps) {
@@ -52,41 +48,29 @@ export function AIMessageBubble({
       style={[
         styles.row,
         {
-          gap:             spacing.sp8,
+          gap: spacing.sp8,
           paddingHorizontal: spacing.sp16,
-          paddingVertical:   spacing.sp6,
+          paddingVertical: spacing.sp6,
         },
         style,
       ]}
     >
       {/* AI avatar column — always reserves width for alignment */}
       <View style={styles.avatarCol}>
-        {showAvatar && (
-          <Avatar
-            name="Roomie"
-            memberIndex={-1}
-            size="md"
-          />
-        )}
+        {showAvatar && <Avatar name="Roomie" memberIndex={-1} size="md" />}
       </View>
 
       {/* Content */}
       <View style={styles.content}>
-        {isTyping ? (
-          // Placeholder so ThinkingIndicator can be imported here
-          // Import ThinkingIndicator at the screen level and pass as child
-          null
-        ) : (
-          message && (
-            <Text
-              variant="body"
-              color={colors.text.primary}
-              style={styles.messageText}
-            >
-              {message}
-            </Text>
-          )
-        )}
+        {isTyping
+          ? // Placeholder so ThinkingIndicator can be imported here
+            // Import ThinkingIndicator at the screen level and pass as child
+            null
+          : message && (
+              <Text variant="body" color={colors.text.primary} style={styles.messageText}>
+                {message}
+              </Text>
+            )}
 
         {children && (
           <View style={{ marginTop: message ? spacing.sp10 : 0, gap: spacing.sp8 }}>
@@ -95,11 +79,7 @@ export function AIMessageBubble({
         )}
 
         {timestamp && (
-          <Text
-            variant="monoSmall"
-            color={colors.text.muted}
-            style={styles.timestamp}
-          >
+          <Text variant="monoSmall" color={colors.text.muted} style={styles.timestamp}>
             {timestamp}
           </Text>
         )}
@@ -111,16 +91,16 @@ export function AIMessageBubble({
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    width:         '100%',
+    alignItems: 'flex-start',
+    width: '100%',
   },
   avatarCol: {
-    width:      30,  // md avatar size
+    width: 30, // md avatar size
     flexShrink: 0,
   },
   content: {
     flex: 1,
-    gap:  4,
+    gap: 4,
   },
   messageText: {
     lineHeight: 22,

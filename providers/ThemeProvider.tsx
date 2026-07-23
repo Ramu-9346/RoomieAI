@@ -3,12 +3,15 @@
  * Wraps StatusBar and configures system appearance.
  */
 
+import { StatusBar } from 'expo-status-bar';
+import * as SystemUI from 'expo-system-ui';
 import React, { type ReactNode, useEffect } from 'react';
-import { StatusBar }                         from 'expo-status-bar';
-import * as SystemUI                         from 'expo-system-ui';
-import { useAppTheme }                       from '@hooks/useAppTheme';
 
-interface ThemeProviderProps { children: ReactNode }
+import { useAppTheme } from '@hooks/useAppTheme';
+
+interface ThemeProviderProps {
+  children: ReactNode;
+}
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const { isDark, colors } = useAppTheme();

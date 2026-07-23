@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import { ScrollView, View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -24,14 +25,16 @@ export function HorizontalScroller({
 }: HorizontalScrollerProps) {
   const { colors, spacing } = useTheme();
   const gap = itemGap ?? spacing.sp12;
-  const ph  = paddingHorizontal ?? spacing.pageHorizontal;
+  const ph = paddingHorizontal ?? spacing.pageHorizontal;
 
   return (
     <View style={style}>
       {(title || showSeeAll) && (
         <View style={[styles.header, { paddingHorizontal: ph, marginBottom: spacing.sp12 }]}>
           {title && (
-            <Text variant="eyebrow" color={colors.primary.text}>{title}</Text>
+            <Text variant="eyebrow" color={colors.primary.text}>
+              {title}
+            </Text>
           )}
           {showSeeAll && onSeeAll && (
             <Text variant="caption" color={colors.primary.default} onPress={onSeeAll}>

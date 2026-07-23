@@ -11,14 +11,10 @@
  * Styled to match chat message width (not full-screen blocking).
  */
 
-import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -45,10 +41,10 @@ export function ErrorBanner({
         styles.container,
         {
           backgroundColor: colors.error.surface,
-          borderRadius:    radius.xl,
-          borderWidth:     1,
-          borderColor:     colors.error.border,
-          padding:         spacing.sp14,
+          borderRadius: radius.xl,
+          borderWidth: 1,
+          borderColor: colors.error.border,
+          padding: spacing.sp14,
           ...shadows.xs,
         },
         style,
@@ -59,9 +55,13 @@ export function ErrorBanner({
       <View style={styles.row}>
         <Feather name="alert-circle" size={16} color={colors.error.default} />
         <View style={styles.text}>
-          <Text variant="bodyMedium" color={colors.error.text}>{message}</Text>
+          <Text variant="bodyMedium" color={colors.error.text}>
+            {message}
+          </Text>
           {detail && (
-            <Text variant="caption" color={colors.error.text}>{detail}</Text>
+            <Text variant="caption" color={colors.error.text}>
+              {detail}
+            </Text>
           )}
         </View>
       </View>
@@ -73,19 +73,21 @@ export function ErrorBanner({
             styles.retryBtn,
             {
               backgroundColor: pressed ? colors.error.default : colors.error.surface,
-              borderRadius:    radius.sm,
-              borderWidth:     1,
-              borderColor:     colors.error.border,
-              marginTop:       spacing.sp10,
+              borderRadius: radius.sm,
+              borderWidth: 1,
+              borderColor: colors.error.border,
+              marginTop: spacing.sp10,
               paddingVertical: spacing.sp6,
               paddingHorizontal: spacing.sp12,
-              alignSelf:       'flex-start',
+              alignSelf: 'flex-start',
             },
           ]}
           accessibilityRole="button"
           accessibilityLabel={retryLabel}
         >
-          <Text variant="button" color={colors.error.text}>{retryLabel}</Text>
+          <Text variant="button" color={colors.error.text}>
+            {retryLabel}
+          </Text>
         </Pressable>
       )}
     </View>
@@ -98,12 +100,12 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    gap:           10,
+    alignItems: 'flex-start',
+    gap: 10,
   },
   text: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   retryBtn: {
     alignSelf: 'flex-start',

@@ -11,10 +11,11 @@ export type AuthRoutes = {
 };
 
 export type MainTabRoutes = {
-  '/(main)/(tabs)/chat': undefined;
+  '/(main)/(tabs)/home': undefined;
+  '/(main)/(tabs)/ai': undefined;
   '/(main)/(tabs)/orders': undefined;
   '/(main)/(tabs)/flat': undefined;
-  '/(main)/(tabs)/history': undefined;
+  '/(main)/(tabs)/profile': undefined;
 };
 
 export type ModalRoutes = {
@@ -31,7 +32,7 @@ export type AppRoutes = AuthRoutes & MainTabRoutes & ModalRoutes;
 
 // Deep link paths (roomieai://)
 export type DeepLinkPath =
-  | '/join'              // join flat via invite code
-  | '/order'             // specific order
-  | '/poll'              // specific poll
-  | '/payment';          // payment detail
+  | '/join' // join flat via invite code
+  | '/order' // specific order
+  | '/poll' // specific poll
+  | '/payment'; // payment detail

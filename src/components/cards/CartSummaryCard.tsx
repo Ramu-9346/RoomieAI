@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
+import { Text } from '../primitives/Text';
 
 interface CartItem {
   name: string;
@@ -51,11 +52,18 @@ export function CartSummaryCard({
         style,
       ]}
     >
-      <Text variant="eyebrow" color={colors.primary.text}>Cart Summary</Text>
+      <Text variant="eyebrow" color={colors.primary.text}>
+        Cart Summary
+      </Text>
 
       {items.map((item, i) => (
         <View key={i} style={styles.row}>
-          <Text variant="bodyMedium" color={colors.text.primary} style={styles.flex} numberOfLines={1}>
+          <Text
+            variant="bodyMedium"
+            color={colors.text.primary}
+            style={styles.flex}
+            numberOfLines={1}
+          >
             {item.quantity}× {item.name}
           </Text>
           <Text variant="mono" color={colors.text.secondary}>
@@ -68,7 +76,9 @@ export function CartSummaryCard({
 
       {deliveryFee > 0 && (
         <View style={styles.row}>
-          <Text variant="caption" color={colors.text.muted}>Delivery fee</Text>
+          <Text variant="caption" color={colors.text.muted}>
+            Delivery fee
+          </Text>
           <Text variant="monoSmall" color={colors.text.muted}>
             ₹{new Intl.NumberFormat('en-IN').format(deliveryFee)}
           </Text>
@@ -76,22 +86,37 @@ export function CartSummaryCard({
       )}
 
       <View style={styles.row}>
-        <Text variant="bodyMedium" color={colors.text.primary}>Total</Text>
+        <Text variant="bodyMedium" color={colors.text.primary}>
+          Total
+        </Text>
         <Text variant="monoMedium" color={isOverCap ? colors.error.default : colors.text.primary}>
           ₹{new Intl.NumberFormat('en-IN').format(grandTotal)}
         </Text>
       </View>
 
       {capWarning && (
-        <View style={[styles.capRow, { backgroundColor: colors.warning.surface, borderRadius: radius.md }]}>
-          <Text variant="caption" color={colors.warning.text}>{capWarning}</Text>
+        <View
+          style={[
+            styles.capRow,
+            { backgroundColor: colors.warning.surface, borderRadius: radius.md },
+          ]}
+        >
+          <Text variant="caption" color={colors.warning.text}>
+            {capWarning}
+          </Text>
         </View>
       )}
 
       {(onEdit || onConfirm) && (
         <View style={styles.actions}>
           {onEdit && (
-            <Button label="Edit Cart" variant="secondary" size="md" onPress={onEdit} style={styles.flex} />
+            <Button
+              label="Edit Cart"
+              variant="secondary"
+              size="md"
+              onPress={onEdit}
+              style={styles.flex}
+            />
           )}
           {onConfirm && (
             <Button

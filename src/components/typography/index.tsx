@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, type TextStyle } from 'react-native';
+import { type TextStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -126,11 +127,7 @@ interface LabelProps {
 export function Label({ children, color, style }: LabelProps) {
   const { colors } = useTheme();
   return (
-    <Text
-      variant="eyebrow"
-      color={color ?? colors.primary.text}
-      style={style}
-    >
+    <Text variant="eyebrow" color={color ?? colors.primary.text} style={style}>
       {children}
     </Text>
   );

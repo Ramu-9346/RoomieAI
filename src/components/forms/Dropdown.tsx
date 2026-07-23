@@ -1,18 +1,8 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Pressable,
-  Modal,
-  FlatList,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
+import React, { useState } from 'react';
+import { View, Pressable, Modal, FlatList, StyleSheet, type ViewStyle } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -81,7 +71,11 @@ export function Dropdown<T = string>({
           styles.trigger,
           {
             borderRadius: radius.sm,
-            borderColor: error ? colors.error.default : open ? colors.primary.default : colors.border.default,
+            borderColor: error
+              ? colors.error.default
+              : open
+                ? colors.primary.default
+                : colors.border.default,
             borderWidth: 1.5,
             backgroundColor: disabled ? colors.background.secondary : colors.background.elevated,
             paddingHorizontal: spacing.inputHorizontal,
@@ -115,9 +109,18 @@ export function Dropdown<T = string>({
         visible={open}
         transparent
         animationType="fade"
-        onRequestClose={() => { setOpen(false); rotate.value = withTiming(0, { duration: 200 }); }}
+        onRequestClose={() => {
+          setOpen(false);
+          rotate.value = withTiming(0, { duration: 200 });
+        }}
       >
-        <Pressable style={styles.backdrop} onPress={() => { setOpen(false); rotate.value = withTiming(0, { duration: 200 }); }}>
+        <Pressable
+          style={styles.backdrop}
+          onPress={() => {
+            setOpen(false);
+            rotate.value = withTiming(0, { duration: 200 });
+          }}
+        >
           <View
             style={[
               styles.sheet,

@@ -1,11 +1,12 @@
 /**
  * ThemeStore — user theme preference (light/dark/system).
- * Persisted to MMKV.
+ * Persisted to AsyncStorage via Zustand persist middleware.
  */
 
-import { create }       from 'zustand';
-import { immer }        from 'zustand/middleware/immer';
-import { LocalStorage } from '@utils/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
 
 export type ThemeScheme = 'light' | 'dark' | 'system';
 
@@ -16,15 +17,20 @@ interface ThemeState {
   setScheme: (scheme: ThemeScheme) => void;
 }
 
-const THEME_KEY = '@roomieai:theme';
-
 export const useThemeStore = create<ThemeState>()(
-  immer((set) => ({
-    scheme: (LocalStorage.get(THEME_KEY) as ThemeScheme) ?? 'system',
+  persist(
+    immer((set) => ({
+      scheme: 'system' as ThemeScheme,
 
-    setScheme: (scheme) => {
-      LocalStorage.set(THEME_KEY, scheme);
-      set((state) => { state.scheme = scheme; });
+      setScheme: (scheme) => {
+        set((state) => {
+          state.scheme = scheme;
+        });
+      },
+    })),
+    {
+      name: '@roomieai:theme',
+      storage: createJSONStorage(() => AsyncStorage),
     },
-  })),
+  ),
 );

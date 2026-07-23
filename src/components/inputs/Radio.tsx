@@ -12,11 +12,8 @@
 
 import React, { useCallback } from 'react';
 import { Pressable, View, StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -61,28 +58,15 @@ export function Radio({
     <Pressable
       onPress={handlePress}
       disabled={disabled}
-      style={[
-        styles.row,
-        disabled && { opacity: opacity.disabled },
-        style,
-      ]}
+      style={[styles.row, disabled && { opacity: opacity.disabled }, style]}
       accessibilityRole="radio"
       accessibilityLabel={label}
       accessibilityState={{ checked: selected, disabled }}
     >
       {/* Radio circle */}
-      <View
-        style={[
-          styles.outer,
-          { borderColor: outerBorderColor },
-        ]}
-      >
+      <View style={[styles.outer, { borderColor: outerBorderColor }]}>
         <Animated.View
-          style={[
-            styles.inner,
-            { backgroundColor: colors.primary.default },
-            dotAnimStyle,
-          ]}
+          style={[styles.inner, { backgroundColor: colors.primary.default }, dotAnimStyle]}
         />
       </View>
 
@@ -103,7 +87,7 @@ export function Radio({
 // ── RadioGroup ────────────────────────────────────────────────────────────────
 
 interface RadioGroupProps<T extends string> {
-  options: Array<{ value: T; label: string; description?: string }>;
+  options: { value: T; label: string; description?: string }[];
   value: T;
   onChange: (value: T) => void;
   disabled?: boolean;
@@ -136,26 +120,26 @@ export function RadioGroup<T extends string>({
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    gap:           10,
+    alignItems: 'flex-start',
+    gap: 10,
   },
   outer: {
-    width:          20,
-    height:         20,
-    borderRadius:   10,
-    borderWidth:    1.5,
-    alignItems:     'center',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 1.5,
+    alignItems: 'center',
     justifyContent: 'center',
-    marginTop:      1,
+    marginTop: 1,
   },
   inner: {
-    width:        10,
-    height:       10,
+    width: 10,
+    height: 10,
     borderRadius: 5,
   },
   labelContainer: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   group: {
     gap: 16,

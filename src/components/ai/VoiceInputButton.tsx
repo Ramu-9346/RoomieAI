@@ -1,3 +1,4 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
@@ -8,7 +9,7 @@ import Animated, {
   withTiming,
   withSpring,
 } from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 
 interface VoiceInputButtonProps {
@@ -28,16 +29,19 @@ export function VoiceInputButton({
 }: VoiceInputButtonProps) {
   const { colors, radius, opacity: opacityTokens } = useTheme();
 
-  const scale      = useSharedValue(1);
-  const ringScale  = useSharedValue(1);
+  const scale = useSharedValue(1);
+  const ringScale = useSharedValue(1);
   const ringOpacity = useSharedValue(0);
 
   React.useEffect(() => {
     if (isRecording) {
-      ringScale.value   = withRepeat(withTiming(1.6, { duration: 1000 }), -1, true);
-      ringOpacity.value = withRepeat(withSequence(withTiming(0.5, { duration: 500 }), withTiming(0, { duration: 500 })), -1);
+      ringScale.value = withRepeat(withTiming(1.6, { duration: 1000 }), -1, true);
+      ringOpacity.value = withRepeat(
+        withSequence(withTiming(0.5, { duration: 500 }), withTiming(0, { duration: 500 })),
+        -1,
+      );
     } else {
-      ringScale.value   = 1;
+      ringScale.value = 1;
       ringOpacity.value = 0;
     }
   }, [isRecording]);
@@ -70,8 +74,12 @@ export function VoiceInputButton({
         <Pressable
           onPress={disabled ? undefined : onPress}
           onLongPress={disabled ? undefined : onLongPress}
-          onPressIn={() => { scale.value = withSpring(0.9, { damping: 22, stiffness: 350 }); }}
-          onPressOut={() => { scale.value = withSpring(1,   { damping: 22, stiffness: 350 }); }}
+          onPressIn={() => {
+            scale.value = withSpring(0.9, { damping: 22, stiffness: 350 });
+          }}
+          onPressOut={() => {
+            scale.value = withSpring(1, { damping: 22, stiffness: 350 });
+          }}
           disabled={disabled}
           style={[
             styles.button,
@@ -87,11 +95,7 @@ export function VoiceInputButton({
           accessibilityLabel={isRecording ? 'Stop recording' : 'Start voice input'}
           accessibilityState={{ pressed: isRecording }}
         >
-          <Feather
-            name={isRecording ? 'square' : 'mic'}
-            size={20}
-            color={iconColor}
-          />
+          <Feather name={isRecording ? 'square' : 'mic'} size={20} color={iconColor} />
         </Pressable>
       </Animated.View>
     </Animated.View>

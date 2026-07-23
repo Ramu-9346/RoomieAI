@@ -1,12 +1,5 @@
 module.exports = {
-  '*.{ts,tsx}': [
-    'eslint --fix --max-warnings 0',
-    'prettier --write',
-  ],
-  '*.{js,jsx}': [
-    'prettier --write',
-  ],
-  '*.{json,md,yml,yaml}': [
-    'prettier --write',
-  ],
+  '*.{ts,tsx}': ['npm run lint:fix', 'prettier --write'],
+  '*.{js,jsx}': ['prettier --write'],
+  '*.{json,md,yml,yaml}': ['prettier --write'],
 };

@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React, { type ReactNode } from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -12,13 +13,7 @@ interface PageHeaderProps {
   style?: ViewStyle;
 }
 
-export function PageHeader({
-  title,
-  subtitle,
-  onBack,
-  rightElement,
-  style,
-}: PageHeaderProps) {
+export function PageHeader({ title, subtitle, onBack, rightElement, style }: PageHeaderProps) {
   const { colors, spacing } = useTheme();
 
   return (

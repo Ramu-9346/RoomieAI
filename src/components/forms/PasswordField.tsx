@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { Pressable, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { TextInput } from '../inputs/TextInput';
 
@@ -35,11 +36,7 @@ export function PasswordField({
       accessibilityLabel={visible ? 'Hide password' : 'Show password'}
       accessibilityRole="button"
     >
-      <Feather
-        name={visible ? 'eye-off' : 'eye'}
-        size={18}
-        color={colors.text.muted}
-      />
+      <Feather name={visible ? 'eye-off' : 'eye'} size={18} color={colors.text.muted} />
     </Pressable>
   );
 

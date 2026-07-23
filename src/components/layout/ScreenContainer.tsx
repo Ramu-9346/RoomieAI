@@ -1,11 +1,6 @@
 import React, { type ReactNode } from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  type ViewStyle,
-  type ScrollViewProps,
-} from 'react-native';
+import { View, ScrollView, StyleSheet, type ViewStyle, type ScrollViewProps } from 'react-native';
+
 import { useTheme } from '../../theme';
 
 interface ScreenContainerProps {
@@ -51,13 +46,7 @@ export function ScreenContainer({
   }
 
   return (
-    <View
-      style={[
-        baseStyle,
-        padded && { paddingHorizontal: spacing.pageHorizontal },
-        style,
-      ]}
-    >
+    <View style={[baseStyle, padded && { paddingHorizontal: spacing.pageHorizontal }, style]}>
       {children}
     </View>
   );

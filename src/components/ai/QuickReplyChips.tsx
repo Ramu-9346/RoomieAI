@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, Pressable, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -6,8 +6,8 @@ import Animated, {
   withSpring,
   withDelay,
   withTiming,
-  useEffect,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -33,7 +33,7 @@ function QuickReplyChip({
   index: number;
 }) {
   const { colors, radius, spacing } = useTheme();
-  const scale   = useSharedValue(1);
+  const scale = useSharedValue(1);
   const opacity = useSharedValue(0);
 
   useEffect(() => {
@@ -49,8 +49,12 @@ function QuickReplyChip({
     <Animated.View style={animStyle}>
       <Pressable
         onPress={onPress}
-        onPressIn={() => { scale.value = withSpring(0.94, { damping: 22, stiffness: 350 }); }}
-        onPressOut={() => { scale.value = withSpring(1,    { damping: 22, stiffness: 350 }); }}
+        onPressIn={() => {
+          scale.value = withSpring(0.94, { damping: 22, stiffness: 350 });
+        }}
+        onPressOut={() => {
+          scale.value = withSpring(1, { damping: 22, stiffness: 350 });
+        }}
         style={[
           styles.chip,
           {
@@ -66,7 +70,9 @@ function QuickReplyChip({
         accessibilityLabel={reply.label}
       >
         {reply.emoji && (
-          <Text variant="body" style={styles.emoji}>{reply.emoji}</Text>
+          <Text variant="body" style={styles.emoji}>
+            {reply.emoji}
+          </Text>
         )}
         <Text variant="bodyMedium" color={colors.primary.text} numberOfLines={1}>
           {reply.label}
@@ -93,12 +99,7 @@ export function QuickReplyChips({ replies, onSelect, style }: QuickReplyChipsPro
       style={style}
     >
       {replies.map((reply, i) => (
-        <QuickReplyChip
-          key={reply.id}
-          reply={reply}
-          onPress={() => onSelect(reply)}
-          index={i}
-        />
+        <QuickReplyChip key={reply.id} reply={reply} onPress={() => onSelect(reply)} index={i} />
       ))}
     </ScrollView>
   );

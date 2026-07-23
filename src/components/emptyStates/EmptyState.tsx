@@ -1,15 +1,15 @@
-import React, { type ReactNode } from 'react';
+import React, { useEffect, type ReactNode } from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   withDelay,
-  useEffect,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
+import { Text } from '../primitives/Text';
 
 interface EmptyStateProps {
   emoji: string;
@@ -38,7 +38,7 @@ export function EmptyState({
   const translateY = useSharedValue(16);
 
   useEffect(() => {
-    opacity.value    = withDelay(100, withTiming(1, { duration: 400 }));
+    opacity.value = withDelay(100, withTiming(1, { duration: 400 }));
     translateY.value = withDelay(100, withTiming(0, { duration: 400 }));
   }, []);
 
@@ -47,9 +47,9 @@ export function EmptyState({
     transform: [{ translateY: translateY.value }],
   }));
 
-  const emojiSize  = size === 'sm' ? 40  : size === 'lg' ? 72  : 56;
-  const titleSize  = size === 'sm' ? 'title' : 'heading';
-  const padding    = size === 'sm' ? spacing.sp24 : spacing.sp40;
+  const emojiSize = size === 'sm' ? 40 : size === 'lg' ? 72 : 56;
+  const titleSize = size === 'sm' ? 'title' : 'heading';
+  const padding = size === 'sm' ? spacing.sp24 : spacing.sp40;
 
   return (
     <Animated.View style={[styles.container, { padding }, animStyle, style]}>

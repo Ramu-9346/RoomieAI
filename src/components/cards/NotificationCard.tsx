@@ -15,12 +15,8 @@
  */
 
 import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -37,11 +33,11 @@ interface NotificationCardProps {
 }
 
 const DOT_COLORS: Record<NotificationType, string> = {
-  poll:     'orange',
-  order:    'green',
-  payment:  'orange',
+  poll: 'orange',
+  order: 'green',
+  payment: 'orange',
   reminder: 'blue',
-  system:   'muted',
+  system: 'muted',
 };
 
 export function NotificationCard({
@@ -57,9 +53,9 @@ export function NotificationCard({
 
   const dotColor = {
     orange: colors.primary.default,
-    green:  colors.success.default,
-    blue:   '#2B5A8C',
-    muted:  colors.text.muted,
+    green: colors.success.default,
+    blue: '#2B5A8C',
+    muted: colors.text.muted,
   }[DOT_COLORS[type]];
 
   return (
@@ -69,14 +65,14 @@ export function NotificationCard({
         styles.container,
         {
           backgroundColor: unread ? colors.primary.surface : colors.background.elevated,
-          borderRadius:    radius.md,
-          borderWidth:     1,
-          borderColor:     pressed ? colors.border.strong : colors.border.subtle,
-          padding:         spacing.sp10,
+          borderRadius: radius.md,
+          borderWidth: 1,
+          borderColor: pressed ? colors.border.strong : colors.border.subtle,
+          padding: spacing.sp10,
           paddingHorizontal: spacing.sp12,
-          flexDirection:   'row',
-          alignItems:      'center',
-          gap:             10,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 10,
         },
         style,
       ]}
@@ -85,12 +81,7 @@ export function NotificationCard({
       accessibilityLabel={title}
     >
       {/* Coloured dot */}
-      <View
-        style={[
-          styles.dot,
-          { backgroundColor: dotColor },
-        ]}
-      />
+      <View style={[styles.dot, { backgroundColor: dotColor }]} />
 
       {/* Content */}
       <View style={styles.content}>
@@ -121,17 +112,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   dot: {
-    width:        6,
-    height:       6,
+    width: 6,
+    height: 6,
     borderRadius: 3,
-    flexShrink:   0,
+    flexShrink: 0,
   },
   content: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   timestamp: {
     flexShrink: 0,
-    textAlign:  'right',
+    textAlign: 'right',
   },
 });

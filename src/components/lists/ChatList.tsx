@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { FlatList, type ViewStyle, type ListRenderItem } from 'react-native';
+
 import { useTheme } from '../../theme';
 
 interface ChatListProps<T> {
@@ -47,7 +48,9 @@ export function ChatList<T>({
       showsVerticalScrollIndicator={false}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.2}
-      ListFooterComponent={isTyping && typingIndicator ? () => typingIndicator as JSX.Element : null}
+      ListFooterComponent={
+        isTyping && typingIndicator ? () => typingIndicator as JSX.Element : null
+      }
       style={style}
     />
   );

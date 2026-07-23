@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -6,8 +6,8 @@ import Animated, {
   withRepeat,
   withSequence,
   withTiming,
-  useEffect,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 
 interface PresenceIndicatorProps {

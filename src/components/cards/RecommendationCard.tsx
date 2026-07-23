@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -26,9 +27,11 @@ export function RecommendationCard({
   const { colors, radius, spacing, shadows } = useTheme();
 
   const borderColor =
-    confidence === 'high'   ? colors.primary.default
-    : confidence === 'medium' ? colors.warning.default
-    : colors.border.default;
+    confidence === 'high'
+      ? colors.primary.default
+      : confidence === 'medium'
+        ? colors.warning.default
+        : colors.border.default;
 
   return (
     <Pressable
@@ -50,7 +53,9 @@ export function RecommendationCard({
       accessibilityLabel={`Recommendation: ${title}`}
     >
       <View style={styles.row}>
-        <Text variant="title" style={styles.emoji}>{emoji}</Text>
+        <Text variant="title" style={styles.emoji}>
+          {emoji}
+        </Text>
         <View style={styles.content}>
           <Text variant="bodyMedium" color={colors.text.primary} numberOfLines={2}>
             {title}

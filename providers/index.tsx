@@ -2,7 +2,8 @@
  * AppProvider — root provider composition.
  * Wraps the entire app in the correct provider order:
  *
- *   GestureHandler  (must be outermost for gesture recognizers)
+ *   ErrorBoundary   (outermost — catches any unhandled render errors)
+ *   GestureHandler  (must be inside ErrorBoundary, outermost for gestures)
  *   SafeArea        (layout measurements)
  *   Query           (React Query + client)
  *   Theme           (StatusBar + system UI colours)
@@ -10,29 +11,33 @@
  */
 
 import React, { type ReactNode } from 'react';
-import { GestureProvider }  from './GestureProvider';
-import { SafeAreaProvider } from './SafeAreaProvider';
-import { QueryProvider }    from './QueryProvider';
-import { ThemeProvider }    from './ThemeProvider';
-import { ToastProvider }    from './ToastProvider';
 
-interface AppProviderProps { children: ReactNode }
+import { ErrorBoundary } from './ErrorBoundary';
+import { GestureProvider } from './GestureProvider';
+import { QueryProvider } from './QueryProvider';
+import { SafeAreaProvider } from './SafeAreaProvider';
+import { ThemeProvider } from './ThemeProvider';
+import { ToastProvider } from './ToastProvider';
+
+interface AppProviderProps {
+  children: ReactNode;
+}
 
 export function AppProvider({ children }: AppProviderProps) {
   return (
-    <GestureProvider>
-      <SafeAreaProvider>
-        <QueryProvider>
-          <ThemeProvider>
-            <ToastProvider>
-              {children}
-            </ToastProvider>
-          </ThemeProvider>
-        </QueryProvider>
-      </SafeAreaProvider>
-    </GestureProvider>
+    <ErrorBoundary>
+      <GestureProvider>
+        <SafeAreaProvider>
+          <QueryProvider>
+            <ThemeProvider>
+              <ToastProvider>{children}</ToastProvider>
+            </ThemeProvider>
+          </QueryProvider>
+        </SafeAreaProvider>
+      </GestureProvider>
+    </ErrorBoundary>
   );
 }
 
-export { useToast }      from './ToastProvider';
-export { ToastManager }  from './ToastProvider';
+export { useToast } from './ToastProvider';
+export { ToastManager } from './ToastProvider';

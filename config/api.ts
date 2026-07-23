@@ -4,17 +4,19 @@
  */
 
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
-import { Env }              from './env';
-import { Logger }           from '@utils/logger';
+
+import { useAuthStore } from '@store/authStore';
 import { mapHttpStatusToError, AppError } from '@utils/errorMapping';
-import { useAuthStore }     from '@store/authStore';
+import { Logger } from '@utils/logger';
+
+import { Env } from './env';
 
 export const apiClient = axios.create({
   baseURL: Env.apiBaseUrl,
   timeout: 15_000,
   headers: {
     'Content-Type': 'application/json',
-    'Accept':       'application/json',
+    Accept: 'application/json',
     'X-App-Version': '1.0.0',
   },
 });
@@ -40,8 +42,8 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-    const status   = error.response?.status ?? 0;
-    const errCode  = mapHttpStatusToError(status);
+    const status = error.response?.status ?? 0;
+    const errCode = mapHttpStatusToError(status);
     Logger.error('API', `${error.config?.url} → ${status}`, errCode);
 
     if (status === 401) {

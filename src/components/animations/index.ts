@@ -5,7 +5,15 @@
  * These wrap the Duration, Ease, Stagger constants from the Phase 2 theme.
  */
 
-import { useSharedValue, useAnimatedStyle, withTiming, withSpring, withDelay, useEffect } from 'react-native-reanimated';
+import { useEffect } from 'react';
+import {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSpring,
+  withDelay,
+} from 'react-native-reanimated';
+
 import { Duration, Ease, Stagger } from '../../theme';
 
 // ─── useFadeIn ───────────────────────────────────────────────────────────────
@@ -14,7 +22,10 @@ export function useFadeIn(delay = 0) {
   const opacity = useSharedValue(0);
 
   useEffect(() => {
-    opacity.value = withDelay(delay, withTiming(1, { duration: Duration.message, easing: Ease.out }));
+    opacity.value = withDelay(
+      delay,
+      withTiming(1, { duration: Duration.message, easing: Ease.out }),
+    );
   }, []);
 
   return useAnimatedStyle(() => ({ opacity: opacity.value }));
@@ -23,12 +34,18 @@ export function useFadeIn(delay = 0) {
 // ─── useSlideIn ──────────────────────────────────────────────────────────────
 
 export function useSlideIn(fromY = 16, delay = 0) {
-  const opacity    = useSharedValue(0);
+  const opacity = useSharedValue(0);
   const translateY = useSharedValue(fromY);
 
   useEffect(() => {
-    opacity.value    = withDelay(delay, withTiming(1, { duration: Duration.message, easing: Ease.out }));
-    translateY.value = withDelay(delay, withTiming(0, { duration: Duration.message, easing: Ease.out }));
+    opacity.value = withDelay(
+      delay,
+      withTiming(1, { duration: Duration.message, easing: Ease.out }),
+    );
+    translateY.value = withDelay(
+      delay,
+      withTiming(0, { duration: Duration.message, easing: Ease.out }),
+    );
   }, []);
 
   return useAnimatedStyle(() => ({
@@ -40,11 +57,11 @@ export function useSlideIn(fromY = 16, delay = 0) {
 // ─── useScaleIn ──────────────────────────────────────────────────────────────
 
 export function useScaleIn(delay = 0) {
-  const scale   = useSharedValue(0.85);
+  const scale = useSharedValue(0.85);
   const opacity = useSharedValue(0);
 
   useEffect(() => {
-    scale.value   = withDelay(delay, withSpring(1, { damping: 18, stiffness: 200 }));
+    scale.value = withDelay(delay, withSpring(1, { damping: 18, stiffness: 200 }));
     opacity.value = withDelay(delay, withTiming(1, { duration: Duration.normal }));
   }, []);
 
@@ -79,8 +96,12 @@ export function usePressScale(to = 0.96) {
   }));
 
   const handlers = {
-    onPressIn:  () => { scale.value = withSpring(to,  { damping: 22, stiffness: 350 }); },
-    onPressOut: () => { scale.value = withSpring(1,    { damping: 22, stiffness: 350 }); },
+    onPressIn: () => {
+      scale.value = withSpring(to, { damping: 22, stiffness: 350 });
+    },
+    onPressOut: () => {
+      scale.value = withSpring(1, { damping: 22, stiffness: 350 });
+    },
   };
 
   return { animStyle, ...handlers };

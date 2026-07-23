@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Avatar } from '../primitives/Avatar';
 
@@ -28,18 +29,15 @@ export function StatusAvatar({
   const dotOffset = size === 'sm' ? -1 : 0;
 
   const dotColor =
-    status === 'online' ? colors.success.default
-    : status === 'away' ? colors.warning.default
-    : colors.text.muted;
+    status === 'online'
+      ? colors.success.default
+      : status === 'away'
+        ? colors.warning.default
+        : colors.text.muted;
 
   return (
     <View style={[{ position: 'relative', alignSelf: 'flex-start' }, style]}>
-      <Avatar
-        name={name}
-        memberIndex={memberIndex}
-        avatarUrl={avatarUrl}
-        size={size}
-      />
+      <Avatar name={name} memberIndex={memberIndex} avatarUrl={avatarUrl} size={size} />
       <View
         style={{
           position: 'absolute',

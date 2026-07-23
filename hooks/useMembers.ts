@@ -3,8 +3,8 @@
  * Selector-based for granular re-renders.
  */
 
-import { useFlatStore }   from '@store/flatStore';
-import type { Member }    from '@models/Member';
+import type { Member } from '@models/Member';
+import { useFlatStore } from '@store/flatStore';
 
 export function useMembers(): Member[] {
   return useFlatStore((s) => s.members);
@@ -15,9 +15,7 @@ export function useMember(userId: string): Member | undefined {
 }
 
 export function useIsAdmin(userId: string): boolean {
-  return useFlatStore((s) =>
-    s.members.find((m) => m.userId === userId)?.isAdmin ?? false,
-  );
+  return useFlatStore((s) => s.members.find((m) => m.userId === userId)?.isAdmin ?? false);
 }
 
 export function useOnlineMembers(): Member[] {

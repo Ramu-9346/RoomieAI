@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 
 type CardSize = 'sm' | 'md' | 'lg';
@@ -21,28 +22,27 @@ export function CardContainer({
   const { colors, radius, shadows, spacing } = useTheme();
 
   const padding =
-    size === 'sm' ? spacing.cardPaddingSm
-    : size === 'lg' ? spacing.cardPaddingLg
-    : spacing.cardPaddingMd;
+    size === 'sm'
+      ? spacing.cardPaddingSm
+      : size === 'lg'
+        ? spacing.cardPaddingLg
+        : spacing.cardPaddingMd;
 
   const variantStyle: ViewStyle =
     variant === 'elevated'
       ? { backgroundColor: colors.background.elevated, ...shadows.card }
       : variant === 'outlined'
-      ? { backgroundColor: colors.background.elevated, borderWidth: 1, borderColor: colors.border.default }
-      : variant === 'filled'
-      ? { backgroundColor: colors.background.secondary }
-      : { backgroundColor: colors.transparent };
+        ? {
+            backgroundColor: colors.background.elevated,
+            borderWidth: 1,
+            borderColor: colors.border.default,
+          }
+        : variant === 'filled'
+          ? { backgroundColor: colors.background.secondary }
+          : { backgroundColor: colors.transparent };
 
   return (
-    <View
-      style={[
-        styles.base,
-        { borderRadius: radius.xxl, padding },
-        variantStyle,
-        style,
-      ]}
-    >
+    <View style={[styles.base, { borderRadius: radius.xxl, padding }, variantStyle, style]}>
       {children}
     </View>
   );

@@ -3,9 +3,10 @@
  * PLACEHOLDER: UI will be implemented in Phase 4 (Feature Screens).
  */
 
-import { View, StyleSheet }  from 'react-native';
-import { Text }              from '@components/primitives/Text';
-import { useAppTheme }       from '@hooks/useAppTheme';
+import { View, StyleSheet } from 'react-native';
+
+import { Text } from '@components/primitives/Text';
+import { useAppTheme } from '@hooks/useAppTheme';
 
 export default function OnboardingScreen() {
   const { colors } = useAppTheme();

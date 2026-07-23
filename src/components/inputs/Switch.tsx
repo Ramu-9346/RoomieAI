@@ -17,15 +17,16 @@
 
 import React, { useCallback } from 'react';
 import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
+import { View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
   interpolateColor,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
-import { View } from 'react-native';
 
 interface SwitchProps {
   value: boolean;
@@ -37,9 +38,9 @@ interface SwitchProps {
   accessibilityLabel?: string;
 }
 
-const TRACK_WIDTH  = 48;
+const TRACK_WIDTH = 48;
 const TRACK_HEIGHT = 28;
-const THUMB_SIZE   = 22;
+const THUMB_SIZE = 22;
 const THUMB_TRAVEL = TRACK_WIDTH - THUMB_SIZE - 6;
 
 export function Switch({
@@ -60,9 +61,7 @@ export function Switch({
   }, [value]);
 
   const thumbStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: progress.value * THUMB_TRAVEL },
-    ],
+    transform: [{ translateX: progress.value * THUMB_TRAVEL }],
   }));
 
   const trackStyle = useAnimatedStyle(() => ({
@@ -82,11 +81,7 @@ export function Switch({
     <Pressable
       onPress={handlePress}
       disabled={disabled}
-      style={[
-        styles.row,
-        disabled && { opacity: opacity.disabled },
-        style,
-      ]}
+      style={[styles.row, disabled && { opacity: opacity.disabled }, style]}
       accessibilityRole="switch"
       accessibilityLabel={accessibilityLabel ?? label ?? 'Toggle switch'}
       accessibilityState={{ checked: value, disabled }}
@@ -108,19 +103,15 @@ export function Switch({
 
       {/* Track */}
       <Animated.View
-        style={[
-          styles.track,
-          { width: TRACK_WIDTH, height: TRACK_HEIGHT },
-          trackStyle,
-        ]}
+        style={[styles.track, { width: TRACK_WIDTH, height: TRACK_HEIGHT }, trackStyle]}
       >
         {/* Thumb */}
         <Animated.View
           style={[
             styles.thumb,
             {
-              width:           THUMB_SIZE,
-              height:          THUMB_SIZE,
+              width: THUMB_SIZE,
+              height: THUMB_SIZE,
               backgroundColor: colors.white,
             },
             thumbStyle,
@@ -133,27 +124,27 @@ export function Switch({
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection:  'row',
-    alignItems:     'center',
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    gap:            12,
+    gap: 12,
   },
   labelContainer: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   track: {
-    borderRadius:   99,
+    borderRadius: 99,
     justifyContent: 'center',
-    padding:        3,
-    flexShrink:     0,
+    padding: 3,
+    flexShrink: 0,
   },
   thumb: {
     borderRadius: 99,
-    shadowColor:  '#000',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
-    shadowRadius:  2,
-    elevation:     2,
+    shadowRadius: 2,
+    elevation: 2,
   },
 });

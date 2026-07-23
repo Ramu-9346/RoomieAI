@@ -3,18 +3,19 @@
  */
 
 import { useState, useCallback } from 'react';
+
+import { useNotificationStore } from '@store/notificationStore';
 import {
   requestPushPermission,
   requestLocationPermission,
   getCurrentLocation,
   type PermissionStatus,
 } from '@utils/permissions';
-import { useNotificationStore } from '@store/notificationStore';
-import { getPushToken }         from '@utils/permissions';
+import { getPushToken } from '@utils/permissions';
 
 export function usePermissions() {
   const [locationStatus, setLocationStatus] = useState<PermissionStatus>('undetermined');
-  const [pushStatus,     setPushStatus]     = useState<PermissionStatus>('undetermined');
+  const [pushStatus, setPushStatus] = useState<PermissionStatus>('undetermined');
   const { setPushToken } = useNotificationStore();
 
   const requestLocation = useCallback(async () => {

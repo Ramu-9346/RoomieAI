@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, View, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { RestaurantCard } from '../cards/RestaurantCard';
 import { RestaurantSkeleton } from '../loaders/index';
@@ -34,7 +35,9 @@ export function RestaurantList({
   if (isLoading) {
     return (
       <View style={{ gap: spacing.sp12 }}>
-        {[0, 1, 2].map((i) => <RestaurantSkeleton key={i} />)}
+        {[0, 1, 2].map((i) => (
+          <RestaurantSkeleton key={i} />
+        ))}
       </View>
     );
   }

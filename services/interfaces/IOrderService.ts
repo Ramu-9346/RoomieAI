@@ -1,10 +1,10 @@
+import type { Cart } from '@models/Cart';
 import type { Order, OrderStatus, OrderHistoryItem } from '@models/Order';
-import type { Cart }                                  from '@models/Cart';
 
 export interface PlaceOrderParams {
-  flatId:       string;
-  cart:         Cart;
-  memberIds:    string[];
+  flatId: string;
+  cart: Cart;
+  memberIds: string[];
   deliveryNote?: string;
 }
 

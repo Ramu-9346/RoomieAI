@@ -17,7 +17,8 @@
  * Safe-area-aware footer padding.
  */
 
-import React, { useEffect, useRef, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   Pressable,
@@ -35,6 +36,7 @@ import Animated, {
   runOnJS,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -63,21 +65,21 @@ export function BottomSheet({
   const insets = useSafeAreaInsets();
 
   const sheetHeight = {
-    half: SCREEN_HEIGHT * 0.50,
-    full: SCREEN_HEIGHT * 0.90,
-    auto: undefined,  // grows with content, capped at 90%
+    half: SCREEN_HEIGHT * 0.5,
+    full: SCREEN_HEIGHT * 0.9,
+    auto: undefined, // grows with content, capped at 90%
   }[snapPoint];
 
-  const translateY  = useSharedValue(SCREEN_HEIGHT);
-  const bgOpacity   = useSharedValue(0);
+  const translateY = useSharedValue(SCREEN_HEIGHT);
+  const bgOpacity = useSharedValue(0);
 
   useEffect(() => {
     if (visible) {
       translateY.value = withSpring(0, { damping: 28, stiffness: 300 });
-      bgOpacity.value  = withTiming(1, { duration: 250 });
+      bgOpacity.value = withTiming(1, { duration: 250 });
     } else {
       translateY.value = withTiming(SCREEN_HEIGHT, { duration: 280 });
-      bgOpacity.value  = withTiming(0, { duration: 220 });
+      bgOpacity.value = withTiming(0, { duration: 220 });
     }
   }, [visible]);
 
@@ -136,12 +138,12 @@ export function BottomSheet({
           sheetStyle,
           {
             backgroundColor: colors.background.primary,
-            borderTopLeftRadius:  radius.xxxl,
+            borderTopLeftRadius: radius.xxxl,
             borderTopRightRadius: radius.xxxl,
-            zIndex:               zIndex.bottomSheet,
-            maxHeight:            SCREEN_HEIGHT * 0.92,
-            height:               sheetHeight,
-            paddingBottom:        insets.bottom + spacing.sp16,
+            zIndex: zIndex.bottomSheet,
+            maxHeight: SCREEN_HEIGHT * 0.92,
+            height: sheetHeight,
+            paddingBottom: insets.bottom + spacing.sp16,
           },
         ]}
       >
@@ -152,12 +154,7 @@ export function BottomSheet({
           accessibilityRole="adjustable"
           accessibilityLabel="Drag to dismiss"
         >
-          <View
-            style={[
-              styles.handle,
-              { backgroundColor: colors.border.strong },
-            ]}
-          />
+          <View style={[styles.handle, { backgroundColor: colors.border.strong }]} />
         </View>
 
         {/* Optional title */}
@@ -170,9 +167,7 @@ export function BottomSheet({
         )}
 
         {/* Content */}
-        <View style={[styles.content, contentStyle]}>
-          {children}
-        </View>
+        <View style={[styles.content, contentStyle]}>{children}</View>
       </Animated.View>
     </Modal>
   );
@@ -181,17 +176,17 @@ export function BottomSheet({
 const styles = StyleSheet.create({
   sheet: {
     position: 'absolute',
-    left:     0,
-    right:    0,
-    bottom:   0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   handleArea: {
-    alignItems:     'center',
+    alignItems: 'center',
     paddingVertical: 12,
   },
   handle: {
-    width:        36,
-    height:       4,
+    width: 36,
+    height: 4,
     borderRadius: 2,
   },
   content: {

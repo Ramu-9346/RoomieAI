@@ -11,5 +11,5 @@ export interface IPaymentService {
   markSplitSettled(orderId: string, memberId: string): Promise<void>;
 
   /** Get unsettled splits for the current user */
-  getUnsettledSplits(userId: string): Promise<Array<PaymentSplit & { orderId: string }>>;
+  getUnsettledSplits(userId: string): Promise<(PaymentSplit & { orderId: string })[]>;
 }
