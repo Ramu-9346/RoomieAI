@@ -1,5 +1,4 @@
 import type { Restaurant, MenuItem } from '@models/Restaurant';
-import type { PaginatedResponse }    from '@/types/api';
 
 export interface RestaurantSearchParams {
   query?: string;
@@ -8,7 +7,7 @@ export interface RestaurantSearchParams {
   cuisines?: string[];
   vegOnly?: boolean;
   maxDeliveryTime?: number;
-  flatId?: string;          // used to filter by member preferences
+  flatId?: string; // used to filter by member preferences
 }
 
 export interface IRestaurantService {

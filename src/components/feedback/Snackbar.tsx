@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withDelay,
-} from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -31,19 +26,19 @@ export function Snackbar({
   const { colors, radius, spacing, zIndex } = useTheme();
   const insets = useSafeAreaInsets();
   const translateY = useSharedValue(80);
-  const opacity    = useSharedValue(0);
+  const opacity = useSharedValue(0);
 
   useEffect(() => {
     if (visible) {
       translateY.value = withTiming(0, { duration: 250 });
-      opacity.value    = withTiming(1, { duration: 250 });
+      opacity.value = withTiming(1, { duration: 250 });
       if (duration > 0 && onDismiss) {
         const t = setTimeout(onDismiss, duration);
         return () => clearTimeout(t);
       }
     } else {
       translateY.value = withTiming(80, { duration: 200 });
-      opacity.value    = withTiming(0,  { duration: 200 });
+      opacity.value = withTiming(0, { duration: 200 });
     }
   }, [visible]);
 

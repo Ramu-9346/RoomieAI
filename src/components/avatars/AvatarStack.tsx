@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Avatar } from '../primitives/Avatar';
 import { Text } from '../primitives/Text';
@@ -17,13 +18,8 @@ interface AvatarStackProps {
   style?: ViewStyle;
 }
 
-export function AvatarStack({
-  members,
-  maxVisible = 4,
-  size = 'sm',
-  style,
-}: AvatarStackProps) {
-  const { colors, radius } = useTheme();
+export function AvatarStack({ members, maxVisible = 4, size = 'sm', style }: AvatarStackProps) {
+  const { colors } = useTheme();
 
   const visible = members.slice(0, maxVisible);
   const overflow = members.length - maxVisible;

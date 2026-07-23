@@ -22,15 +22,12 @@
  * With onRemove: shows an × icon for dismissable chip tags
  */
 
-import React from 'react';
-import {
-  Pressable,
-  View,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { Pressable, View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
+
 import { Text } from './Text';
 
 export type ChipType = 'default' | 'filter' | 'quickReply';
@@ -71,21 +68,17 @@ export function Chip({
         styles.base,
         {
           backgroundColor: chipStyle.bg,
-          borderColor:     chipStyle.border,
-          borderRadius:    radius.pill,
-          paddingVertical:   spacing.sp4,
+          borderColor: chipStyle.border,
+          borderRadius: radius.pill,
+          paddingVertical: spacing.sp4,
           paddingHorizontal: onRemove ? spacing.sp12 : spacing.sp12,
-          opacity:         disabled ? opacity.disabled : pressed ? 0.7 : 1,
+          opacity: disabled ? opacity.disabled : pressed ? 0.7 : 1,
         },
         style,
       ]}
     >
       <View style={styles.inner}>
-        <Text
-          variant="caption"
-          color={chipStyle.text}
-          style={styles.label}
-        >
+        <Text variant="caption" color={chipStyle.text} style={styles.label}>
           {label}
         </Text>
         {onRemove && (
@@ -95,12 +88,7 @@ export function Chip({
             accessibilityLabel={`Remove ${label}`}
             accessibilityRole="button"
           >
-            <Feather
-              name="x"
-              size={12}
-              color={chipStyle.text}
-              style={styles.removeIcon}
-            />
+            <Feather name="x" size={12} color={chipStyle.text} style={styles.removeIcon} />
           </Pressable>
         )}
       </View>
@@ -112,7 +100,7 @@ export function Chip({
 // Horizontal scrolling row of chips for preference selection.
 
 interface ChipGroupProps<T extends string> {
-  options: Array<{ value: T; label: string }>;
+  options: { value: T; label: string }[];
   selected: T | T[];
   onSelect: (value: T) => void;
   multiSelect?: boolean;
@@ -124,7 +112,7 @@ export function ChipGroup<T extends string>({
   options,
   selected,
   onSelect,
-  multiSelect = false,
+  multiSelect: _multiSelect = false,
   type = 'default',
   style,
 }: ChipGroupProps<T>) {
@@ -155,30 +143,30 @@ function getChipStyle(
 ) {
   if (!selected) {
     return {
-      bg:     colors.transparent,
+      bg: colors.transparent,
       border: colors.border.default,
-      text:   colors.text.secondary,
+      text: colors.text.secondary,
     };
   }
 
   switch (type) {
     case 'filter':
       return {
-        bg:     colors.primary.default,
+        bg: colors.primary.default,
         border: colors.primary.default,
-        text:   colors.text.inverse,
+        text: colors.text.inverse,
       };
     case 'quickReply':
       return {
-        bg:     colors.background.secondary,
+        bg: colors.background.secondary,
         border: colors.border.strong,
-        text:   colors.text.primary,
+        text: colors.text.primary,
       };
     default:
       return {
-        bg:     colors.text.primary,
+        bg: colors.text.primary,
         border: colors.text.primary,
-        text:   colors.text.inverse,
+        text: colors.text.inverse,
       };
   }
 }
@@ -187,12 +175,12 @@ function getChipStyle(
 
 const styles = StyleSheet.create({
   base: {
-    borderWidth:  1,
-    alignSelf:    'flex-start',
+    borderWidth: 1,
+    alignSelf: 'flex-start',
   },
   inner: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
   },
   label: {
     includeFontPadding: false,
@@ -202,8 +190,8 @@ const styles = StyleSheet.create({
   },
   group: {
     flexDirection: 'row',
-    flexWrap:      'wrap',
-    gap:           8,
+    flexWrap: 'wrap',
+    gap: 8,
   },
   groupChip: {
     marginBottom: 0,

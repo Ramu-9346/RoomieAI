@@ -1,12 +1,12 @@
-import React, { type ReactNode, useCallback } from 'react';
-import { View, StyleSheet, type ViewStyle } from 'react-native';
+import React, { type ReactNode } from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
   interpolate,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 
 interface StickyHeaderProps {
@@ -27,12 +27,7 @@ export function useStickyHeaderScroll() {
   return { scrollY, onScroll };
 }
 
-export function StickyHeader({
-  children,
-  scrollY,
-  threshold = 48,
-  style,
-}: StickyHeaderProps) {
+export function StickyHeader({ children, scrollY, threshold = 48, style }: StickyHeaderProps) {
   const { colors, shadows } = useTheme();
 
   const animatedStyle = useAnimatedStyle(() => {

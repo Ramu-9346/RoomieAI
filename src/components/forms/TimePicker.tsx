@@ -1,9 +1,10 @@
+import { Feather } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { View, Pressable, Modal, ScrollView, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
+import { Text } from '../primitives/Text';
 
 interface TimePickerProps {
   value?: string;
@@ -13,9 +14,11 @@ interface TimePickerProps {
   style?: ViewStyle;
 }
 
-function pad(n: number) { return n.toString().padStart(2, '0'); }
+function pad(n: number) {
+  return n.toString().padStart(2, '0');
+}
 
-const HOURS   = Array.from({ length: 12 }, (_, i) => i + 1);
+const HOURS = Array.from({ length: 12 }, (_, i) => i + 1);
 const MINUTES = ['00', '15', '30', '45'];
 const PERIODS = ['AM', 'PM'];
 
@@ -23,12 +26,12 @@ export function TimePicker({
   value,
   onChange,
   label,
-  placeholder = 'Select time',
+  placeholder: _placeholder = 'Select time',
   style,
 }: TimePickerProps) {
   const { colors, radius, spacing, shadows } = useTheme();
   const [open, setOpen] = useState(false);
-  const [hour,   setHour]   = useState(7);
+  const [hour, setHour] = useState(7);
   const [minute, setMinute] = useState('00');
   const [period, setPeriod] = useState<'AM' | 'PM'>('PM');
 
@@ -41,7 +44,11 @@ export function TimePicker({
 
   return (
     <View style={[styles.wrapper, style]}>
-      {label && <Text variant="eyebrow" color={colors.text.muted}>{label}</Text>}
+      {label && (
+        <Text variant="eyebrow" color={colors.text.muted}>
+          {label}
+        </Text>
+      )}
 
       <Pressable
         onPress={() => setOpen(true)}
@@ -59,7 +66,11 @@ export function TimePicker({
         accessibilityRole="button"
         accessibilityLabel={label ?? 'Time picker'}
       >
-        <Text variant="mono" color={value ? colors.text.primary : colors.text.muted} style={styles.flex}>
+        <Text
+          variant="mono"
+          color={value ? colors.text.primary : colors.text.muted}
+          style={styles.flex}
+        >
           {formatted}
         </Text>
         <Feather name="clock" size={18} color={colors.text.muted} />
@@ -86,19 +97,51 @@ export function TimePicker({
               {/* Hour */}
               <ScrollView style={styles.column} showsVerticalScrollIndicator={false}>
                 {HOURS.map((h) => (
-                  <Pressable key={h} onPress={() => setHour(h)} style={[styles.timeCell, h === hour && { backgroundColor: colors.primary.surface, borderRadius: radius.md }]}>
-                    <Text variant="mono" color={h === hour ? colors.primary.text : colors.text.muted}>{pad(h)}</Text>
+                  <Pressable
+                    key={h}
+                    onPress={() => setHour(h)}
+                    style={[
+                      styles.timeCell,
+                      h === hour && {
+                        backgroundColor: colors.primary.surface,
+                        borderRadius: radius.md,
+                      },
+                    ]}
+                  >
+                    <Text
+                      variant="mono"
+                      color={h === hour ? colors.primary.text : colors.text.muted}
+                    >
+                      {pad(h)}
+                    </Text>
                   </Pressable>
                 ))}
               </ScrollView>
 
-              <Text variant="heading" color={colors.text.muted}>:</Text>
+              <Text variant="heading" color={colors.text.muted}>
+                :
+              </Text>
 
               {/* Minute */}
               <View style={styles.column}>
                 {MINUTES.map((m) => (
-                  <Pressable key={m} onPress={() => setMinute(m)} style={[styles.timeCell, m === minute && { backgroundColor: colors.primary.surface, borderRadius: radius.md }]}>
-                    <Text variant="mono" color={m === minute ? colors.primary.text : colors.text.muted}>{m}</Text>
+                  <Pressable
+                    key={m}
+                    onPress={() => setMinute(m)}
+                    style={[
+                      styles.timeCell,
+                      m === minute && {
+                        backgroundColor: colors.primary.surface,
+                        borderRadius: radius.md,
+                      },
+                    ]}
+                  >
+                    <Text
+                      variant="mono"
+                      color={m === minute ? colors.primary.text : colors.text.muted}
+                    >
+                      {m}
+                    </Text>
                   </Pressable>
                 ))}
               </View>
@@ -106,8 +149,23 @@ export function TimePicker({
               {/* AM/PM */}
               <View style={styles.column}>
                 {PERIODS.map((p) => (
-                  <Pressable key={p} onPress={() => setPeriod(p as 'AM' | 'PM')} style={[styles.timeCell, p === period && { backgroundColor: colors.primary.surface, borderRadius: radius.md }]}>
-                    <Text variant="mono" color={p === period ? colors.primary.text : colors.text.muted}>{p}</Text>
+                  <Pressable
+                    key={p}
+                    onPress={() => setPeriod(p as 'AM' | 'PM')}
+                    style={[
+                      styles.timeCell,
+                      p === period && {
+                        backgroundColor: colors.primary.surface,
+                        borderRadius: radius.md,
+                      },
+                    ]}
+                  >
+                    <Text
+                      variant="mono"
+                      color={p === period ? colors.primary.text : colors.text.muted}
+                    >
+                      {p}
+                    </Text>
                   </Pressable>
                 ))}
               </View>

@@ -24,6 +24,7 @@
  *   full — full width
  */
 
+import { Feather } from '@expo/vector-icons';
 import React, { useCallback, useRef } from 'react';
 import {
   StyleSheet,
@@ -38,22 +39,15 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withTiming,
-  withRepeat,
-  withSequence,
   runOnJS,
 } from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
+
 import { Text } from './Text';
 
 export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'ghost'
-  | 'danger'
-  | 'success'
-  | 'floating'
-  | 'holdConfirm';
+  'primary' | 'secondary' | 'ghost' | 'danger' | 'success' | 'floating' | 'holdConfirm';
 
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'full';
 
@@ -89,12 +83,11 @@ export function Button({
   style,
   accessibilityLabel,
 }: ButtonProps) {
-  const { colors, radius, spacing, duration, opacity } = useTheme();
+  const { colors, spacing, duration, opacity } = useTheme();
 
-  const scale       = useSharedValue(1);
+  const scale = useSharedValue(1);
   const holdProgress = useSharedValue(0);
-  const holdActive  = useRef(false);
-  const holdTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdActive = useRef(false);
 
   // ── Scale animation ──────────────────────────────────────────────────────
   const animatedStyle = useAnimatedStyle(() => ({
@@ -135,7 +128,7 @@ export function Button({
   const sizeStyle = getSizeStyle(size, spacing);
 
   const iconColor = variantStyles.iconColor;
-  const iconSize  = size === 'sm' ? 14 : 16;
+  const iconSize = size === 'sm' ? 14 : 16;
 
   return (
     <AnimatedPressable
@@ -170,11 +163,7 @@ export function Button({
 
       <View style={styles.inner}>
         {loading ? (
-          <ActivityIndicator
-            size="small"
-            color={variantStyles.iconColor}
-            style={styles.spinner}
-          />
+          <ActivityIndicator size="small" color={variantStyles.iconColor} style={styles.spinner} />
         ) : (
           <>
             {iconLeft && (
@@ -185,11 +174,7 @@ export function Button({
                 style={styles.iconLeft}
               />
             )}
-            <Text
-              variant="button"
-              color={variantStyles.textColor}
-              style={styles.label}
-            >
+            <Text variant="button" color={variantStyles.textColor} style={styles.label}>
               {loading ? 'Please wait...' : label}
             </Text>
             {iconRight && (
@@ -242,8 +227,12 @@ export function IconButton({
   return (
     <AnimatedPressable
       onPress={disabled ? undefined : onPress}
-      onPressIn={() => { scale.value = withSpring(0.92, { damping: 22, stiffness: 350 }); }}
-      onPressOut={() => { scale.value = withSpring(1, { damping: 22, stiffness: 350 }); }}
+      onPressIn={() => {
+        scale.value = withSpring(0.92, { damping: 22, stiffness: 350 });
+      }}
+      onPressOut={() => {
+        scale.value = withSpring(1, { damping: 22, stiffness: 350 });
+      }}
       disabled={disabled}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
@@ -268,16 +257,13 @@ export function IconButton({
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function getVariantStyles(
-  variant: ButtonVariant,
-  colors: ReturnType<typeof useTheme>['colors'],
-) {
+function getVariantStyles(variant: ButtonVariant, colors: ReturnType<typeof useTheme>['colors']) {
   switch (variant) {
     case 'primary':
       return {
         container: { backgroundColor: colors.text.primary, borderWidth: 0 } as ViewStyle,
-        textColor:  colors.text.inverse,
-        iconColor:  colors.text.inverse,
+        textColor: colors.text.inverse,
+        iconColor: colors.text.inverse,
       };
     case 'secondary':
       return {
@@ -286,32 +272,32 @@ function getVariantStyles(
           borderWidth: 1,
           borderColor: colors.border.default,
         } as ViewStyle,
-        textColor:  colors.text.secondary,
-        iconColor:  colors.text.secondary,
+        textColor: colors.text.secondary,
+        iconColor: colors.text.secondary,
       };
     case 'ghost':
       return {
         container: { backgroundColor: colors.transparent, borderWidth: 0 } as ViewStyle,
-        textColor:  colors.text.secondary,
-        iconColor:  colors.text.secondary,
+        textColor: colors.text.secondary,
+        iconColor: colors.text.secondary,
       };
     case 'danger':
       return {
         container: { backgroundColor: colors.error.default, borderWidth: 0 } as ViewStyle,
-        textColor:  colors.white,
-        iconColor:  colors.white,
+        textColor: colors.white,
+        iconColor: colors.white,
       };
     case 'success':
       return {
         container: { backgroundColor: colors.success.default, borderWidth: 0 } as ViewStyle,
-        textColor:  colors.white,
-        iconColor:  colors.white,
+        textColor: colors.white,
+        iconColor: colors.white,
       };
     case 'floating':
       return {
         container: { backgroundColor: colors.primary.default, borderWidth: 0 } as ViewStyle,
-        textColor:  colors.text.inverse,
-        iconColor:  colors.text.inverse,
+        textColor: colors.text.inverse,
+        iconColor: colors.text.inverse,
       };
     case 'holdConfirm':
       return {
@@ -320,18 +306,25 @@ function getVariantStyles(
           borderWidth: 0,
           overflow: 'hidden',
         } as ViewStyle,
-        textColor:  colors.text.inverse,
-        iconColor:  colors.text.inverse,
+        textColor: colors.text.inverse,
+        iconColor: colors.text.inverse,
       };
   }
 }
 
-function getSizeStyle(size: ButtonSize, spacing: ReturnType<typeof useTheme>['spacing']): ViewStyle {
+function getSizeStyle(
+  size: ButtonSize,
+  spacing: ReturnType<typeof useTheme>['spacing'],
+): ViewStyle {
   switch (size) {
-    case 'sm': return { height: 32,  paddingHorizontal: spacing.sp12 };
-    case 'md': return { height: 44,  paddingHorizontal: spacing.sp16 };
-    case 'lg': return { height: 52,  paddingHorizontal: spacing.sp20 };
-    case 'full': return { height: 52, paddingHorizontal: spacing.sp20, width: '100%' };
+    case 'sm':
+      return { height: 32, paddingHorizontal: spacing.sp12 };
+    case 'md':
+      return { height: 44, paddingHorizontal: spacing.sp16 };
+    case 'lg':
+      return { height: 52, paddingHorizontal: spacing.sp20 };
+    case 'full':
+      return { height: 52, paddingHorizontal: spacing.sp20, width: '100%' };
   }
 }
 

@@ -1,9 +1,7 @@
-import type { Order } from './Order';
-import type { Poll } from './Poll';
-
 export type MessageRole = 'user' | 'assistant' | 'system';
 
-export type AttachmentType = 'restaurant_card' | 'order_card' | 'poll_card' | 'grocery_card' | 'payment_card' | 'tool_call';
+export type AttachmentType =
+  'restaurant_card' | 'order_card' | 'poll_card' | 'grocery_card' | 'payment_card' | 'tool_call';
 
 export interface MessageAttachment {
   type: AttachmentType;
@@ -20,7 +18,7 @@ export interface ChatMessage {
   role: MessageRole;
   content: string;
   attachments?: MessageAttachment[];
-  memberName?: string;         // for user messages
+  memberName?: string; // for user messages
   memberIndex?: number;
   isStreaming?: boolean;
   createdAt: string;
@@ -31,7 +29,7 @@ export interface Conversation {
   flatId: string;
   messages: ChatMessage[];
   isAIThinking: boolean;
-  currentAgentStep?: string;   // e.g. "Searching restaurants…"
+  currentAgentStep?: string; // e.g. "Searching restaurants…"
   createdAt: string;
   updatedAt: string;
 }

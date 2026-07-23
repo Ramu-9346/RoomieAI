@@ -17,18 +17,18 @@
 
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
-import { Divider } from '../primitives/Divider';
 
 export interface GroceryItem {
   name: string;
-  quantity: string;  // "2 × 1L", "1 kg", "12 pc"
+  quantity: string; // "2 × 1L", "1 kg", "12 pc"
 }
 
 interface GroceryCardProps {
   title?: string;
-  subtitle?: string;   // "14 items · Delivery in 10 min"
+  subtitle?: string; // "14 items · Delivery in 10 min"
   items: GroceryItem[];
   style?: ViewStyle;
 }
@@ -53,10 +53,10 @@ export function GroceryCard({
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.lg,
-          borderWidth:     1,
-          borderColor:     colors.border.default,
-          overflow:        'hidden',
+          borderRadius: radius.lg,
+          borderWidth: 1,
+          borderColor: colors.border.default,
+          overflow: 'hidden',
           ...shadows.card,
         },
         style,
@@ -67,7 +67,7 @@ export function GroceryCard({
         style={[
           styles.header,
           {
-            padding:           spacing.sp14,
+            padding: spacing.sp14,
             borderBottomWidth: 1,
             borderBottomColor: colors.border.subtle,
           },
@@ -78,13 +78,15 @@ export function GroceryCard({
             styles.cartIcon,
             {
               backgroundColor: colors.success.surface,
-              borderRadius:    radius.sm,
-              width:           32,
-              height:          32,
+              borderRadius: radius.sm,
+              width: 32,
+              height: 32,
             },
           ]}
         >
-          <Text variant="body" style={styles.cartEmoji}>🛒</Text>
+          <Text variant="body" style={styles.cartEmoji}>
+            🛒
+          </Text>
         </View>
 
         <View style={styles.headerText}>
@@ -132,14 +134,19 @@ function GroceryItemCell({
       style={[
         styles.gridCell,
         {
-          backgroundColor:  colors.background.primary,
-          borderRadius:     radius.xs,
+          backgroundColor: colors.background.primary,
+          borderRadius: radius.xs,
           paddingHorizontal: spacing.sp8,
-          paddingVertical:   spacing.sp6,
+          paddingVertical: spacing.sp6,
         },
       ]}
     >
-      <Text variant="caption" color={colors.text.secondary} numberOfLines={1} style={styles.itemName}>
+      <Text
+        variant="caption"
+        color={colors.text.secondary}
+        numberOfLines={1}
+        style={styles.itemName}
+      >
         {item.name}
       </Text>
       <Text variant="monoSmall" color={colors.text.muted}>
@@ -155,31 +162,31 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           10,
+    alignItems: 'center',
+    gap: 10,
   },
   cartIcon: {
-    alignItems:     'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    flexShrink:     0,
+    flexShrink: 0,
   },
   cartEmoji: {
     fontSize: 16,
   },
   headerText: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   gridRow: {
     flexDirection: 'row',
-    gap:           6,
-    marginBottom:  6,
+    gap: 6,
+    marginBottom: 6,
   },
   gridCell: {
-    flex:         1,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:   'center',
+    alignItems: 'center',
   },
   itemName: {
     flex: 1,

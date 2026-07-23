@@ -3,9 +3,8 @@
  * All permissions are requested just-in-time (not at launch).
  */
 
+import * as Location from 'expo-location';
 import * as Notifications from 'expo-notifications';
-import * as Location      from 'expo-location';
-import { Platform }       from 'react-native';
 
 export type PermissionStatus = 'granted' | 'denied' | 'undetermined';
 

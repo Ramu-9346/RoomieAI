@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Avatar } from '../primitives/Avatar';
 import { Text } from '../primitives/Text';
@@ -19,7 +20,7 @@ export function MemberAvatar({
   name,
   memberIndex,
   avatarUrl,
-  role,
+  role: _role,
   isOnline = false,
   size = 'md',
   showLabel = false,

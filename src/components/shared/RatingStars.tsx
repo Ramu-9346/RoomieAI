@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -14,7 +15,7 @@ interface RatingStarsProps {
 
 export function RatingStars({
   rating,
-  maxRating = 5,
+  maxRating: _maxRating = 5,
   size = 12,
   showValue = true,
   style,

@@ -12,18 +12,13 @@
  *   - invite   — pending invite state with "Waiting..." indicator
  */
 
-import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Avatar } from '../primitives/Avatar';
-import { Chip } from '../primitives/Chip';
+import { Text } from '../primitives/Text';
 
 export type DietaryType = 'veg' | 'non-veg' | 'eggetarian' | 'jain' | 'vegan';
 
@@ -48,24 +43,16 @@ interface MemberCardProps {
 }
 
 const DIETARY_LABELS: Record<DietaryType, string> = {
-  'veg':       'Vegetarian',
-  'non-veg':   'Non-Veg',
-  'eggetarian': 'Eggetarian',
-  'jain':      'Jain',
-  'vegan':     'Vegan',
-};
-
-const DIETARY_COLORS: Record<DietaryType, 'success' | 'error' | 'warning' | 'default'> = {
-  'veg':       'success',
-  'non-veg':   'error',
-  'eggetarian': 'warning',
-  'jain':      'default',
-  'vegan':     'success',
+  veg: 'Vegetarian',
+  'non-veg': 'Non-Veg',
+  eggetarian: 'Eggetarian',
+  jain: 'Jain',
+  vegan: 'Vegan',
 };
 
 export function MemberCard({
   member,
-  variant = 'list',
+  variant: _variant = 'list',
   onPress,
   onRemove,
   style,
@@ -81,10 +68,10 @@ export function MemberCard({
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.lg,
-          borderWidth:     1,
-          borderColor:     pressed ? colors.border.strong : colors.border.default,
-          padding:         spacing.sp14,
+          borderRadius: radius.lg,
+          borderWidth: 1,
+          borderColor: pressed ? colors.border.strong : colors.border.default,
+          padding: spacing.sp14,
           ...shadows.xs,
         },
         style,
@@ -118,10 +105,7 @@ export function MemberCard({
               Invite pending...
             </Text>
           ) : (
-            <Text
-              variant="caption"
-              color={colors.text.muted}
-            >
+            <Text variant="caption" color={colors.text.muted}>
               {DIETARY_LABELS[(member as MemberData).dietaryType]}
               {(member as MemberData).allergens?.length
                 ? ` · ${(member as MemberData).allergens!.join(', ')} free`
@@ -161,20 +145,20 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           12,
+    alignItems: 'center',
+    gap: 12,
   },
   content: {
     flex: 1,
-    gap:  3,
+    gap: 3,
   },
   nameRow: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
   },
   right: {
     flexShrink: 0,
-    gap:        8,
+    gap: 8,
     alignItems: 'flex-end',
   },
 });

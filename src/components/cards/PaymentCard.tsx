@@ -21,25 +21,20 @@
  */
 
 import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Avatar } from '../primitives/Avatar';
-import { Divider } from '../primitives/Divider';
+import { Text } from '../primitives/Text';
 
 export type SplitStatus = 'self' | 'pending' | 'sent' | 'settled';
 
 export interface SplitEntry {
   name: string;
   memberIndex: number;
-  amount: string;      // "₹449"
+  amount: string; // "₹449"
   status: SplitStatus;
-  onPay?: () => void;  // opens UPI deep link
+  onPay?: () => void; // opens UPI deep link
   onMarkPaid?: () => void;
 }
 
@@ -49,7 +44,7 @@ interface PaymentCardProps {
   style?: ViewStyle;
 }
 
-export function PaymentCard({ splits, orderTotal, style }: PaymentCardProps) {
+export function PaymentCard({ splits, orderTotal: _orderTotal, style }: PaymentCardProps) {
   const { colors, radius, spacing, shadows } = useTheme();
 
   return (
@@ -58,10 +53,10 @@ export function PaymentCard({ splits, orderTotal, style }: PaymentCardProps) {
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.lg,
-          borderWidth:     1,
-          borderColor:     colors.border.default,
-          overflow:        'hidden',
+          borderRadius: radius.lg,
+          borderWidth: 1,
+          borderColor: colors.border.default,
+          overflow: 'hidden',
           ...shadows.card,
         },
         style,
@@ -132,12 +127,7 @@ function SplitRow({
   );
 }
 
-function getStatusContent(
-  entry: SplitEntry,
-  colors: any,
-  radius: any,
-  spacing: any,
-) {
+function getStatusContent(entry: SplitEntry, colors: any, radius: any, spacing: any) {
   switch (entry.status) {
     case 'self':
       return (
@@ -146,9 +136,9 @@ function getStatusContent(
             styles.chip,
             {
               backgroundColor: colors.background.secondary,
-              borderRadius:    radius.xs,
+              borderRadius: radius.xs,
               paddingHorizontal: spacing.sp6,
-              paddingVertical:   spacing.sp2,
+              paddingVertical: spacing.sp2,
             },
           ]}
         >
@@ -166,9 +156,9 @@ function getStatusContent(
             styles.chip,
             {
               backgroundColor: colors.primary.surface,
-              borderRadius:    radius.xs,
+              borderRadius: radius.xs,
               paddingHorizontal: spacing.sp6,
-              paddingVertical:   spacing.sp2,
+              paddingVertical: spacing.sp2,
             },
           ]}
           accessibilityLabel={`Pay ${entry.name} ${entry.amount} via UPI`}
@@ -187,9 +177,9 @@ function getStatusContent(
             styles.chip,
             {
               backgroundColor: colors.success.surface,
-              borderRadius:    radius.xs,
+              borderRadius: radius.xs,
               paddingHorizontal: spacing.sp6,
-              paddingVertical:   spacing.sp2,
+              paddingVertical: spacing.sp2,
             },
           ]}
         >
@@ -214,8 +204,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           10,
+    alignItems: 'center',
+    gap: 10,
   },
   name: {
     flex: 1,

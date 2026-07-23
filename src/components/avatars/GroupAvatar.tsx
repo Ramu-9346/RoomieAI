@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -13,8 +14,8 @@ interface GroupAvatarProps {
 
 export function GroupAvatar({
   emoji = '🏠',
-  name,
-  memberCount,
+  name: _name,
+  memberCount: _memberCount,
   size = 'md',
   style,
 }: GroupAvatarProps) {

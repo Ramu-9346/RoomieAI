@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, type ViewStyle } from 'react-native';
+import { View, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 
 type DietaryType = 'veg' | 'non-veg' | 'eggetarian' | 'jain' | 'vegan';
@@ -21,8 +22,8 @@ export function VegIndicator({ type, size = 'md', style }: VegIndicatorProps) {
     type === 'veg' || type === 'jain' || type === 'vegan'
       ? colors.veg
       : type === 'eggetarian'
-      ? colors.warning.default
-      : colors.nonVeg;
+        ? colors.warning.default
+        : colors.nonVeg;
 
   return (
     <View

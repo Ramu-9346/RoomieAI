@@ -15,6 +15,7 @@
  *   - Light cream background — contrasts slightly with page bg
  */
 
+import { Feather } from '@expo/vector-icons';
 import React, { useRef, useState, useCallback } from 'react';
 import {
   View,
@@ -25,7 +26,7 @@ import {
   type TextInputProps,
   type ViewStyle,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -50,7 +51,7 @@ export function SearchBar({
   autoFocus = false,
   style,
 }: SearchBarProps) {
-  const { colors, radius, spacing } = useTheme();
+  const { colors, radius } = useTheme();
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<TextInput>(null);
   const cancelWidth = useRef(new RNAnimated.Value(0)).current;
@@ -94,18 +95,13 @@ export function SearchBar({
           styles.inputContainer,
           {
             backgroundColor: colors.background.secondary,
-            borderRadius:    radius.md,
-            borderWidth:     1,
-            borderColor:     focused ? colors.border.strong : colors.transparent,
+            borderRadius: radius.md,
+            borderWidth: 1,
+            borderColor: focused ? colors.border.strong : colors.transparent,
           },
         ]}
       >
-        <Feather
-          name="search"
-          size={16}
-          color={colors.text.muted}
-          style={styles.searchIcon}
-        />
+        <Feather name="search" size={16} color={colors.text.muted} style={styles.searchIcon} />
         <TextInput
           ref={inputRef}
           value={value}
@@ -121,8 +117,8 @@ export function SearchBar({
             styles.input,
             {
               fontFamily: 'Geist_400Regular',
-              fontSize:   15,
-              color:      colors.text.primary,
+              fontSize: 15,
+              color: colors.text.primary,
             },
           ]}
           selectionColor={colors.primary.default}
@@ -134,12 +130,7 @@ export function SearchBar({
             accessibilityLabel="Clear search"
             accessibilityRole="button"
           >
-            <Feather
-              name="x-circle"
-              size={16}
-              color={colors.text.muted}
-              style={styles.clearIcon}
-            />
+            <Feather name="x-circle" size={16} color={colors.text.muted} style={styles.clearIcon} />
           </Pressable>
         )}
       </View>
@@ -165,30 +156,30 @@ export function SearchBar({
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           8,
+    alignItems: 'center',
+    gap: 8,
   },
   inputContainer: {
-    flex:          1,
+    flex: 1,
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
     paddingHorizontal: 12,
-    height:        44,
+    height: 44,
   },
   searchIcon: {
     marginRight: 8,
   },
   input: {
-    flex:               1,
-    padding:            0,
+    flex: 1,
+    padding: 0,
     includeFontPadding: false,
   },
   clearIcon: {
     marginLeft: 8,
   },
   cancelButton: {
-    paddingLeft:  8,
-    height:       44,
+    paddingLeft: 8,
+    height: 44,
     justifyContent: 'center',
   },
 });

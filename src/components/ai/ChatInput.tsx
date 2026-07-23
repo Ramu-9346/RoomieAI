@@ -21,7 +21,8 @@
  * above the input when AI provides suggestions.
  */
 
-import React, { useState, useRef } from 'react';
+import { Feather } from '@expo/vector-icons';
+import React, { useRef } from 'react';
 import {
   View,
   TextInput as RNTextInput,
@@ -31,17 +32,13 @@ import {
   Platform,
   type ViewStyle,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Spinner } from '../feedback/Loading';
 import { Chip } from '../primitives/Chip';
+import { Text } from '../primitives/Text';
 
 interface QuickReply {
   id: string;
@@ -67,8 +64,8 @@ export function ChatInput({
   onChangeText,
   onSend,
   placeholder = 'Message Roomie…',
-  sending     = false,
-  aiThinking  = false,
+  sending = false,
+  aiThinking = false,
   quickReplies,
   onQuickReply,
   style,
@@ -97,12 +94,12 @@ export function ChatInput({
       style={[
         styles.wrapper,
         {
-          backgroundColor:  colors.background.primary,
-          borderTopWidth:   StyleSheet.hairlineWidth,
-          borderTopColor:   colors.border.default,
-          paddingBottom:    Math.max(insets.bottom, spacing.sp8),
-          zIndex:           zIndex.chatInput,
-          opacity:          aiThinking ? opacityTokens.disabled : opacityTokens.full,
+          backgroundColor: colors.background.primary,
+          borderTopWidth: StyleSheet.hairlineWidth,
+          borderTopColor: colors.border.default,
+          paddingBottom: Math.max(insets.bottom, spacing.sp8),
+          zIndex: zIndex.chatInput,
+          opacity: aiThinking ? opacityTokens.disabled : opacityTokens.full,
         },
         style,
       ]}
@@ -141,8 +138,8 @@ export function ChatInput({
           styles.inputRow,
           {
             paddingHorizontal: spacing.sp12,
-            paddingTop:        spacing.sp8,
-            gap:               spacing.sp8,
+            paddingTop: spacing.sp8,
+            gap: spacing.sp8,
           },
         ]}
       >
@@ -152,12 +149,12 @@ export function ChatInput({
             styles.field,
             {
               backgroundColor: colors.background.secondary,
-              borderRadius:    radius.pill,
-              borderWidth:     1,
-              borderColor:     colors.border.default,
-              paddingVertical:   Platform.OS === 'ios' ? 10 : 6,
+              borderRadius: radius.pill,
+              borderWidth: 1,
+              borderColor: colors.border.default,
+              paddingVertical: Platform.OS === 'ios' ? 10 : 6,
               paddingHorizontal: spacing.sp14,
-              minHeight:         44,
+              minHeight: 44,
             },
           ]}
         >
@@ -176,9 +173,9 @@ export function ChatInput({
             style={[
               styles.textInput,
               {
-                color:      colors.text.primary,
+                color: colors.text.primary,
                 fontFamily: 'Geist_400Regular',
-                fontSize:   15,
+                fontSize: 15,
                 lineHeight: 22,
               },
             ]}
@@ -195,9 +192,9 @@ export function ChatInput({
             sendBtnStyle,
             {
               backgroundColor: canSend ? colors.text.primary : colors.background.secondary,
-              borderRadius:    radius.pill,
-              borderWidth:     1,
-              borderColor:     canSend ? colors.text.primary : colors.border.default,
+              borderRadius: radius.pill,
+              borderWidth: 1,
+              borderColor: canSend ? colors.text.primary : colors.border.default,
             },
           ]}
           accessibilityRole="button"
@@ -224,35 +221,35 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   quickReplies: {
-    maxHeight:  44,
+    maxHeight: 44,
   },
   quickRepliesContent: {
     paddingHorizontal: 12,
-    paddingVertical:   8,
-    gap:               6,
-    flexDirection:     'row',
-    alignItems:        'center',
+    paddingVertical: 8,
+    gap: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   thinkingHint: {
-    paddingTop:    4,
+    paddingTop: 4,
     paddingBottom: 2,
   },
   inputRow: {
     flexDirection: 'row',
-    alignItems:    'flex-end',
+    alignItems: 'flex-end',
   },
   field: {
     flex: 1,
   },
   textInput: {
-    padding: 0,  // override default RN TextInput padding
+    padding: 0, // override default RN TextInput padding
     maxHeight: 120,
   },
   sendBtn: {
-    width:          40,
-    height:         40,
-    alignItems:     'center',
+    width: 40,
+    height: 40,
+    alignItems: 'center',
     justifyContent: 'center',
-    flexShrink:     0,
+    flexShrink: 0,
   },
 });

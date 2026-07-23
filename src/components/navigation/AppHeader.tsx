@@ -1,10 +1,10 @@
 import React, { type ReactNode } from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Avatar } from '../primitives/Avatar';
+import { Text } from '../primitives/Text';
 
 interface AppHeaderProps {
   title?: string;

@@ -12,36 +12,35 @@
  * Split settlement status shown inline as a small status chip.
  */
 
-import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
+import { type CategoryBadgeType } from '../primitives/Badge';
 import { Text } from '../primitives/Text';
-import { CategoryBadge, type CategoryBadgeType } from '../primitives/Badge';
 
 export type HistoryItemType = 'food' | 'grocery' | 'dineout';
 
 export type SettlementStatus = 'all-settled' | 'partial' | 'pending';
 
-const TYPE_CONFIG: Record<HistoryItemType, {
-  emoji: string;
-  category: CategoryBadgeType;
-}> = {
-  food:    { emoji: '🍛', category: 'food' },
+const TYPE_CONFIG: Record<
+  HistoryItemType,
+  {
+    emoji: string;
+    category: CategoryBadgeType;
+  }
+> = {
+  food: { emoji: '🍛', category: 'food' },
   grocery: { emoji: '🛒', category: 'grocery' },
   dineout: { emoji: '🍽', category: 'dineout' },
 };
 
 interface HistoryCardProps {
   type: HistoryItemType;
-  title: string;         // Restaurant name / "Weekly restock" / restaurant for booking
-  subtitle: string;      // "4 items · ₹1,236" / "14 items · ₹1,698" / "4 pax · Sat 8 PM"
-  timestamp: string;     // "2d ago", "Sun 29 Jun"
+  title: string; // Restaurant name / "Weekly restock" / restaurant for booking
+  subtitle: string; // "4 items · ₹1,236" / "14 items · ₹1,698" / "4 pax · Sat 8 PM"
+  timestamp: string; // "2d ago", "Sun 29 Jun"
   settlementStatus?: SettlementStatus;
   onPress?: () => void;
   style?: ViewStyle;
@@ -66,10 +65,10 @@ export function HistoryCard({
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.xl,
-          borderWidth:     1,
-          borderColor:     pressed ? colors.border.strong : colors.border.default,
-          padding:         spacing.sp14,
+          borderRadius: radius.xl,
+          borderWidth: 1,
+          borderColor: pressed ? colors.border.strong : colors.border.default,
+          padding: spacing.sp14,
           ...shadows.xs,
         },
         style,
@@ -85,7 +84,7 @@ export function HistoryCard({
             styles.icon,
             {
               backgroundColor: getIconBg(type, colors),
-              borderRadius:    radius.md,
+              borderRadius: radius.md,
             },
           ]}
         >
@@ -137,32 +136,37 @@ function SettlementChip({
   radius: any;
 }) {
   const config = {
-    'all-settled': { bg: colors.success.surface, text: colors.success.text,   label: 'Settled' },
-    'partial':     { bg: colors.warning.surface, text: colors.warning.text,   label: 'Partial' },
-    'pending':     { bg: colors.primary.surface, text: colors.primary.text,   label: 'Pending' },
+    'all-settled': { bg: colors.success.surface, text: colors.success.text, label: 'Settled' },
+    partial: { bg: colors.warning.surface, text: colors.warning.text, label: 'Partial' },
+    pending: { bg: colors.primary.surface, text: colors.primary.text, label: 'Pending' },
   }[status];
 
   return (
     <View
       style={{
-        backgroundColor:  config.bg,
-        borderRadius:     radius.xs,
+        backgroundColor: config.bg,
+        borderRadius: radius.xs,
         paddingHorizontal: 6,
-        paddingVertical:   2,
-        alignSelf:        'flex-start',
-        marginTop:        3,
+        paddingVertical: 2,
+        alignSelf: 'flex-start',
+        marginTop: 3,
       }}
     >
-      <Text variant="monoSmall" color={config.text}>{config.label}</Text>
+      <Text variant="monoSmall" color={config.text}>
+        {config.label}
+      </Text>
     </View>
   );
 }
 
 function getIconBg(type: HistoryItemType, colors: any): string {
   switch (type) {
-    case 'food':    return colors.primary.surface;
-    case 'grocery': return colors.success.surface;
-    case 'dineout': return colors.accent.surface;
+    case 'food':
+      return colors.primary.surface;
+    case 'grocery':
+      return colors.success.surface;
+    case 'dineout':
+      return colors.accent.surface;
   }
 }
 
@@ -172,27 +176,27 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    gap:           12,
+    alignItems: 'flex-start',
+    gap: 12,
   },
   icon: {
-    width:          44,
-    height:         44,
-    alignItems:     'center',
+    width: 44,
+    height: 44,
+    alignItems: 'center',
     justifyContent: 'center',
-    flexShrink:     0,
+    flexShrink: 0,
   },
   emoji: {
     fontSize: 20,
   },
   content: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   right: {
     flexShrink: 0,
     alignItems: 'flex-end',
-    gap:        4,
+    gap: 4,
   },
   chevron: {
     marginTop: 2,

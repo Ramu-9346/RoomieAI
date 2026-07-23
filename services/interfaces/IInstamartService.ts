@@ -1,10 +1,8 @@
-import type { GroceryItem } from '@models/Cart';
-
 export interface GroceryProduct {
   id: string;
   name: string;
   brand?: string;
-  unit: string;         // "1L", "500g", "12 pc"
+  unit: string; // "1L", "500g", "12 pc"
   price: number;
   imageUrl?: string;
   isAvailable: boolean;
@@ -12,7 +10,7 @@ export interface GroceryProduct {
 }
 
 export interface GroceryCart {
-  items: Array<{ product: GroceryProduct; quantity: number }>;
+  items: { product: GroceryProduct; quantity: number }[];
   total: number;
   estimatedDeliveryMinutes: number;
 }

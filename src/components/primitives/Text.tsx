@@ -20,13 +20,8 @@
  */
 
 import React from 'react';
-import {
-  Text as RNText,
-  StyleSheet,
-  type TextStyle,
-  type StyleProp,
-  TouchableOpacity,
-} from 'react-native';
+import { Text as RNText, type TextStyle, type StyleProp, TouchableOpacity } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { TextStyles, type TextVariant } from '../../theme/typography';
 
@@ -55,19 +50,19 @@ interface TextProps {
 }
 
 const SERIF_ITALIC_MAP: Partial<Record<TextVariant, string>> = {
-  displayXL:  'Fraunces_500Medium_Italic',
-  displayL:   'Fraunces_500Medium_Italic',
-  heading:    'Fraunces_500Medium_Italic',
-  title:      'Fraunces_500Medium_Italic',
+  displayXL: 'Fraunces_500Medium_Italic',
+  displayL: 'Fraunces_500Medium_Italic',
+  heading: 'Fraunces_500Medium_Italic',
+  title: 'Fraunces_500Medium_Italic',
   captionItalic: 'Fraunces_400Regular_Italic',
 };
 
 const BOLD_MAP: Partial<Record<TextVariant, string>> = {
-  body:     'Geist_700Bold',
+  body: 'Geist_700Bold',
   subtitle: 'Geist_700Bold',
-  button:   'Geist_700Bold',
-  caption:  'Geist_600SemiBold',
-  mono:     'GeistMono_500Medium',
+  button: 'Geist_700Bold',
+  caption: 'Geist_600SemiBold',
+  mono: 'GeistMono_500Medium',
   monoSmall: 'GeistMono_500Medium',
 };
 
@@ -93,8 +88,8 @@ export function Text({
   const fontFamilyOverride = italic
     ? (SERIF_ITALIC_MAP[variant] ?? variantStyle.fontFamily)
     : bold
-    ? (BOLD_MAP[variant] ?? variantStyle.fontFamily)
-    : undefined;
+      ? (BOLD_MAP[variant] ?? variantStyle.fontFamily)
+      : undefined;
 
   const composedStyle: TextStyle = {
     ...variantStyle,

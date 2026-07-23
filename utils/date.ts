@@ -12,10 +12,7 @@ import {
   differenceInMinutes,
   addDays,
   isBefore,
-  isAfter,
 } from 'date-fns';
-
-const IST_TZ = 'Asia/Kolkata';
 
 /** "2 hours ago", "just now", etc. */
 export function timeAgo(isoString: string): string {
@@ -30,7 +27,7 @@ export function timeAgo(isoString: string): string {
 export function friendlyDate(isoString: string): string {
   try {
     const date = parseISO(isoString);
-    if (isToday(date))     return 'Today';
+    if (isToday(date)) return 'Today';
     if (isYesterday(date)) return 'Yesterday';
     return format(date, 'EEE d MMM');
   } catch {
@@ -50,7 +47,7 @@ export function chatTime(isoString: string): string {
 /** "Mon 29 Jun · 2:14 PM" */
 export function fullDateTime(isoString: string): string {
   try {
-    return format(parseISO(isoString), "EEE d MMM · h:mm a");
+    return format(parseISO(isoString), 'EEE d MMM · h:mm a');
   } catch {
     return '';
   }
@@ -60,8 +57,8 @@ export function fullDateTime(isoString: string): string {
 export function shortTimeAgo(isoString: string): string {
   try {
     const mins = differenceInMinutes(new Date(), parseISO(isoString));
-    if (mins < 1)    return 'just now';
-    if (mins < 60)   return `${mins}m ago`;
+    if (mins < 1) return 'just now';
+    if (mins < 60) return `${mins}m ago`;
     if (mins < 1440) return `${Math.floor(mins / 60)}h ago`;
     return `${Math.floor(mins / 1440)}d ago`;
   } catch {

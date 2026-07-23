@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -44,17 +44,24 @@ export function WalletCard({ orderId, total, splits, onUPIPay, style }: WalletCa
       ]}
     >
       <View style={styles.header}>
-        <Text variant="eyebrow" color={colors.primary.text}>Payment Split</Text>
-        <Text variant="monoSmall" color={colors.text.muted}>#{orderId.slice(-6)}</Text>
+        <Text variant="eyebrow" color={colors.primary.text}>
+          Payment Split
+        </Text>
+        <Text variant="monoSmall" color={colors.text.muted}>
+          #{orderId.slice(-6)}
+        </Text>
       </View>
 
       {splits.map((split, i) => {
         const memberColor = colors.member[split.memberIndex % 8] as string;
         const statusColor =
-          split.status === 'settled' ? colors.success.default
-          : split.status === 'pending' ? colors.warning.default
-          : split.status === 'self'   ? colors.primary.default
-          : colors.text.muted;
+          split.status === 'settled'
+            ? colors.success.default
+            : split.status === 'pending'
+              ? colors.warning.default
+              : split.status === 'self'
+                ? colors.primary.default
+                : colors.text.muted;
 
         return (
           <View key={i} style={styles.row}>
@@ -68,10 +75,15 @@ export function WalletCard({ orderId, total, splits, onUPIPay, style }: WalletCa
             {split.status === 'pending' && onUPIPay ? (
               <Pressable
                 onPress={() => onUPIPay(split)}
-                style={[styles.payBtn, { backgroundColor: colors.success.surface, borderRadius: radius.xs }]}
+                style={[
+                  styles.payBtn,
+                  { backgroundColor: colors.success.surface, borderRadius: radius.xs },
+                ]}
                 accessibilityLabel={`Pay ${split.memberName}`}
               >
-                <Text variant="monoSmall" color={colors.success.text}>PAY</Text>
+                <Text variant="monoSmall" color={colors.success.text}>
+                  PAY
+                </Text>
               </Pressable>
             ) : (
               <Text variant="monoSmall" color={statusColor} style={styles.status}>
@@ -83,7 +95,9 @@ export function WalletCard({ orderId, total, splits, onUPIPay, style }: WalletCa
       })}
 
       <View style={[styles.total, { borderTopColor: colors.border.subtle }]}>
-        <Text variant="bodyMedium" color={colors.text.primary}>Total</Text>
+        <Text variant="bodyMedium" color={colors.text.primary}>
+          Total
+        </Text>
         <Text variant="monoMedium" color={colors.text.primary}>
           ₹{new Intl.NumberFormat('en-IN').format(total)}
         </Text>
@@ -99,5 +113,10 @@ const styles = StyleSheet.create({
   dot: { width: 8, height: 8, borderRadius: 4 },
   payBtn: { paddingHorizontal: 8, paddingVertical: 3 },
   status: { minWidth: 48, textAlign: 'right' },
-  total: { flexDirection: 'row', justifyContent: 'space-between', paddingTop: 12, borderTopWidth: StyleSheet.hairlineWidth },
+  total: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 12,
+    borderTopWidth: StyleSheet.hairlineWidth,
+  },
 });

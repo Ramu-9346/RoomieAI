@@ -1,10 +1,6 @@
 import React from 'react';
 import { View, Pressable, ScrollView, StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -73,12 +69,11 @@ export function ChipSelector<T = string>({
         accessibilityLabel={opt.label}
       >
         {opt.emoji && (
-          <Text variant="body" style={styles.emoji}>{opt.emoji}</Text>
+          <Text variant="body" style={styles.emoji}>
+            {opt.emoji}
+          </Text>
         )}
-        <Text
-          variant="bodyMedium"
-          color={selected ? colors.primary.text : colors.text.secondary}
-        >
+        <Text variant="bodyMedium" color={selected ? colors.primary.text : colors.text.secondary}>
           {opt.label}
         </Text>
       </Pressable>

@@ -17,6 +17,7 @@
  *   - Multiline support (for preference notes, dislikes, etc.)
  */
 
+import { Feather } from '@expo/vector-icons';
 import React, { useRef, useState, useCallback } from 'react';
 import {
   View,
@@ -33,7 +34,7 @@ import Animated, {
   interpolate,
   interpolateColor,
 } from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -106,10 +107,8 @@ export function TextInput({
   const borderColor = error
     ? colors.error.default
     : focused
-    ? colors.border.strong
-    : colors.border.default;
-
-  const hasIcon = Boolean(iconLeft || iconRight);
+      ? colors.border.strong
+      : colors.border.default;
 
   return (
     <View style={[styles.wrapper, style]}>
@@ -188,11 +187,7 @@ export function TextInput({
             style={[styles.iconRight, { top: 16 }]}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
-            <Feather
-              name={iconRight as any}
-              size={18}
-              color={colors.text.muted}
-            />
+            <Feather name={iconRight as any} size={18} color={colors.text.muted} />
           </Pressable>
         )}
       </Pressable>
@@ -223,31 +218,31 @@ const styles = StyleSheet.create({
   },
   container: {
     borderWidth: 1,
-    position:    'relative',
+    position: 'relative',
     justifyContent: 'flex-end',
   },
   label: {
     position: 'absolute',
-    top:      18,
+    top: 18,
   },
   input: {
-    padding:  0,
-    margin:   0,
+    padding: 0,
+    margin: 0,
     minHeight: 22,
   },
   iconLeft: {
     position: 'absolute',
-    left:     14,
+    left: 14,
   },
   iconRight: {
     position: 'absolute',
-    right:    14,
+    right: 14,
   },
   messageRow: {
     flexDirection: 'row',
-    alignItems:    'center',
-    marginTop:     4,
-    gap:           4,
+    alignItems: 'center',
+    marginTop: 4,
+    gap: 4,
   },
   messageText: {
     flex: 1,

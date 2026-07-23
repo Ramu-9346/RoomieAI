@@ -12,21 +12,17 @@
  *   scrollBottom — circular, arrow-down, 40px
  */
 
-import React from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
-  withTiming,
   FadeIn,
   FadeOut,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -74,10 +70,10 @@ export function FloatingActionButton({
           styles.scrollBtn,
           {
             backgroundColor: colors.background.elevated,
-            borderRadius:    radius.pill,
-            borderWidth:     1,
-            borderColor:     colors.border.default,
-            zIndex:          zIndex.chatInput - 1,
+            borderRadius: radius.pill,
+            borderWidth: 1,
+            borderColor: colors.border.default,
+            zIndex: zIndex.chatInput - 1,
             ...shadows.floating,
           },
           style,
@@ -105,8 +101,8 @@ export function FloatingActionButton({
         styles.composeFab,
         {
           backgroundColor: colors.text.primary,
-          borderRadius:    radius.pill,
-          zIndex:          zIndex.chatInput - 1,
+          borderRadius: radius.pill,
+          zIndex: zIndex.chatInput - 1,
           ...shadows.floating,
         },
         style,
@@ -131,23 +127,23 @@ export function FloatingActionButton({
 
 const styles = StyleSheet.create({
   scrollBtn: {
-    width:  40,
+    width: 40,
     height: 40,
   },
   scrollBtnInner: {
-    width:          40,
-    height:         40,
-    alignItems:     'center',
+    width: 40,
+    height: 40,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   composeFab: {
     alignSelf: 'center',
   },
   composeFabInner: {
-    flexDirection:  'row',
-    alignItems:     'center',
-    gap:            8,
-    paddingVertical:   13,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 13,
     paddingHorizontal: 20,
   },
 });

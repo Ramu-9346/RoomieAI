@@ -1,9 +1,10 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
+import { Text } from '../primitives/Text';
 
 interface ErrorStateProps {
   title?: string;
@@ -18,7 +19,7 @@ export function ErrorState({
   onRetry,
   style,
 }: ErrorStateProps) {
-  const { colors, radius, spacing } = useTheme();
+  const { colors, spacing } = useTheme();
 
   return (
     <View
@@ -64,20 +65,26 @@ export function OfflineState({ onRetry, style }: { onRetry?: () => void; style?:
   return (
     <View
       style={[
-        { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing.sp32, gap: spacing.sp16 },
+        {
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: spacing.sp32,
+          gap: spacing.sp16,
+        },
         style,
       ]}
     >
-      <Text variant="displayXL" style={{ fontSize: 56 }}>📡</Text>
+      <Text variant="displayXL" style={{ fontSize: 56 }}>
+        📡
+      </Text>
       <Text variant="heading" color={colors.text.primary} style={{ textAlign: 'center' }}>
         No Internet
       </Text>
       <Text variant="body" color={colors.text.muted} style={{ textAlign: 'center' }}>
         Check your connection. Some features may work offline.
       </Text>
-      {onRetry && (
-        <Button label="Retry" variant="secondary" onPress={onRetry} iconLeft="wifi" />
-      )}
+      {onRetry && <Button label="Retry" variant="secondary" onPress={onRetry} iconLeft="wifi" />}
     </View>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, type ViewStyle } from 'react-native';
+import { FlatList, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { MemberCard } from '../cards/MemberCard';
 

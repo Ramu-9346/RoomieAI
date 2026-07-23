@@ -11,23 +11,11 @@
  */
 
 import React from 'react';
-import {
-  View,
-  Modal,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-  FadeIn,
-  FadeOut,
-} from 'react-native-reanimated';
+import { View, Modal, Pressable, StyleSheet } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
+import { Text } from '../primitives/Text';
 
 interface ConfirmDialogProps {
   visible: boolean;
@@ -45,8 +33,8 @@ export function ConfirmDialog({
   title,
   body,
   confirmLabel = 'Confirm',
-  cancelLabel  = 'Cancel',
-  destructive  = false,
+  cancelLabel = 'Cancel',
+  destructive = false,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
@@ -61,10 +49,7 @@ export function ConfirmDialog({
       onRequestClose={onCancel}
     >
       <Pressable
-        style={[
-          styles.scrim,
-          { backgroundColor: `rgba(26,23,19,${opacityTokens.overlay})` },
-        ]}
+        style={[styles.scrim, { backgroundColor: `rgba(26,23,19,${opacityTokens.overlay})` }]}
         onPress={onCancel}
       />
 
@@ -74,10 +59,10 @@ export function ConfirmDialog({
             styles.card,
             {
               backgroundColor: colors.background.primary,
-              borderRadius:    radius.xxl,
-              padding:         spacing.sp24,
+              borderRadius: radius.xxl,
+              padding: spacing.sp24,
               ...shadows.modal,
-              zIndex:          zIndex.modal,
+              zIndex: zIndex.modal,
             },
           ]}
         >
@@ -124,7 +109,7 @@ const styles = StyleSheet.create({
   },
   centreWrap: {
     ...StyleSheet.absoluteFillObject,
-    alignItems:     'center',
+    alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 32,
   },

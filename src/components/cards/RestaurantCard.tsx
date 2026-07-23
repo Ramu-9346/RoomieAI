@@ -22,15 +22,11 @@
  */
 
 import React from 'react';
-import {
-  View,
-  Pressable,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { RatingBadge } from '../primitives/Badge';
+import { Text } from '../primitives/Text';
 
 interface RestaurantCardProps {
   name: string;
@@ -52,7 +48,7 @@ export function RestaurantCard({
   rating,
   emoji = '🍽',
   deliveryTime,
-  distance,
+  distance: _distance,
   onPress,
   selected = false,
   style,
@@ -66,13 +62,13 @@ export function RestaurantCard({
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.xl,
-          borderWidth:     1,
-          borderColor:     selected
+          borderRadius: radius.xl,
+          borderWidth: 1,
+          borderColor: selected
             ? colors.primary.default
             : pressed
-            ? colors.border.strong
-            : colors.border.default,
+              ? colors.border.strong
+              : colors.border.default,
           padding: spacing.sp12,
           ...shadows.card,
         },
@@ -89,9 +85,9 @@ export function RestaurantCard({
             styles.icon,
             {
               backgroundColor: colors.accent.surface,
-              borderRadius:    radius.md,
-              width:           40,
-              height:          40,
+              borderRadius: radius.md,
+              width: 40,
+              height: 40,
             },
           ]}
         >
@@ -123,20 +119,14 @@ export function RestaurantCard({
           </View>
 
           {fitReason && (
-            <Text
-              variant="captionItalic"
-              color={colors.success.text}
-              style={styles.fitReason}
-            >
+            <Text variant="captionItalic" color={colors.success.text} style={styles.fitReason}>
               {fitReason}
             </Text>
           )}
         </View>
 
         {/* Rating */}
-        {rating !== undefined && (
-          <RatingBadge rating={rating} style={styles.rating} />
-        )}
+        {rating !== undefined && <RatingBadge rating={rating} style={styles.rating} />}
       </View>
     </Pressable>
   );
@@ -148,31 +138,31 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    gap:           12,
+    alignItems: 'flex-start',
+    gap: 12,
   },
   icon: {
-    alignItems:     'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    flexShrink:     0,
+    flexShrink: 0,
   },
   emoji: {
-    fontSize:    20,
+    fontSize: 20,
     includeFontPadding: false,
   },
   content: {
     flex: 1,
-    gap:  3,
+    gap: 3,
   },
   metaRow: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
   },
   fitReason: {
     marginTop: 2,
   },
   rating: {
     flexShrink: 0,
-    alignSelf:  'flex-start',
+    alignSelf: 'flex-start',
   },
 });

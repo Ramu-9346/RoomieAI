@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { View, Pressable, Modal, ScrollView, StyleSheet, type ViewStyle } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, Pressable, Modal, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
+import { Text } from '../primitives/Text';
 
 interface DatePickerProps {
   value?: Date;
@@ -16,7 +17,7 @@ interface DatePickerProps {
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const DAYS   = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 function formatDate(d: Date) {
   return `${DAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
@@ -36,7 +37,7 @@ export function DatePicker({
 
   const today = new Date();
   const [viewMonth, setViewMonth] = useState(value?.getMonth() ?? today.getMonth());
-  const [viewYear, setViewYear]   = useState(value?.getFullYear() ?? today.getFullYear());
+  const [viewYear, setViewYear] = useState(value?.getFullYear() ?? today.getFullYear());
 
   const firstDay = new Date(viewYear, viewMonth, 1).getDay();
   const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
@@ -55,12 +56,16 @@ export function DatePicker({
   };
 
   const prevMonth = () => {
-    if (viewMonth === 0) { setViewMonth(11); setViewYear((y) => y - 1); }
-    else setViewMonth((m) => m - 1);
+    if (viewMonth === 0) {
+      setViewMonth(11);
+      setViewYear((y) => y - 1);
+    } else setViewMonth((m) => m - 1);
   };
   const nextMonth = () => {
-    if (viewMonth === 11) { setViewMonth(0); setViewYear((y) => y + 1); }
-    else setViewMonth((m) => m + 1);
+    if (viewMonth === 11) {
+      setViewMonth(0);
+      setViewYear((y) => y + 1);
+    } else setViewMonth((m) => m + 1);
   };
 
   const isSelected = (day: number) =>
@@ -72,7 +77,9 @@ export function DatePicker({
   return (
     <View style={[styles.wrapper, style]}>
       {label && (
-        <Text variant="eyebrow" color={colors.text.muted}>{label}</Text>
+        <Text variant="eyebrow" color={colors.text.muted}>
+          {label}
+        </Text>
       )}
       <Pressable
         onPress={() => setOpen(true)}
@@ -90,7 +97,11 @@ export function DatePicker({
         accessibilityRole="button"
         accessibilityLabel={label ?? 'Date picker'}
       >
-        <Text variant="body" color={value ? colors.text.primary : colors.text.muted} style={styles.flex}>
+        <Text
+          variant="body"
+          color={value ? colors.text.primary : colors.text.muted}
+          style={styles.flex}
+        >
           {value ? formatDate(value) : placeholder}
         </Text>
         <Feather name="calendar" size={18} color={colors.text.muted} />
@@ -122,8 +133,10 @@ export function DatePicker({
             </View>
 
             <View style={styles.dayLabels}>
-              {['S','M','T','W','T','F','S'].map((d, i) => (
-                <Text key={i} variant="monoSmall" color={colors.text.muted} style={styles.dayLabel}>{d}</Text>
+              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
+                <Text key={i} variant="monoSmall" color={colors.text.muted} style={styles.dayLabel}>
+                  {d}
+                </Text>
               ))}
             </View>
 
@@ -135,7 +148,11 @@ export function DatePicker({
                   disabled={!day}
                   style={[
                     styles.cell,
-                    day && isSelected(day) && { backgroundColor: colors.primary.default, borderRadius: radius.pill },
+                    day &&
+                      isSelected(day) && {
+                        backgroundColor: colors.primary.default,
+                        borderRadius: radius.pill,
+                      },
                   ]}
                 >
                   {day ? (

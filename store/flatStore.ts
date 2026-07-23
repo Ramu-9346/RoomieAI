@@ -4,11 +4,10 @@
  */
 
 import { create } from 'zustand';
-import { immer }  from 'zustand/middleware/immer';
+import { immer } from 'zustand/middleware/immer';
 
-import type { Flat }        from '@models/Flat';
-import type { Member }      from '@models/Member';
-import type { FlatSettings } from '@models/Flat';
+import type { Flat, FlatSettings } from '@models/Flat';
+import type { Member } from '@models/Member';
 
 interface FlatState {
   flat: Flat | null;
@@ -16,26 +15,30 @@ interface FlatState {
   isLoading: boolean;
 
   // Actions
-  setFlat:       (flat: Flat) => void;
-  setMembers:    (members: Member[]) => void;
-  updateMember:  (userId: string, patch: Partial<Member>) => void;
-  removeMember:  (userId: string) => void;
-  setSettings:   (settings: FlatSettings) => void;
-  setLoading:    (loading: boolean) => void;
-  clearFlat:     () => void;
+  setFlat: (flat: Flat) => void;
+  setMembers: (members: Member[]) => void;
+  updateMember: (userId: string, patch: Partial<Member>) => void;
+  removeMember: (userId: string) => void;
+  setSettings: (settings: FlatSettings) => void;
+  setLoading: (loading: boolean) => void;
+  clearFlat: () => void;
 }
 
 export const useFlatStore = create<FlatState>()(
   immer((set) => ({
-    flat:      null,
-    members:   [],
+    flat: null,
+    members: [],
     isLoading: false,
 
     setFlat: (flat) =>
-      set((state) => { state.flat = flat; }),
+      set((state) => {
+        state.flat = flat;
+      }),
 
     setMembers: (members) =>
-      set((state) => { state.members = members; }),
+      set((state) => {
+        state.members = members;
+      }),
 
     updateMember: (userId, patch) =>
       set((state) => {
@@ -54,12 +57,14 @@ export const useFlatStore = create<FlatState>()(
       }),
 
     setLoading: (loading) =>
-      set((state) => { state.isLoading = loading; }),
+      set((state) => {
+        state.isLoading = loading;
+      }),
 
     clearFlat: () =>
       set((state) => {
-        state.flat      = null;
-        state.members   = [];
+        state.flat = null;
+        state.members = [];
         state.isLoading = false;
       }),
   })),

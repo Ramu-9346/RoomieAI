@@ -13,11 +13,7 @@
  */
 
 import React, { useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -25,8 +21,8 @@ import Animated, {
   withTiming,
   withSequence,
   Easing,
-  interpolate,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 
 // ── Skeleton bone ─────────────────────────────────────────────────────────────
@@ -46,7 +42,7 @@ export function Skeleton({ width = '100%', height = 16, radius, style }: Skeleto
     opacity.value = withRepeat(
       withSequence(
         withTiming(0.4, { duration: 700, easing: Easing.inOut(Easing.ease) }),
-        withTiming(1,   { duration: 700, easing: Easing.inOut(Easing.ease) }),
+        withTiming(1, { duration: 700, easing: Easing.inOut(Easing.ease) }),
       ),
       -1,
       false,
@@ -59,9 +55,9 @@ export function Skeleton({ width = '100%', height = 16, radius, style }: Skeleto
     <Animated.View
       style={[
         {
-          width:           width as any,
+          width: width as any,
           height,
-          borderRadius:    radius ?? height / 2,
+          borderRadius: radius ?? height / 2,
           backgroundColor: colors.border.default,
         },
         animStyle,
@@ -87,19 +83,19 @@ export function SkeletonCard({ variant = 'restaurant', style }: SkeletonCardProp
         styles.card,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.xl,
-          borderWidth:     1,
-          borderColor:     colors.border.subtle,
-          padding:         spacing.sp14,
+          borderRadius: radius.xl,
+          borderWidth: 1,
+          borderColor: colors.border.subtle,
+          padding: spacing.sp14,
           ...shadows.xs,
         },
         style,
       ]}
     >
       {variant === 'restaurant' && <RestaurantSkeleton spacing={spacing} />}
-      {variant === 'member'     && <MemberSkeleton spacing={spacing} />}
+      {variant === 'member' && <MemberSkeleton spacing={spacing} />}
       {variant === 'notification' && <NotificationSkeleton spacing={spacing} />}
-      {variant === 'message'    && <MessageSkeleton spacing={spacing} />}
+      {variant === 'message' && <MessageSkeleton spacing={spacing} />}
     </View>
   );
 }
@@ -131,7 +127,7 @@ function MemberSkeleton({ spacing }: { spacing: any }) {
   );
 }
 
-function NotificationSkeleton({ spacing }: { spacing: any }) {
+function NotificationSkeleton({ spacing: _spacing }: { spacing: any }) {
   return (
     <View style={[styles.row, { gap: 10 }]}>
       <Skeleton width={6} height={6} radius={3} />
@@ -144,7 +140,7 @@ function NotificationSkeleton({ spacing }: { spacing: any }) {
   );
 }
 
-function MessageSkeleton({ spacing }: { spacing: any }) {
+function MessageSkeleton({ spacing: _spacing }: { spacing: any }) {
   return (
     <View style={{ gap: 8 }}>
       <Skeleton width="75%" height={13} />
@@ -160,7 +156,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           10,
+    alignItems: 'center',
+    gap: 10,
   },
 });

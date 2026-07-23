@@ -10,20 +10,15 @@
  */
 
 import React, { useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  Modal,
-  type ViewStyle,
-} from 'react-native';
+import { View, StyleSheet, Modal, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withRepeat,
   withTiming,
   Easing,
-  interpolate,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -53,21 +48,21 @@ export function Spinner({ size = 'md', color, style }: SpinnerProps) {
     transform: [{ rotate: `${rotation.value}deg` }],
   }));
 
-  const px    = SPINNER_SIZE[size];
+  const px = SPINNER_SIZE[size];
   const stroke = px * 0.1 + 1;
-  const c     = color ?? colors.primary.default;
+  const c = color ?? colors.primary.default;
 
   return (
     <Animated.View
       style={[
         animStyle,
         {
-          width:        px,
-          height:       px,
+          width: px,
+          height: px,
           borderRadius: px / 2,
-          borderWidth:  stroke,
-          borderColor:  `${c}30`,  // track
-          borderTopColor: c,        // arc
+          borderWidth: stroke,
+          borderColor: `${c}30`, // track
+          borderTopColor: c, // arc
         },
         style,
       ]}
@@ -92,7 +87,7 @@ export function LoadingOverlay({ visible, label }: LoadingOverlayProps) {
           styles.overlayBg,
           {
             backgroundColor: `rgba(26,23,19,${opacity.overlay})`,
-            zIndex:           zIndex.overlay,
+            zIndex: zIndex.overlay,
           },
         ]}
       >
@@ -101,9 +96,9 @@ export function LoadingOverlay({ visible, label }: LoadingOverlayProps) {
             styles.overlayCard,
             {
               backgroundColor: colors.background.elevated,
-              borderRadius:    radius.xl,
-              padding:         32,
-              gap:             16,
+              borderRadius: radius.xl,
+              padding: 32,
+              gap: 16,
             },
           ]}
         >
@@ -143,19 +138,19 @@ export function PageLoading({ label, style }: PageLoadingProps) {
 
 const styles = StyleSheet.create({
   overlayBg: {
-    flex:           1,
-    alignItems:     'center',
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   overlayCard: {
-    alignItems:     'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    minWidth:       120,
+    minWidth: 120,
   },
   page: {
-    flex:           1,
-    alignItems:     'center',
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    gap:            16,
+    gap: 16,
   },
 });

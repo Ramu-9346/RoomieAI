@@ -17,23 +17,18 @@
  *   <Toast visible={show} type="success" message="Done" onDismiss={…} />
  */
 
-import React, { useEffect, useRef } from 'react';
-import {
-  View,
-  StyleSheet,
-  Pressable,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React, { useEffect, useRef } from 'react';
+import { View, StyleSheet, Pressable, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   withSpring,
-  runOnJS,
   Easing,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -50,10 +45,10 @@ interface ToastProps {
 }
 
 const TYPE_CONFIG: Record<ToastType, { icon: string; getColor: (c: any) => string }> = {
-  success: { icon: 'check',      getColor: (c) => c.success.default },
-  error:   { icon: 'x',         getColor: (c) => c.error.default   },
-  info:    { icon: 'info',       getColor: (c) => c.text.primary    },
-  warning: { icon: 'alert-circle', getColor: (c) => '#F59E0B'       },
+  success: { icon: 'check', getColor: (c) => c.success.default },
+  error: { icon: 'x', getColor: (c) => c.error.default },
+  info: { icon: 'info', getColor: (c) => c.text.primary },
+  warning: { icon: 'alert-circle', getColor: (_c) => '#F59E0B' },
 };
 
 export function Toast({
@@ -68,28 +63,28 @@ export function Toast({
   const { colors, radius, spacing, shadows, zIndex } = useTheme();
   const insets = useSafeAreaInsets();
   const translateY = useSharedValue(100);
-  const opacity    = useSharedValue(0);
-  const timer      = useRef<ReturnType<typeof setTimeout>>();
-  const config     = TYPE_CONFIG[type];
+  const opacity = useSharedValue(0);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const config = TYPE_CONFIG[type];
   const accentColor = config.getColor(colors);
 
   useEffect(() => {
     if (visible) {
-      opacity.value    = withTiming(1, { duration: 220, easing: Easing.out(Easing.ease) });
+      opacity.value = withTiming(1, { duration: 220, easing: Easing.out(Easing.ease) });
       translateY.value = withSpring(0, { damping: 22, stiffness: 300 });
       if (duration > 0) {
         timer.current = setTimeout(() => onDismiss?.(), duration);
       }
     } else {
       clearTimeout(timer.current);
-      opacity.value    = withTiming(0, { duration: 180 });
+      opacity.value = withTiming(0, { duration: 180 });
       translateY.value = withTiming(60, { duration: 200 });
     }
     return () => clearTimeout(timer.current);
   }, [visible]);
 
   const animStyle = useAnimatedStyle(() => ({
-    opacity:   opacity.value,
+    opacity: opacity.value,
     transform: [{ translateY: translateY.value }],
   }));
 
@@ -100,8 +95,8 @@ export function Toast({
       style={[
         styles.wrapper,
         {
-          bottom:  insets.bottom + 80, // above tab bar
-          zIndex:  zIndex.toast,
+          bottom: insets.bottom + 80, // above tab bar
+          zIndex: zIndex.toast,
           paddingHorizontal: spacing.sp16,
         },
         animStyle,
@@ -114,10 +109,10 @@ export function Toast({
           styles.container,
           {
             backgroundColor: colors.background.elevated,
-            borderRadius:    radius.lg,
+            borderRadius: radius.lg,
             borderLeftWidth: 3,
             borderLeftColor: accentColor,
-            padding:         spacing.sp14,
+            padding: spacing.sp14,
             ...shadows.floating,
           },
           style,
@@ -154,19 +149,19 @@ export function Toast({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    left:     0,
-    right:    0,
+    left: 0,
+    right: 0,
   },
   container: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           10,
+    alignItems: 'center',
+    gap: 10,
   },
   iconWrap: {
     flexShrink: 0,
   },
   content: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
 });

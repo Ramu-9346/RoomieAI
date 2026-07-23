@@ -29,7 +29,16 @@ export * from './buttons';
 export * from './avatars';
 
 // ── Phase 4: Badges ───────────────────────────────────────────────────────────
-export * from './badges';
+// StatusBadge collides with primitives/Badge's StatusBadge (different props —
+// order-lifecycle status vs. generic type/label); disambiguated here.
+export {
+  StatusBadge as OrderStatusBadge,
+  CountBadge,
+  NotificationBadge,
+  RoleBadge,
+  DiscountBadge,
+  LiveBadge,
+} from './badges';
 
 // ── Phase 4: Forms ────────────────────────────────────────────────────────────
 export * from './forms';
@@ -50,4 +59,11 @@ export * from './icons';
 export * from './animations';
 
 // ── Phase 4: Shared ───────────────────────────────────────────────────────────
-export * from './shared';
+// VegIndicator collides with primitives/Badge's VegIndicator (different props —
+// 5-way dietary type vs. boolean isVeg); disambiguated here.
+export {
+  VegIndicator as DietaryIndicator,
+  PriceDisplay,
+  OrderStatusDot,
+  RatingStars,
+} from './shared';

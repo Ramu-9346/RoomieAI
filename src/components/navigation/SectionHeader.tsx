@@ -1,6 +1,7 @@
-import React, { type ReactNode } from 'react';
-import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -24,9 +25,7 @@ export function SectionHeader({ title, subtitle, action, icon, style }: SectionH
       ]}
     >
       <View style={styles.left}>
-        {icon && (
-          <Feather name={icon as any} size={16} color={colors.primary.default} />
-        )}
+        {icon && <Feather name={icon as any} size={16} color={colors.primary.default} />}
         <View style={styles.titleGroup}>
           <Text variant="eyebrow" color={colors.primary.text}>
             {title}
