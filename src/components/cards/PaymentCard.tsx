@@ -95,9 +95,9 @@ function SplitRow({
 }: {
   entry: SplitEntry;
   isLast: boolean;
-  colors: any;
-  spacing: any;
-  radius: any;
+  colors: ReturnType<typeof useTheme>['colors'];
+  spacing: ReturnType<typeof useTheme>['spacing'];
+  radius: ReturnType<typeof useTheme>['radius'];
 }) {
   const statusContent = getStatusContent(entry, colors, radius, spacing);
 
@@ -127,7 +127,12 @@ function SplitRow({
   );
 }
 
-function getStatusContent(entry: SplitEntry, colors: any, radius: any, spacing: any) {
+function getStatusContent(
+  entry: SplitEntry,
+  colors: ReturnType<typeof useTheme>['colors'],
+  radius: ReturnType<typeof useTheme>['radius'],
+  spacing: ReturnType<typeof useTheme>['spacing'],
+) {
   switch (entry.status) {
     case 'self':
       return (

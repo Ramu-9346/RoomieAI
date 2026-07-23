@@ -1,11 +1,8 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, Pressable, StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
-import { Feather } from '@expo/vector-icons';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -20,13 +17,13 @@ interface ActionSuggestionCardProps {
   style?: ViewStyle;
 }
 
-const ACTION_ICON: Record<ActionType, string> = {
-  order:   'shopping-bag',
-  poll:    'bar-chart-2',
+const ACTION_ICON: Record<ActionType, React.ComponentProps<typeof Feather>['name']> = {
+  order: 'shopping-bag',
+  poll: 'bar-chart-2',
   grocery: 'shopping-cart',
   dineout: 'star',
   payment: 'credit-card',
-  custom:  'zap',
+  custom: 'zap',
 };
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -49,8 +46,12 @@ export function ActionSuggestionCard({
   return (
     <AnimatedPressable
       onPress={onPress}
-      onPressIn={() => { scale.value = withSpring(0.97, { damping: 22, stiffness: 350 }); }}
-      onPressOut={() => { scale.value = withSpring(1,    { damping: 22, stiffness: 350 }); }}
+      onPressIn={() => {
+        scale.value = withSpring(0.97, { damping: 22, stiffness: 350 });
+      }}
+      onPressOut={() => {
+        scale.value = withSpring(1, { damping: 22, stiffness: 350 });
+      }}
       style={[
         {
           backgroundColor: colors.primary.surface,
@@ -77,7 +78,7 @@ export function ActionSuggestionCard({
             justifyContent: 'center',
           }}
         >
-          <Feather name={ACTION_ICON[type] as any} size={18} color={colors.text.inverse} />
+          <Feather name={ACTION_ICON[type]} size={18} color={colors.text.inverse} />
         </View>
 
         <View style={styles.content}>
@@ -92,7 +93,10 @@ export function ActionSuggestionCard({
         <View style={styles.actions}>
           {onDismiss && (
             <Pressable
-              onPress={(e) => { e.stopPropagation?.(); onDismiss(); }}
+              onPress={(e) => {
+                e.stopPropagation?.();
+                onDismiss();
+              }}
               hitSlop={8}
               accessibilityLabel="Dismiss suggestion"
             >

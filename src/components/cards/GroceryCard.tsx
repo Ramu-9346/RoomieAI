@@ -125,9 +125,9 @@ function GroceryItemCell({
   spacing,
 }: {
   item: GroceryItem;
-  colors: any;
-  radius: any;
-  spacing: any;
+  colors: ReturnType<typeof useTheme>['colors'];
+  radius: ReturnType<typeof useTheme>['radius'];
+  spacing: ReturnType<typeof useTheme>['spacing'];
 }) {
   return (
     <View

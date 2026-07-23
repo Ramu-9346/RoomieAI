@@ -44,7 +44,13 @@ interface ToastProps {
   style?: ViewStyle;
 }
 
-const TYPE_CONFIG: Record<ToastType, { icon: string; getColor: (c: any) => string }> = {
+const TYPE_CONFIG: Record<
+  ToastType,
+  {
+    icon: React.ComponentProps<typeof Feather>['name'];
+    getColor: (c: ReturnType<typeof useTheme>['colors']) => string;
+  }
+> = {
   success: { icon: 'check', getColor: (c) => c.success.default },
   error: { icon: 'x', getColor: (c) => c.error.default },
   info: { icon: 'info', getColor: (c) => c.text.primary },
@@ -121,7 +127,7 @@ export function Toast({
         accessibilityLiveRegion="polite"
       >
         <View style={styles.iconWrap}>
-          <Feather name={config.icon as any} size={18} color={accentColor} />
+          <Feather name={config.icon} size={18} color={accentColor} />
         </View>
         <View style={styles.content}>
           <Text variant="bodyMedium" color={colors.text.primary} numberOfLines={2}>

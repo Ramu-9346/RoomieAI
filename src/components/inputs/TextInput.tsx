@@ -44,8 +44,8 @@ interface TextInputProps extends Omit<RNTextInputProps, 'style'> {
   onChangeText: (text: string) => void;
   error?: string;
   helper?: string;
-  iconLeft?: string;
-  iconRight?: string;
+  iconLeft?: React.ComponentProps<typeof Feather>['name'];
+  iconRight?: React.ComponentProps<typeof Feather>['name'];
   onIconRightPress?: () => void;
   disabled?: boolean;
   multiline?: boolean;
@@ -134,7 +134,7 @@ export function TextInput({
         {iconLeft && (
           <View style={[styles.iconLeft, { top: 16 }]}>
             <Feather
-              name={iconLeft as any}
+              name={iconLeft}
               size={18}
               color={focused ? colors.text.secondary : colors.text.muted}
             />
@@ -187,7 +187,7 @@ export function TextInput({
             style={[styles.iconRight, { top: 16 }]}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
-            <Feather name={iconRight as any} size={18} color={colors.text.muted} />
+            <Feather name={iconRight} size={18} color={colors.text.muted} />
           </Pressable>
         )}
       </Pressable>

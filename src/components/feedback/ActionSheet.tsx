@@ -1,20 +1,14 @@
-import React from 'react';
-import {
-  View,
-  Pressable,
-  FlatList,
-  Modal,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React from 'react';
+import { View, Pressable, FlatList, Modal, StyleSheet, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
 export interface ActionSheetOption {
   label: string;
-  icon?: string;
+  icon?: React.ComponentProps<typeof Feather>['name'];
   description?: string;
   destructive?: boolean;
   disabled?: boolean;
@@ -44,12 +38,7 @@ export function ActionSheet({
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="slide"
-      onRequestClose={onCancel}
-    >
+    <Modal visible={visible} transparent animationType="slide" onRequestClose={onCancel}>
       <Pressable style={styles.backdrop} onPress={onCancel}>
         <View
           style={[
@@ -69,8 +58,16 @@ export function ActionSheet({
 
           {(title || message) && (
             <View style={[styles.header, { borderBottomColor: colors.border.subtle }]}>
-              {title && <Text variant="heading" color={colors.text.primary}>{title}</Text>}
-              {message && <Text variant="body" color={colors.text.muted}>{message}</Text>}
+              {title && (
+                <Text variant="heading" color={colors.text.primary}>
+                  {title}
+                </Text>
+              )}
+              {message && (
+                <Text variant="body" color={colors.text.muted}>
+                  {message}
+                </Text>
+              )}
             </View>
           )}
 
@@ -80,7 +77,10 @@ export function ActionSheet({
             scrollEnabled={false}
             renderItem={({ item }) => (
               <Pressable
-                onPress={() => { item.onPress(); onCancel(); }}
+                onPress={() => {
+                  item.onPress();
+                  onCancel();
+                }}
                 disabled={item.disabled}
                 style={[
                   styles.option,
@@ -92,7 +92,7 @@ export function ActionSheet({
               >
                 {item.icon && (
                   <Feather
-                    name={item.icon as any}
+                    name={item.icon}
                     size={20}
                     color={item.destructive ? colors.error.default : colors.text.secondary}
                   />
@@ -105,7 +105,9 @@ export function ActionSheet({
                     {item.label}
                   </Text>
                   {item.description && (
-                    <Text variant="caption" color={colors.text.muted}>{item.description}</Text>
+                    <Text variant="caption" color={colors.text.muted}>
+                      {item.description}
+                    </Text>
                   )}
                 </View>
               </Pressable>
@@ -126,7 +128,9 @@ export function ActionSheet({
             accessibilityRole="button"
             accessibilityLabel={cancelLabel}
           >
-            <Text variant="bodyMedium" color={colors.text.secondary}>{cancelLabel}</Text>
+            <Text variant="bodyMedium" color={colors.text.secondary}>
+              {cancelLabel}
+            </Text>
           </Pressable>
         </View>
       </Pressable>
@@ -137,7 +141,14 @@ export function ActionSheet({
 const styles = StyleSheet.create({
   backdrop: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(26,23,19,0.5)' },
   sheet: {},
-  handle: { width: 36, height: 4, borderRadius: 2, alignSelf: 'center', marginTop: 12, marginBottom: 8 },
+  handle: {
+    width: 36,
+    height: 4,
+    borderRadius: 2,
+    alignSelf: 'center',
+    marginTop: 12,
+    marginBottom: 8,
+  },
   header: {
     paddingHorizontal: 20,
     paddingVertical: 16,

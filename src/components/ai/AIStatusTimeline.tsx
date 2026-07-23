@@ -18,21 +18,17 @@
  * Use as a slide-up panel above ChatInput while AI is working.
  */
 
-import React from 'react';
-import {
-  View,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withRepeat,
   withSequence,
   withTiming,
-  useEffect as useReanimatedEffect,
 } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -58,12 +54,12 @@ export function AIStatusTimeline({ steps, style }: AIStatusTimelineProps) {
       style={[
         styles.container,
         {
-          backgroundColor:  colors.background.elevated,
-          borderRadius:     radius.xl,
-          borderWidth:      1,
-          borderColor:      colors.border.default,
-          padding:          spacing.sp14,
-          gap:              spacing.sp2,
+          backgroundColor: colors.background.elevated,
+          borderRadius: radius.xl,
+          borderWidth: 1,
+          borderColor: colors.border.default,
+          padding: spacing.sp14,
+          gap: spacing.sp2,
           ...shadows.xs,
         },
         style,
@@ -90,17 +86,14 @@ function StepRow({
 }: {
   step: TimelineStep;
   isLast: boolean;
-  colors: any;
-  spacing: any;
+  colors: ReturnType<typeof useTheme>['colors'];
+  spacing: ReturnType<typeof useTheme>['spacing'];
 }) {
   const pulseScale = useSharedValue(1);
-  useReanimatedEffect(() => {
+  useEffect(() => {
     if (step.status === 'active') {
       pulseScale.value = withRepeat(
-        withSequence(
-          withTiming(1.4, { duration: 500 }),
-          withTiming(1,   { duration: 500 }),
-        ),
+        withSequence(withTiming(1.4, { duration: 500 }), withTiming(1, { duration: 500 })),
         -1,
         false,
       );
@@ -114,17 +107,17 @@ function StepRow({
   }));
 
   const dotColor = {
-    pending:   colors.border.default,
-    active:    colors.primary.default,
+    pending: colors.border.default,
+    active: colors.primary.default,
     completed: colors.success.default,
-    error:     colors.error.default,
+    error: colors.error.default,
   }[step.status];
 
   const labelColor = {
-    pending:   colors.text.muted,
-    active:    colors.text.primary,
+    pending: colors.text.muted,
+    active: colors.text.primary,
     completed: colors.text.secondary,
-    error:     colors.error.text,
+    error: colors.error.text,
   }[step.status];
 
   return (
@@ -135,25 +128,22 @@ function StepRow({
         <View
           style={[
             styles.connectorTop,
-            { backgroundColor: step.status === 'pending' ? colors.border.subtle : colors.success.border },
+            {
+              backgroundColor:
+                step.status === 'pending' ? colors.border.subtle : colors.success.border,
+            },
           ]}
         />
 
         {step.status === 'completed' ? (
           <View
-            style={[
-              styles.dotIcon,
-              { backgroundColor: colors.success.surface, borderRadius: 7 },
-            ]}
+            style={[styles.dotIcon, { backgroundColor: colors.success.surface, borderRadius: 7 }]}
           >
             <Feather name="check" size={10} color={colors.success.default} />
           </View>
         ) : step.status === 'error' ? (
           <View
-            style={[
-              styles.dotIcon,
-              { backgroundColor: colors.error.surface, borderRadius: 7 },
-            ]}
+            style={[styles.dotIcon, { backgroundColor: colors.error.surface, borderRadius: 7 }]}
           >
             <Feather name="x" size={10} color={colors.error.default} />
           </View>
@@ -164,8 +154,8 @@ function StepRow({
               dotAnimStyle,
               {
                 backgroundColor: dotColor,
-                borderRadius:    4,
-                opacity:         step.status === 'pending' ? 0.4 : 1,
+                borderRadius: 4,
+                opacity: step.status === 'pending' ? 0.4 : 1,
               },
             ]}
           />
@@ -173,21 +163,13 @@ function StepRow({
 
         {/* Vertical connector below dot (except last row) */}
         {!isLast && (
-          <View
-            style={[
-              styles.connectorBottom,
-              { backgroundColor: colors.border.subtle },
-            ]}
-          />
+          <View style={[styles.connectorBottom, { backgroundColor: colors.border.subtle }]} />
         )}
       </View>
 
       {/* Label + detail */}
       <View style={[styles.labelCol, { paddingBottom: isLast ? 0 : spacing.sp10 }]}>
-        <Text
-          variant={step.status === 'active' ? 'bodyMedium' : 'caption'}
-          color={labelColor}
-        >
+        <Text variant={step.status === 'active' ? 'bodyMedium' : 'caption'} color={labelColor}>
           {step.label}
         </Text>
         {step.detail && step.status !== 'pending' && (
@@ -206,34 +188,34 @@ const styles = StyleSheet.create({
   },
   step: {
     flexDirection: 'row',
-    gap:           10,
+    gap: 10,
   },
   dotCol: {
-    alignItems:  'center',
-    width:       14,
-    flexShrink:  0,
+    alignItems: 'center',
+    width: 14,
+    flexShrink: 0,
   },
   connectorTop: {
-    width:  1,
+    width: 1,
     height: 6,
   },
   connectorBottom: {
-    width:  1,
-    flex:   1,
+    width: 1,
+    flex: 1,
     minHeight: 8,
   },
   dot: {
-    width:  8,
+    width: 8,
     height: 8,
   },
   dotIcon: {
-    width:          14,
-    height:         14,
-    alignItems:     'center',
+    width: 14,
+    height: 14,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   labelCol: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
 });

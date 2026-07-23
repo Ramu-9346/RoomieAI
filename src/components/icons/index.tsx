@@ -7,15 +7,17 @@
 
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
-import type { ViewStyle } from 'react-native';
+import type { StyleProp, TextStyle } from 'react-native';
 
 import { useTheme } from '../../theme';
 
+type FeatherIconName = React.ComponentProps<typeof Feather>['name'];
+
 interface IconProps {
-  name: string;
+  name: FeatherIconName;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | number;
   color?: string;
-  style?: ViewStyle;
+  style?: StyleProp<TextStyle>;
   accessibilityLabel?: string;
 }
 
@@ -35,10 +37,10 @@ export function Icon({ name, size = 'md', color, style, accessibilityLabel }: Ic
 
   return (
     <Feather
-      name={name as any}
+      name={name}
       size={px}
       color={iconColor}
-      style={style as any}
+      style={style}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole={accessibilityLabel ? 'image' : 'none'}
     />

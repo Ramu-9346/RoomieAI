@@ -13,7 +13,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { View, StyleSheet, type ViewStyle } from 'react-native';
+import { View, StyleSheet, type ViewStyle, type DimensionValue } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -28,7 +28,7 @@ import { useTheme } from '../../theme';
 // ── Skeleton bone ─────────────────────────────────────────────────────────────
 
 interface SkeletonProps {
-  width?: number | string;
+  width?: DimensionValue;
   height?: number;
   radius?: number;
   style?: ViewStyle;
@@ -55,7 +55,7 @@ export function Skeleton({ width = '100%', height = 16, radius, style }: Skeleto
     <Animated.View
       style={[
         {
-          width: width as any,
+          width,
           height,
           borderRadius: radius ?? height / 2,
           backgroundColor: colors.border.default,
@@ -100,7 +100,7 @@ export function SkeletonCard({ variant = 'restaurant', style }: SkeletonCardProp
   );
 }
 
-function RestaurantSkeleton({ spacing }: { spacing: any }) {
+function RestaurantSkeleton({ spacing }: { spacing: ReturnType<typeof useTheme>['spacing'] }) {
   return (
     <View style={{ gap: spacing.sp10 }}>
       <View style={styles.row}>
@@ -115,7 +115,7 @@ function RestaurantSkeleton({ spacing }: { spacing: any }) {
   );
 }
 
-function MemberSkeleton({ spacing }: { spacing: any }) {
+function MemberSkeleton({ spacing }: { spacing: ReturnType<typeof useTheme>['spacing'] }) {
   return (
     <View style={[styles.row, { gap: spacing.sp12 }]}>
       <Skeleton width={44} height={44} radius={22} />
@@ -127,7 +127,11 @@ function MemberSkeleton({ spacing }: { spacing: any }) {
   );
 }
 
-function NotificationSkeleton({ spacing: _spacing }: { spacing: any }) {
+function NotificationSkeleton({
+  spacing: _spacing,
+}: {
+  spacing: ReturnType<typeof useTheme>['spacing'];
+}) {
   return (
     <View style={[styles.row, { gap: 10 }]}>
       <Skeleton width={6} height={6} radius={3} />
@@ -140,7 +144,11 @@ function NotificationSkeleton({ spacing: _spacing }: { spacing: any }) {
   );
 }
 
-function MessageSkeleton({ spacing: _spacing }: { spacing: any }) {
+function MessageSkeleton({
+  spacing: _spacing,
+}: {
+  spacing: ReturnType<typeof useTheme>['spacing'];
+}) {
   return (
     <View style={{ gap: 8 }}>
       <Skeleton width="75%" height={13} />

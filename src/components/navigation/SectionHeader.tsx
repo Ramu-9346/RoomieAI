@@ -9,7 +9,7 @@ interface SectionHeaderProps {
   title: string;
   subtitle?: string;
   action?: { label: string; onPress: () => void };
-  icon?: string;
+  icon?: React.ComponentProps<typeof Feather>['name'];
   style?: ViewStyle;
 }
 
@@ -25,7 +25,7 @@ export function SectionHeader({ title, subtitle, action, icon, style }: SectionH
       ]}
     >
       <View style={styles.left}>
-        {icon && <Feather name={icon as any} size={16} color={colors.primary.default} />}
+        {icon && <Feather name={icon} size={16} color={colors.primary.default} />}
         <View style={styles.titleGroup}>
           <Text variant="eyebrow" color={colors.primary.text}>
             {title}

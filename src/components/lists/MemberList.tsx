@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, type ViewStyle } from 'react-native';
 
 import { useTheme } from '../../theme';
-import { MemberCard } from '../cards/MemberCard';
+import { MemberCard, type DietaryType } from '../cards/MemberCard';
 
 interface Member {
   userId: string;
@@ -11,7 +11,7 @@ interface Member {
   avatarUrl?: string;
   isAdmin?: boolean;
   isOnline?: boolean;
-  dietaryType?: string;
+  dietaryType?: DietaryType;
   allergens?: string[];
 }
 
@@ -37,7 +37,7 @@ export function MemberList({ members, onMemberPress, style }: MemberListProps) {
           avatarUrl={item.avatarUrl}
           isAdmin={item.isAdmin}
           isOnline={item.isOnline}
-          dietaryType={item.dietaryType as any}
+          dietaryType={item.dietaryType}
           allergens={item.allergens}
           onPress={onMemberPress ? () => onMemberPress(item.userId) : undefined}
         />

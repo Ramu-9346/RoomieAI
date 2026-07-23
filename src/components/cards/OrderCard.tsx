@@ -18,21 +18,18 @@
  */
 
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
+import { View, StyleSheet, type ViewStyle } from 'react-native';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { RatingBadge, VegIndicator } from '../primitives/Badge';
 import { Divider } from '../primitives/Divider';
+import { Text } from '../primitives/Text';
 
 export interface OrderItem {
   name: string;
   isVeg: boolean;
-  forMembers: string;   // "For you + Priya"
-  price: string;        // "₹649"
+  forMembers: string; // "For you + Priya"
+  price: string; // "₹649"
 }
 
 interface OrderCardProps {
@@ -42,7 +39,7 @@ interface OrderCardProps {
   deliveryTime?: string;
   distance?: string;
   items: OrderItem[];
-  total: string;        // "₹1,236"
+  total: string; // "₹1,236"
   style?: ViewStyle;
 }
 
@@ -64,10 +61,10 @@ export function OrderCard({
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.xl,
-          borderWidth:     1,
-          borderColor:     colors.border.default,
-          overflow:        'hidden',
+          borderRadius: radius.xl,
+          borderWidth: 1,
+          borderColor: colors.border.default,
+          overflow: 'hidden',
           ...shadows.card,
         },
         style,
@@ -78,7 +75,7 @@ export function OrderCard({
         style={[
           styles.header,
           {
-            padding:         spacing.sp14,
+            padding: spacing.sp14,
             borderBottomWidth: 1,
             borderBottomColor: colors.border.subtle,
           },
@@ -90,7 +87,9 @@ export function OrderCard({
             { backgroundColor: colors.primary.surface, borderRadius: radius.md },
           ]}
         >
-          <Text variant="title" style={styles.emoji}>{restaurantEmoji}</Text>
+          <Text variant="title" style={styles.emoji}>
+            {restaurantEmoji}
+          </Text>
         </View>
 
         <View style={styles.restaurantInfo}>
@@ -104,7 +103,10 @@ export function OrderCard({
               </Text>
             )}
             {deliveryTime && distance && (
-              <Text variant="monoSmall" color={colors.border.default}> · </Text>
+              <Text variant="monoSmall" color={colors.border.default}>
+                {' '}
+                ·{' '}
+              </Text>
             )}
             {distance && (
               <Text variant="monoSmall" color={colors.text.muted}>
@@ -114,9 +116,7 @@ export function OrderCard({
           </View>
         </View>
 
-        {rating !== undefined && (
-          <RatingBadge rating={rating} />
-        )}
+        {rating !== undefined && <RatingBadge rating={rating} />}
       </View>
 
       {/* Items list */}
@@ -138,7 +138,7 @@ export function OrderCard({
         style={[
           styles.totalRow,
           {
-            padding:         spacing.sp12,
+            padding: spacing.sp12,
             backgroundColor: colors.background.primary,
           },
         ]}
@@ -163,8 +163,8 @@ function OrderItemRow({
   isLast,
 }: {
   item: OrderItem;
-  colors: any;
-  spacing: any;
+  colors: ReturnType<typeof useTheme>['colors'];
+  spacing: ReturnType<typeof useTheme>['spacing'];
   isLast: boolean;
 }) {
   return (
@@ -174,8 +174,8 @@ function OrderItemRow({
         !isLast && {
           borderBottomWidth: StyleSheet.hairlineWidth,
           borderBottomColor: colors.border.subtle,
-          paddingBottom:     spacing.sp8,
-          marginBottom:      spacing.sp8,
+          paddingBottom: spacing.sp8,
+          marginBottom: spacing.sp8,
         },
       ]}
     >
@@ -203,31 +203,31 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           12,
+    alignItems: 'center',
+    gap: 12,
   },
   restaurantIcon: {
-    width:          44,
-    height:         44,
-    alignItems:     'center',
+    width: 44,
+    height: 44,
+    alignItems: 'center',
     justifyContent: 'center',
-    flexShrink:     0,
+    flexShrink: 0,
   },
   emoji: {
     fontSize: 22,
   },
   restaurantInfo: {
     flex: 1,
-    gap:  3,
+    gap: 3,
   },
   metaRow: {
     flexDirection: 'row',
-    alignItems:    'center',
+    alignItems: 'center',
   },
   itemRow: {
     flexDirection: 'row',
-    alignItems:    'flex-start',
-    gap:           10,
+    alignItems: 'flex-start',
+    gap: 10,
   },
   vegIndicator: {
     marginTop: 3,
@@ -235,15 +235,15 @@ const styles = StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    gap:  2,
+    gap: 2,
   },
   price: {
     flexShrink: 0,
-    alignSelf:  'flex-start',
+    alignSelf: 'flex-start',
   },
   totalRow: {
-    flexDirection:  'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:     'center',
+    alignItems: 'center',
   },
 });

@@ -6,6 +6,8 @@ import {
   StyleSheet,
   type ViewStyle,
   type ListRenderItem,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
 } from 'react-native';
 
 import { useTheme } from '../../theme';
@@ -33,7 +35,7 @@ export function AnimatedCarousel<T>({
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onMomentumScrollEnd = useCallback(
-    (e: any) => {
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const offset = e.nativeEvent.contentOffset.x;
       const index = Math.round(offset / (itemWidth + spacing.sp16));
       setActiveIndex(index);

@@ -132,8 +132,8 @@ function SettlementChip({
   radius,
 }: {
   status: SettlementStatus;
-  colors: any;
-  radius: any;
+  colors: ReturnType<typeof useTheme>['colors'];
+  radius: ReturnType<typeof useTheme>['radius'];
 }) {
   const config = {
     'all-settled': { bg: colors.success.surface, text: colors.success.text, label: 'Settled' },
@@ -159,7 +159,7 @@ function SettlementChip({
   );
 }
 
-function getIconBg(type: HistoryItemType, colors: any): string {
+function getIconBg(type: HistoryItemType, colors: ReturnType<typeof useTheme>['colors']): string {
   switch (type) {
     case 'food':
       return colors.primary.surface;

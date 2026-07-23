@@ -17,41 +17,29 @@
  */
 
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
+import { View, StyleSheet, type ViewStyle } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 import { useTheme } from '../../theme';
-import { Text } from '../primitives/Text';
 import { Avatar } from '../primitives/Avatar';
+import { Text } from '../primitives/Text';
 
 export interface PollResponse {
   name: string;
   memberIndex: number;
-  answer: string;      // "in · craving biryani", "out · at office 🏢"
-  isIn: boolean;       // true → ✓ green, false → — muted
-  pending?: boolean;   // true → "waiting..." shimmer
+  answer: string; // "in · craving biryani", "out · at office 🏢"
+  isIn: boolean; // true → ✓ green, false → — muted
+  pending?: boolean; // true → "waiting..." shimmer
 }
 
 interface PollCardProps {
   question: string;
   responses: PollResponse[];
-  totalMembers?: number;   // to show "2/4 responded"
+  totalMembers?: number; // to show "2/4 responded"
   style?: ViewStyle;
 }
 
-export function PollCard({
-  question,
-  responses,
-  totalMembers,
-  style,
-}: PollCardProps) {
+export function PollCard({ question, responses, totalMembers, style }: PollCardProps) {
   const { colors, radius, spacing, shadows } = useTheme();
 
   const responded = responses.filter((r) => !r.pending).length;
@@ -63,10 +51,10 @@ export function PollCard({
         styles.container,
         {
           backgroundColor: colors.background.elevated,
-          borderRadius:    radius.lg,
-          borderWidth:     1,
-          borderColor:     colors.border.default,
-          overflow:        'hidden',
+          borderRadius: radius.lg,
+          borderWidth: 1,
+          borderColor: colors.border.default,
+          overflow: 'hidden',
           ...shadows.card,
         },
         style,
@@ -108,8 +96,8 @@ function PollRow({
 }: {
   response: PollResponse;
   isLast: boolean;
-  colors: any;
-  spacing: any;
+  colors: ReturnType<typeof useTheme>['colors'];
+  spacing: ReturnType<typeof useTheme>['spacing'];
 }) {
   const opacity = useSharedValue(response.pending ? 0.5 : 1);
   const rowStyle = useAnimatedStyle(() => ({ opacity: opacity.value }));
@@ -133,11 +121,7 @@ function PollRow({
         rowStyle,
       ]}
     >
-      <Avatar
-        name={response.name}
-        memberIndex={response.memberIndex}
-        size="sm"
-      />
+      <Avatar name={response.name} memberIndex={response.memberIndex} size="sm" />
 
       <Text variant="bodyMedium" color={colors.text.primary} style={styles.name}>
         {response.name}
@@ -172,8 +156,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           10,
+    alignItems: 'center',
+    gap: 10,
   },
   name: {
     minWidth: 50,
@@ -183,7 +167,7 @@ const styles = StyleSheet.create({
   },
   check: {
     flexShrink: 0,
-    minWidth:   16,
-    textAlign:  'right',
+    minWidth: 16,
+    textAlign: 'right',
   },
 });

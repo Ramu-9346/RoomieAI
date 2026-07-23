@@ -15,6 +15,7 @@
  */
 
 import { Feather } from '@expo/vector-icons';
+import type { ComponentProps } from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 
 import { AppHeader, ScreenContainer, Section, Spacer, NoMembers, Text } from '@components';
@@ -25,7 +26,7 @@ import { useAppTheme } from '@hooks/useAppTheme';
 interface StatTileProps {
   label: string;
   value: string;
-  icon: string;
+  icon: ComponentProps<typeof Feather>['name'];
 }
 
 function StatTile({ label, value, icon }: StatTileProps) {
@@ -43,7 +44,7 @@ function StatTile({ label, value, icon }: StatTileProps) {
         },
       ]}
     >
-      <Feather name={icon as any} size={18} color={colors.primary.default} />
+      <Feather name={icon} size={18} color={colors.primary.default} />
       <Spacer size="sp8" />
       <Text variant="heading" color={colors.text.primary}>
         {value}

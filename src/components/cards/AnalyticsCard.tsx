@@ -1,6 +1,7 @@
+import { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View, StyleSheet, type ViewStyle } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+
 import { useTheme } from '../../theme';
 import { Text } from '../primitives/Text';
 
@@ -9,7 +10,7 @@ interface AnalyticsCardProps {
   value: string;
   subvalue?: string;
   trend?: number;
-  icon?: string;
+  icon?: React.ComponentProps<typeof Feather>['name'];
   color?: 'primary' | 'success' | 'warning' | 'error';
   style?: ViewStyle;
 }
@@ -44,8 +45,10 @@ export function AnalyticsCard({
       ]}
     >
       <View style={styles.header}>
-        <View style={[styles.iconBox, { backgroundColor: themeColor.surface, borderRadius: radius.md }]}>
-          <Feather name={icon as any} size={18} color={themeColor.default} />
+        <View
+          style={[styles.iconBox, { backgroundColor: themeColor.surface, borderRadius: radius.md }]}
+        >
+          <Feather name={icon} size={18} color={themeColor.default} />
         </View>
         {trend !== undefined && (
           <View style={styles.trend}>
@@ -81,7 +84,12 @@ export function AnalyticsCard({
 
 const styles = StyleSheet.create({
   container: { flex: 1, gap: 4 },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 8,
+  },
   iconBox: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center' },
   trend: { flexDirection: 'row', alignItems: 'center', gap: 3 },
   value: { fontSize: 22 },

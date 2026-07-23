@@ -56,9 +56,9 @@ interface ButtonProps extends Omit<PressableProps, 'style'> {
   size?: ButtonSize;
   label: string;
   /** Feather icon name to show before label */
-  iconLeft?: string;
+  iconLeft?: React.ComponentProps<typeof Feather>['name'];
   /** Feather icon name to show after label */
-  iconRight?: string;
+  iconRight?: React.ComponentProps<typeof Feather>['name'];
   loading?: boolean;
   disabled?: boolean;
   onPress?: () => void;
@@ -167,19 +167,14 @@ export function Button({
         ) : (
           <>
             {iconLeft && (
-              <Feather
-                name={iconLeft as any}
-                size={iconSize}
-                color={iconColor}
-                style={styles.iconLeft}
-              />
+              <Feather name={iconLeft} size={iconSize} color={iconColor} style={styles.iconLeft} />
             )}
             <Text variant="button" color={variantStyles.textColor} style={styles.label}>
               {loading ? 'Please wait...' : label}
             </Text>
             {iconRight && (
               <Feather
-                name={iconRight as any}
+                name={iconRight}
                 size={iconSize}
                 color={iconColor}
                 style={styles.iconRight}
@@ -196,7 +191,7 @@ export function Button({
 // Square button with only an icon — for toolbar actions, navigation actions.
 
 interface IconButtonProps {
-  icon: string;
+  icon: React.ComponentProps<typeof Feather>['name'];
   size?: ButtonSize;
   variant?: Extract<ButtonVariant, 'primary' | 'secondary' | 'ghost'>;
   onPress: () => void;
@@ -250,7 +245,7 @@ export function IconButton({
         style,
       ]}
     >
-      <Feather name={icon as any} size={iconSizePx} color={variantStyles.iconColor} />
+      <Feather name={icon} size={iconSizePx} color={variantStyles.iconColor} />
     </AnimatedPressable>
   );
 }

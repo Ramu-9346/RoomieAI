@@ -95,7 +95,7 @@ export function OrderSkeleton({ style }: SkeletonProps) {
       <Skeleton width="100%" height={1} />
       {[0, 1, 2].map((i) => (
         <View key={i} style={styles.spaceBetween}>
-          <Skeleton width={`${50 + i * 10}%` as any} height={14} />
+          <Skeleton width={`${50 + i * 10}%` as `${number}%`} height={14} />
           <Skeleton width={60} height={14} />
         </View>
       ))}
